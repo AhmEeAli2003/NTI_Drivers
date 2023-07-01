@@ -135,12 +135,12 @@ ES_t DIO_enuTogPortValue(u8 Copy_u8PortID)
 }
 
 
-ES_t DIO_enuGetPortValue(u8 Copy_u8PortID, u8 * Copy_u8Value)
+ES_t DIO_enuGetPortValue(u8 Copy_u8PortID, u8 * Copy_pu8Value)
 {
 	ES_t Local_enuErrorState = ES_NOK;
 
 	/* Check if wild pointer */
-	if(Copy_u8Value != NULL)
+	if(Copy_pu8Value != NULL)
 	{
 		/* Change Range */
 		if(Copy_u8PortID <= DIO_PORTD)
@@ -148,16 +148,16 @@ ES_t DIO_enuGetPortValue(u8 Copy_u8PortID, u8 * Copy_u8Value)
 			switch(Copy_u8PortID)
 			{
 			case DIO_PORTA:
-				*Copy_u8Value = PINA;
+				*Copy_pu8Value = PINA;
 				break;
 			case DIO_PORTB:
-				*Copy_u8Value = PINB;
+				*Copy_pu8Value = PINB;
 				break;
 			case DIO_PORTC:
-				*Copy_u8Value = PINC;
+				*Copy_pu8Value = PINC;
 				break;
 			case DIO_PORTD:
-				*Copy_u8Value = PIND;
+				*Copy_pu8Value = PIND;
 				break;
 			}
 			Local_enuErrorState = ES_OK;
@@ -289,12 +289,12 @@ ES_t DIO_enuTogPinValue(u8 Copy_u8PortID, u8 Copy_u8PinID)
 	return Local_enuErrorState;
 }
 
-ES_t DIO_enuGetPinValue(u8 Copy_u8PortID, u8 Copy_u8PinID, u8 * Copy_u8Value)
+ES_t DIO_enuGetPinValue(u8 Copy_u8PortID, u8 Copy_u8PinID, u8 * Copy_pu8Value)
 {
 	ES_t Local_enuErrorState = ES_NOK;
 
 	/* Check if wild pointer */
-	if(Copy_u8Value != NULL)
+	if(Copy_pu8Value != NULL)
 	{
 		/* Check Range */
 		if((Copy_u8PortID <= DIO_PORTD) && (Copy_u8PinID <= DIO_PIN7))
@@ -302,16 +302,16 @@ ES_t DIO_enuGetPinValue(u8 Copy_u8PortID, u8 Copy_u8PinID, u8 * Copy_u8Value)
 			switch(Copy_u8PortID)
 			{
 			case DIO_PORTA:
-				*Copy_u8Value = ((PINA >> Copy_u8PinID) & DIO_MASK_BIT);
+				*Copy_pu8Value = ((PINA >> Copy_u8PinID) & DIO_MASK_BIT);
 				break;
 			case DIO_PORTB:
-				*Copy_u8Value = ((PINB >> Copy_u8PinID) & DIO_MASK_BIT);
+				*Copy_pu8Value = ((PINB >> Copy_u8PinID) & DIO_MASK_BIT);
 				break;
 			case DIO_PORTC:
-				*Copy_u8Value = ((PINC >> Copy_u8PinID) & DIO_MASK_BIT);
+				*Copy_pu8Value = ((PINC >> Copy_u8PinID) & DIO_MASK_BIT);
 				break;
 			case DIO_PORTD:
-				*Copy_u8Value = ((PIND >> Copy_u8PinID) & DIO_MASK_BIT);
+				*Copy_pu8Value = ((PIND >> Copy_u8PinID) & DIO_MASK_BIT);
 				break;
 			}
 			Local_enuErrorState = ES_OK;

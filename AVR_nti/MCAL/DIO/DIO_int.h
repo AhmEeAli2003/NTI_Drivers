@@ -78,11 +78,11 @@ ES_t DIO_enuTogPortValue(u8 Copy_u8PortID);
  ****************************************************************************************
  *	@name			: DIO_enuGetPortValue
  *  @brief          : Get port value and store it in variable passed by address.
- *  @param          : u8 Copy_u8PortID, u8 * Copy_u8Value
+ *  @param          : u8 Copy_u8PortID, u8 * Copy_pu8Value
  *  @return         : ES_t
  ****************************************************************************************
 */
-ES_t DIO_enuGetPortValue(u8 Copy_u8PortID, u8 * Copy_u8Value);
+ES_t DIO_enuGetPortValue(u8 Copy_u8PortID, u8 * Copy_pu8Value);
 
 /**
  ****************************************************************************************
@@ -118,11 +118,11 @@ ES_t DIO_enuTogPinValue(u8 Copy_u8PortID, u8 Copy_u8PinID);
  ****************************************************************************************
  *	@name			: DIO_enuGetPinValue
  *  @brief          : Get value of pin and store it in variable passed by address.
- *  @param          : u8 Copy_u8PortID, u8 Copy_u8PinID
+ *  @param          : u8 Copy_u8PortID, u8 Copy_u8PinID, u8 * Copy_pu8Value
  *  @return         : ES_t
  ****************************************************************************************
 */
-ES_t DIO_enuGetPinValue(u8 Copy_u8PortID, u8 Copy_u8PinID, u8 * Copy_u8Value);
+ES_t DIO_enuGetPinValue(u8 Copy_u8PortID, u8 Copy_u8PinID, u8 * Copy_pu8Value);
 
 /**
  * Note: We can deal with functions of pin without port ID by define macros or enums
