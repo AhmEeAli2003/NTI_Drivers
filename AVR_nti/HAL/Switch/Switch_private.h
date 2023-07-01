@@ -12,9 +12,9 @@
 
 typedef struct
 {
-	u8 SW_PortID;
-	u8 SW_PinID;
-	u8 SW_Status;
+	u8 SW_u8PortID;
+	u8 SW_u8PinID;
+	u8 SW_u8Status;
 }SW_t;
 
 #endif /* HAL_SWITCH_SWITCH_PRIVATE_H_ */
