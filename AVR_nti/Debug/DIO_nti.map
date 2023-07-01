@@ -22,6 +22,8 @@ LOAD c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5/crtm32
 LOAD ./MCAL/DIO/DIO_prog.o
 LOAD ./HAL/Switch/Switch_config.o
 LOAD ./HAL/Switch/Switch_prog.o
+LOAD ./HAL/LED/LED_config.o
+LOAD ./HAL/LED/LED_prog.o
 LOAD ./APP/main.o
 LOAD c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a
 LOAD c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5\libc.a
@@ -117,7 +119,7 @@ LOAD c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a
 .rela.plt
  *(.rela.plt)
 
-.text           0x00000000      0xb12
+.text           0x00000000      0xea8
  *(.vectors)
  .vectors       0x00000000       0x54 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5/crtm32.o
                 0x00000000                __vectors
@@ -195,6 +197,8 @@ LOAD c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a
  .text          0x00000082        0x0 ./MCAL/DIO/DIO_prog.o
  .text          0x00000082        0x0 ./HAL/Switch/Switch_config.o
  .text          0x00000082        0x0 ./HAL/Switch/Switch_prog.o
+ .text          0x00000082        0x0 ./HAL/LED/LED_config.o
+ .text          0x00000082        0x0 ./HAL/LED/LED_prog.o
  .text          0x00000082        0x0 ./APP/main.o
  .text          0x00000082        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
  .text          0x00000082        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_copy_data.o)
@@ -233,15 +237,24 @@ LOAD c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a
  .text.Switch_enuGetState
                 0x00000a6c       0x5c ./HAL/Switch/Switch_prog.o
                 0x00000a6c                Switch_enuGetState
- .text.main     0x00000ac8       0x46 ./APP/main.o
-                0x00000ac8                main
- .text.libgcc   0x00000b0e        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
- .text.libgcc   0x00000b0e        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_copy_data.o)
-                0x00000b0e                . = ALIGN (0x2)
+ .text.LED_enuInit
+                0x00000ac8      0x282 ./HAL/LED/LED_prog.o
+                0x00000ac8                LED_enuInit
+ .text.LED_enuTurnON
+                0x00000d4a       0x80 ./HAL/LED/LED_prog.o
+                0x00000d4a                LED_enuTurnON
+ .text.LED_enuTurnOFF
+                0x00000dca       0x80 ./HAL/LED/LED_prog.o
+                0x00000dca                LED_enuTurnOFF
+ .text.main     0x00000e4a       0x5a ./APP/main.o
+                0x00000e4a                main
+ .text.libgcc   0x00000ea4        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
+ .text.libgcc   0x00000ea4        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_copy_data.o)
+                0x00000ea4                . = ALIGN (0x2)
  *(.fini9)
- .fini9         0x00000b0e        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
-                0x00000b0e                exit
-                0x00000b0e                _exit
+ .fini9         0x00000ea4        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
+                0x00000ea4                exit
+                0x00000ea4                _exit
  *(.fini9)
  *(.fini8)
  *(.fini8)
@@ -260,17 +273,19 @@ LOAD c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a
  *(.fini1)
  *(.fini1)
  *(.fini0)
- .fini0         0x00000b0e        0x4 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
+ .fini0         0x00000ea4        0x4 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
  *(.fini0)
-                0x00000b12                _etext = .
+                0x00000ea8                _etext = .
 
-.data           0x00800060        0xa load address 0x00000b12
+.data           0x00800060       0x16 load address 0x00000ea8
                 0x00800060                PROVIDE (__data_start, .)
  *(.data)
  .data          0x00800060        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5/crtm32.o
  .data          0x00800060        0x0 ./MCAL/DIO/DIO_prog.o
  .data          0x00800060        0x0 ./HAL/Switch/Switch_config.o
  .data          0x00800060        0x0 ./HAL/Switch/Switch_prog.o
+ .data          0x00800060        0x0 ./HAL/LED/LED_config.o
+ .data          0x00800060        0x0 ./HAL/LED/LED_prog.o
  .data          0x00800060        0x0 ./APP/main.o
  .data          0x00800060        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
  .data          0x00800060        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_copy_data.o)
@@ -278,36 +293,41 @@ LOAD c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a
  .data.Switch_AstrSwitchState
                 0x00800060        0x9 ./HAL/Switch/Switch_config.o
                 0x00800060                Switch_AstrSwitchState
+ .data.LED_AstrLedConfiguration
+                0x00800069        0xc ./HAL/LED/LED_config.o
+                0x00800069                LED_AstrLedConfiguration
  *(.rodata)
  *(.rodata*)
  *(.gnu.linkonce.d*)
-                0x0080006a                . = ALIGN (0x2)
- *fill*         0x00800069        0x1 00
-                0x0080006a                _edata = .
-                0x0080006a                PROVIDE (__data_end, .)
+                0x00800076                . = ALIGN (0x2)
+ *fill*         0x00800075        0x1 00
+                0x00800076                _edata = .
+                0x00800076                PROVIDE (__data_end, .)
 
-.bss            0x0080006a        0x0
-                0x0080006a                PROVIDE (__bss_start, .)
+.bss            0x00800076        0x0
+                0x00800076                PROVIDE (__bss_start, .)
  *(.bss)
- .bss           0x0080006a        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5/crtm32.o
- .bss           0x0080006a        0x0 ./MCAL/DIO/DIO_prog.o
- .bss           0x0080006a        0x0 ./HAL/Switch/Switch_config.o
- .bss           0x0080006a        0x0 ./HAL/Switch/Switch_prog.o
- .bss           0x0080006a        0x0 ./APP/main.o
- .bss           0x0080006a        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
- .bss           0x0080006a        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_copy_data.o)
+ .bss           0x00800076        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5/crtm32.o
+ .bss           0x00800076        0x0 ./MCAL/DIO/DIO_prog.o
+ .bss           0x00800076        0x0 ./HAL/Switch/Switch_config.o
+ .bss           0x00800076        0x0 ./HAL/Switch/Switch_prog.o
+ .bss           0x00800076        0x0 ./HAL/LED/LED_config.o
+ .bss           0x00800076        0x0 ./HAL/LED/LED_prog.o
+ .bss           0x00800076        0x0 ./APP/main.o
+ .bss           0x00800076        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
+ .bss           0x00800076        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_copy_data.o)
  *(.bss*)
  *(COMMON)
-                0x0080006a                PROVIDE (__bss_end, .)
-                0x00000b12                __data_load_start = LOADADDR (.data)
-                0x00000b1c                __data_load_end = (__data_load_start + SIZEOF (.data))
+                0x00800076                PROVIDE (__bss_end, .)
+                0x00000ea8                __data_load_start = LOADADDR (.data)
+                0x00000ebe                __data_load_end = (__data_load_start + SIZEOF (.data))
 
-.noinit         0x0080006a        0x0
-                0x0080006a                PROVIDE (__noinit_start, .)
+.noinit         0x00800076        0x0
+                0x00800076                PROVIDE (__noinit_start, .)
  *(.noinit*)
-                0x0080006a                PROVIDE (__noinit_end, .)
-                0x0080006a                _end = .
-                0x0080006a                PROVIDE (__heap_start, .)
+                0x00800076                PROVIDE (__noinit_end, .)
+                0x00800076                _end = .
+                0x00800076                PROVIDE (__heap_start, .)
 
 .eeprom         0x00810000        0x0
  *(.eeprom*)
@@ -325,19 +345,23 @@ LOAD c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a
 .signature
  *(.signature*)
 
-.stab           0x00000000     0x1098
+.stab           0x00000000     0x1890
  *(.stab)
  .stab          0x00000000      0x9cc ./MCAL/DIO/DIO_prog.o
  .stab          0x000009cc      0x1d4 ./HAL/Switch/Switch_config.o
                                 0x1e0 (size before relaxing)
  .stab          0x00000ba0      0x2a0 ./HAL/Switch/Switch_prog.o
                                 0x33c (size before relaxing)
- .stab          0x00000e40      0x258 ./APP/main.o
-                                0x264 (size before relaxing)
+ .stab          0x00000e40      0x1d4 ./HAL/LED/LED_config.o
+                                0x1e0 (size before relaxing)
+ .stab          0x00001014      0x414 ./HAL/LED/LED_prog.o
+                                0x4b0 (size before relaxing)
+ .stab          0x00001428      0x468 ./APP/main.o
+                                0x474 (size before relaxing)
 
-.stabstr        0x00000000      0x9e9
+.stabstr        0x00000000     0x1079
  *(.stabstr)
- .stabstr       0x00000000      0x9e9 ./MCAL/DIO/DIO_prog.o
+ .stabstr       0x00000000     0x1079 ./MCAL/DIO/DIO_prog.o
 
 .stab.excl
  *(.stab.excl)
