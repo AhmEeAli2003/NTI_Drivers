@@ -9,5 +9,11 @@
 #define HAL_SWITCH_SWITCH_CONFIG_H_
 
 
+/**
+ * Write number of switches in your system
+ * */
+#define SW_NUM     3
+
+
 
 #endif /* HAL_SWITCH_SWITCH_CONFIG_H_ */

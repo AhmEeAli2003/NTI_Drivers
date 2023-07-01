@@ -5,32 +5,31 @@
  *      Author: Ahmed
  */
 
+#include "../HAL/Switch/Switch_int.h"
+#include "../HAL/Switch/Switch_config.h"
 #include "../MCAL/DIO/DIO_int.h"
-#include <util/delay.h>
+
+
+extern SW_t Switch_AstrSwitchState[SW_NUM];
 
 int main(void)
 {
-	u8 common_cathode_numbers_arr[] = {0x3F, 0x06, 0x5B, 0x4F, 0x66,
-									   0x6D, 0x7D, 0x07, 0x7F, 0x6F
-									  }, i, j;
 	DIO_enuInit();
+	Switch_enuInit(Switch_AstrSwitchState);
+	u8 Local_u8pinState = 0;
 
 	while(1)
 	{
-		for(i = 0; i < 10; i++)
+		Switch_enuGetState(&Switch_AstrSwitchState[1], &Local_u8pinState);
+
+		if(Local_u8pinState == 0)
 		{
-			DIO_enuSetPortValue(DIO_u8PORTB, common_cathode_numbers_arr[0]);
-			DIO_enuSetPortValue(DIO_u8PORTA, common_cathode_numbers_arr[i]);
-
-			for(j = 0; j < 10; j++)
-			{
-				DIO_enuSetPortValue(DIO_u8PORTB, common_cathode_numbers_arr[j]);
-				_delay_ms(500);
-			}
-
+			DIO_enuSetPinValue(DIO_u8PORTA, DIO_u8PIN0, DIO_u8HIGH);
+		}
+		else
+		{
+			DIO_enuSetPinValue(DIO_u8PORTA, DIO_u8PIN0, DIO_u8LOW);
 		}
 	}
-
 	return 0;
 }
-
