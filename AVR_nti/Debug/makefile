@@ -10,6 +10,7 @@ RM := rm -rf
 -include sources.mk
 -include MCAL/DIO/subdir.mk
 -include HAL/Switch/subdir.mk
+-include HAL/SSD_LT/subdir.mk
 -include HAL/SSD/subdir.mk
 -include HAL/LED/subdir.mk
 -include APP/subdir.mk

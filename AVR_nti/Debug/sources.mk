@@ -23,6 +23,7 @@ SUBDIRS := \
 APP \
 HAL/LED \
 HAL/SSD \
+HAL/SSD_LT \
 HAL/Switch \
 MCAL/DIO \
 
