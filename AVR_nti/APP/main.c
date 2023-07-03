@@ -5,45 +5,41 @@
  *      Author: Ahmed
  */
 
-
-/** Main of LED **/
+/** main of SSD Pre Compile configuration **/
 #include "../LIB/STD_TYPES.h"
 #include "../LIB/ERROR_STATE.h"
 #include "../MCAL/DIO/DIO_int.h"
-#include "../HAL/LED/LED_int.h"
-#include "../HAL/LED/LED_config.h"
-#include "../HAL/Switch/Switch_config.h"
-#include "../HAL/Switch/Switch_int.h"
+#include "../HAL/SSD/SSD_int.h"
 #include <util/delay.h>
-
-extern LED_t LED_AstrLedConfiguration[LED_NUM];
-extern SW_t Switch_AstrSwitchState[SW_NUM];
 
 int main(void)
 {
+	u8 Local_u8Iterator = 0;
+	ES_t Local_enuSSDErrorRet;
 	DIO_enuInit();
-	LED_enuInit(LED_AstrLedConfiguration);
-	Switch_enuInit(Switch_AstrSwitchState);
-	//_delay_ms(2000); //For Debug init state
+	Local_enuSSDErrorRet = SSD_enuInit();
 
-	u8 Local_u8PinState = 0;
 
 	while(1)
 	{
-		Switch_enuGetState(&Switch_AstrSwitchState[1], &Local_u8PinState);
 
-		if(Local_u8PinState == 0)
+		if(Local_enuSSDErrorRet == ES_OK) //For Debug Init Function
 		{
-			LED_enuTurnON(&LED_AstrLedConfiguration[0]);
-			LED_enuTurnOFF(&LED_AstrLedConfiguration[1]);
+			for(Local_u8Iterator = 0; Local_u8Iterator < 10; Local_u8Iterator++)
+			{
+				SSD_enuDisplayNum(Local_u8Iterator);
+				_delay_ms(500);
+				if(SSD_enuClearDisplay() == ES_OK) //For Debug Clear Function
+				{
+					_delay_ms(500);
+				}
+			}
 		}
-		else
-		{
-			LED_enuTurnOFF(&LED_AstrLedConfiguration[0]);
-			LED_enuTurnON(&LED_AstrLedConfiguration[1]);
-		}
+
 	}
-
 	return 0;
 }
+
+
+
 
