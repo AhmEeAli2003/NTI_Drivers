@@ -295,13 +295,13 @@ ES_t SSDLT_enuDisableDot(u8 Copy_u8SegID)
 			}
 			else
 			{
-				Local_enuErrorState = ES_OUT_OF_RANGE;
+				return ES_OUT_OF_RANGE;
 			}
 		}
 	}
 	else
 	{
-		Local_enuErrorState = ES_OUT_OF_RANGE;
+		return ES_OUT_OF_RANGE;
 	}
 	return Local_enuErrorState;
 }
@@ -345,7 +345,7 @@ ES_t SSDLT_enuClearDisplay(u8 Copy_u8SegID)
 			Local_u32Check |= (((u32)DIO_enuSetPinValue(SSD_AstrSegConfig[Copy_u8SegID].SEG_u8GPort,
 							   	   	   	   	   	  SSD_AstrSegConfig[Copy_u8SegID].SEG_u8GPin,
 												  DIO_u8LOW) << 18));
-			Local_u8LastBit = 18;
+			Local_u8LastBit = 21;
 		}
 		else if(SSD_AstrSegConfig[Copy_u8SegID].SEG_u8Type == COMMON_ANODE)
 		{
@@ -376,23 +376,42 @@ ES_t SSDLT_enuClearDisplay(u8 Copy_u8SegID)
 			Local_u32Check |= (((u32)DIO_enuSetPinValue(SSD_AstrSegConfig[Copy_u8SegID].SEG_u8GPort,
 							   	   	   	   	   	  SSD_AstrSegConfig[Copy_u8SegID].SEG_u8GPin,
 												  DIO_u8HIGH) << 18));
-			Local_u8LastBit = 18;
+			Local_u8LastBit = 21;
 		}
 		else
 		{
-			Local_enuErrorState = ES_OUT_OF_RANGE;
+			return ES_OUT_OF_RANGE;
 		}
 	}
 	else
 	{
-		Local_enuErrorState = ES_OUT_OF_RANGE;
+		return ES_OUT_OF_RANGE;
 	}
 
 	if(SSD_AstrSegConfig[Copy_u8SegID].SEG_u8DOT_Port != NOT_CONNECTED ||
 		SSD_AstrSegConfig[Copy_u8SegID].SEG_u8DOT_Pin != NOT_CONNECTED)
 	{
-		Local_u32Check |= (((u32)(SSDLT_enuDisableDot(Copy_u8SegID)) << 21));
-		Local_u8LastBit = 24;
+		if(SSD_AstrSegConfig[Copy_u8SegID].SEG_u8Type == COMMON_CATHODE)
+		{
+			Local_enuErrorState |= (((u32)DIO_enuSetPinValue(SSD_AstrSegConfig[Copy_u8SegID].SEG_u8DOT_Port,
+													 SSD_AstrSegConfig[Copy_u8SegID].SEG_u8DOT_Pin, DIO_u8LOW) << Local_u8LastBit));
+			Local_u8LastBit += 3;
+		}
+		else if(SSD_AstrSegConfig[Copy_u8SegID].SEG_u8Type == COMMON_ANODE)
+		{
+			Local_enuErrorState |= (((u32)DIO_enuSetPinValue(SSD_AstrSegConfig[Copy_u8SegID].SEG_u8DOT_Port,
+													SSD_AstrSegConfig[Copy_u8SegID].SEG_u8DOT_Pin, DIO_u8HIGH) << Local_u8LastBit));
+			Local_u8LastBit += 3;
+		}
+		else
+		{
+			return ES_OUT_OF_RANGE;
+		}
+
+	}
+	else
+	{
+		return ES_OUT_OF_RANGE;
 	}
 
 	for(Local_u8Iterator = 0; Local_u8Iterator < Local_u8LastBit; Local_u8Iterator += 3)

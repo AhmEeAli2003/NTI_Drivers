@@ -13,6 +13,7 @@ RM := rm -rf
 -include HAL/SSD_LT/subdir.mk
 -include HAL/SSD/subdir.mk
 -include HAL/LED/subdir.mk
+-include HAL/LCD/subdir.mk
 -include APP/subdir.mk
 -include subdir.mk
 -include objects.mk
