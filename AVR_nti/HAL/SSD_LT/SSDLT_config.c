@@ -1,17 +1,22 @@
-/*
- * SSD_config.c
- *
- *  Created on: ٠٣‏/٠٧‏/٢٠٢٣
- *      Author: Ahmed
- */
+/**
+ *******************************************************************************************
+ *   @file          : SSDLT_config.c
+ *   @author        : Ahmed Ali
+ *   @brief         : Seven Segment Display Configuration Settings.
+ *   				  Linking Time Configuration Mode.
+ *	 @date			: 2 / 7 / 2023
+ *******************************************************************************************
+*/
 
-
+/***********************	Includes Section Start	***********************/
 #include "../../LIB/STD_TYPES.h"
 #include "../../LIB/ERROR_STATE.h"
 #include "../../MCAL/DIO/DIO_int.h"
 #include "SSDLT_private.h"
 #include "SSDLT_config.h"
+/***********************	Includes Section End	***********************/
 
+/***********************	Definitions Section Start	***********************/
 SEG_t SSD_AstrSegConfig[SEG_NUM] =
 {
 		{
@@ -41,4 +46,4 @@ SEG_t SSD_AstrSegConfig[SEG_NUM] =
 		}
 
 };
-
+/***********************	Definitions Section End	***********************/

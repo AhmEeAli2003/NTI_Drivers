@@ -1,15 +1,18 @@
-/*
- * SSD_prog.c
- *
- *  Created on: ٠٢‏/٠٧‏/٢٠٢٣
- *      Author: Ahmed
- */
-
+/**
+ *******************************************************************************************
+ *   @file          : SSD_prog.c
+ *   @author        : Ahmed Ali
+ *   @brief         : Seven Segment Display APIs Implementation.
+ *	 @date			: 2 / 7 / 2023
+ *******************************************************************************************
+*/
+/***********************	Includes Section Start	***********************/
 #include "../../LIB/STD_TYPES.h"
 #include "../../LIB/ERROR_STATE.h"
 #include "../../MCAL/DIO/DIO_int.h"
 #include "SSD_config.h"
 #include "SSD_private.h"
+/***********************	Includes Section End	***********************/
 
 ES_t SSD_enuInit(void)
 {

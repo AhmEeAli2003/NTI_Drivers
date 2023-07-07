@@ -1,18 +1,24 @@
-/*
- * SSD_prog.c
- *
- *  Created on: ٠٢‏/٠٧‏/٢٠٢٣
- *      Author: Ahmed
- */
+/**
+ *******************************************************************************************
+ *   @file          : SSDLT_prog.c
+ *   @author        : Ahmed Ali
+ *   @brief         : Seven Segment Display APIs Implementation.
+ *   				  Linking Time Configuration Mode.
+ *	 @date			: 2 / 7 / 2023
+ *******************************************************************************************
+*/
 
+/***********************	Includes Section Start	***********************/
 #include "../../LIB/STD_TYPES.h"
 #include "../../LIB/ERROR_STATE.h"
 #include "../../MCAL/DIO/DIO_int.h"
 #include "SSDLT_private.h"
 #include "SSDLT_config.h"
+/***********************	Includes Section End	***********************/
 
+/***********************	Declarations Section Start	***********************/
 extern SEG_t SSD_AstrSegConfig[SEG_NUM];
-
+/***********************	Declarations Section End	***********************/
 
 
 ES_t SSDLT_enuInit(SEG_t * Copy_pstrSegConfig)

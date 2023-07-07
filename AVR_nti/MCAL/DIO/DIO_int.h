@@ -10,9 +10,12 @@
 #ifndef MCAL_DIO_INT_H_
 #define MCAL_DIO_INT_H_
 
+/***********************	Includes Section Start	***********************/
 #include "../../LIB/ERROR_STATE.h"
 #include "../../LIB/STD_TYPES.h"
+/***********************	Includes Section End	***********************/
 
+/***********************	Macros Section	Start	***********************/
 #define DIO_u8PORTA		0
 #define DIO_u8PORTB		1
 #define DIO_u8PORTC		2
@@ -34,6 +37,9 @@
 #define DIO_u8HIGH		1
 #define DIO_u8FLOAT		0
 #define DIO_u8PULL_UP 	1
+/***********************	Macros Section End		***********************/
+
+/***********************	Prototypes Section	Start	***********************/
 /**
  ****************************************************************************************
  *	@name			: DIO_enuInit
@@ -128,5 +134,5 @@ ES_t DIO_enuGetPinValue(u8 Copy_u8PortID, u8 Copy_u8PinID, u8 * Copy_pu8Value);
  * Note: We can deal with functions of pin without port ID by define macros or enums
  * for AVR 32 pins and deal with number of pin directly.
  */
-
+/***********************	Prototypes Section	End	***********************/
 #endif /* MCAL_DIO_INT_H_ */

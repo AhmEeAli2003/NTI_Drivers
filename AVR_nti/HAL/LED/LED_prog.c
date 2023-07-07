@@ -1,17 +1,19 @@
-/*
- * LED_prog.c
- *
- *  Created on: ٠١‏/٠٧‏/٢٠٢٣
- *      Author: Ahmed
- */
+/**
+ ****************************************************************************************
+ *   @file          : LED_prog.c
+ *   @author        : Ahmed Ali
+ *   @brief         : LED APIs implementation
+ *	 @date			: 1 / 7 / 2023
+ ****************************************************************************************
+*/
 
+/***********************	Includes Section Start	***********************/
 #include "../../LIB/STD_TYPES.h"
 #include "../../LIB/ERROR_STATE.h"
-
+#include "../../MCAL/DIO/DIO_int.h"
 #include "LED_private.h"
 #include "LED_config.h"
-
-#include "../../MCAL/DIO/DIO_int.h"
+/***********************	Includes Section End	***********************/
 
 ES_t LED_enuInit(LED_t * Copy_pstrLedConfiguration)
 {

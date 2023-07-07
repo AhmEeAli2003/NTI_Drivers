@@ -1,15 +1,19 @@
-/*
- * Switch_prog.c
- *
- *  Created on: ٠١‏/٠٧‏/٢٠٢٣
- *      Author: Ahmed
- */
+/**
+ ****************************************************************************************
+ *   @file          : Switch_prog.c
+ *   @author        : Ahmed Ali
+ *   @brief         : Switch APIs Implementation.  [Linking Time Configuration]
+ *	 @date			: 1 / 7 / 2023
+ ****************************************************************************************
+*/
 
-#include "Switch_private.h"
-#include "Switch_config.h"
+/***********************	Includes Section Start	***********************/
 #include "../../LIB/STD_TYPES.h"
 #include "../../LIB/ERROR_STATE.h"
 #include "../../MCAL/DIO/DIO_int.h"
+#include "Switch_private.h"
+#include "Switch_config.h"
+/***********************	Includes Section End	***********************/
 
 ES_t Switch_enuInit(SW_t * Copy_pAstrSwitches)
 {

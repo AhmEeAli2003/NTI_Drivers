@@ -1,12 +1,16 @@
-/*
- * LCD_config.h
- *
- *  Created on: ٠٦‏/٠٧‏/٢٠٢٣
- *      Author: Ahmed
- */
+/**
+ ****************************************************************************************
+ *   @file          : LCD_config.h
+ *   @author        : Ahmed Ali
+ *   @brief         : LCD Configuration Settings.
+ *	 @date			: 6 / 7 / 2023
+ ****************************************************************************************
+*/
 
 #ifndef HAL_LCD_LCD_CONFIG_H_
 #define HAL_LCD_LCD_CONFIG_H_
+
+/***********************	Macros Section	Start	***********************/
 
 /**			LCD_MODE			**/
 /**
@@ -50,5 +54,6 @@
 
 #define D0_PORT		DIO_u8PORTC
 #define D0_PIN		DIO_u8PIN0
+/***********************	Macros Section	End	***********************/
 
 #endif /* HAL_LCD_LCD_CONFIG_H_ */

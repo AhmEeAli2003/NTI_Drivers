@@ -1,12 +1,16 @@
-/*
- * SSD_config.h
- *
- *  Created on: ٠٢‏/٠٧‏/٢٠٢٣
- *      Author: Ahmed
- */
+/**
+ *******************************************************************************************
+ *   @file          : SSD_config.h
+ *   @author        : Ahmed Ali
+ *   @brief         : Seven Segment Display Configuration settings.
+ *   				  Precompiled Configuration Mode.
+ *	 @date			: 2 / 7 / 2023
+ *******************************************************************************************
+*/
 
 #ifndef HAL_SSD_SSD_CONFIG_H_
 #define HAL_SSD_SSD_CONFIG_H_
+/***********************	Macros Section Start		***********************/
 
 /********************************************************
  * Choose port & pin for each segments:
@@ -66,5 +70,6 @@
  * 		-> COMMON_CATHODE
  * */
 #define SEG_TYPE		COMMON_CATHODE
+/***********************	Macros Section End		***********************/
 
 #endif /* HAL_SSD_SSD_CONFIG_H_ */

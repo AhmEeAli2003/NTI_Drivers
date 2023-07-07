@@ -1,10 +1,13 @@
-/*
- * LCD_prog.c
- *
- *  Created on: ٠٦‏/٠٧‏/٢٠٢٣
- *      Author: Ahmed
- */
+/**
+ ****************************************************************************************
+ *   @file          : LCD_prog.c
+ *   @author        : Ahmed Ali
+ *   @brief         : ADC APIs Implementation.
+ *	 @date			: 6 / 7 / 2023
+ ****************************************************************************************
+*/
 
+/***********************	Includes Section Start	***********************/
 #include "../../LIB/STD_TYPES.h"
 #include "../../LIB/ERROR_STATE.h"
 
@@ -13,6 +16,7 @@
 #include "LCD_config.h"
 #include "LCD_private.h"
 #include <util/delay.h>
+/***********************	Includes Section End	***********************/
 
 ES_t LCD_enuInit(void)
 {
@@ -191,4 +195,5 @@ static inline void LCD_invoidSendCommand(u8 Copy_u8Command)
 	DIO_enuSetPinValue(EN_PORT, EN_PIN, DIO_u8HIGH);
 	_delay_ms(10); /* Garbage Number */
 	DIO_enuSetPinValue(EN_PORT, EN_PIN, DIO_u8LOW);
+	_delay_ms(10); //For speed difference between MC and LCD.
 }

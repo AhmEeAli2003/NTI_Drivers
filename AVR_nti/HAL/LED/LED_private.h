@@ -1,15 +1,17 @@
-/*
- * LED_private.h
- *
- *  Created on: ٠١‏/٠٧‏/٢٠٢٣
- *      Author: Ahmed
- */
+/**
+ ****************************************************************************************
+ *   @file          : LED_private.h
+ *   @author        : Ahmed Ali
+ *   @brief         : LED private Header File
+ *	 @date			: 1 / 7 / 2023
+ ****************************************************************************************
+*/
 
 #ifndef HAL_LED_LED_PRIVATE_H_
 #define HAL_LED_LED_PRIVATE_H_
 
-#include "../../LIB/STD_TYPES.h"
 
+/***********************	Definitions Section Start	***********************/
 typedef struct
 {
 	u8 LED_u8PortID;
@@ -17,7 +19,9 @@ typedef struct
 	u8 LED_u8Connection;
 	u8 LED_u8InitState;
 }LED_t;
+/***********************	Definitions Section End	***********************/
 
+/***********************	Macros Section Start	***********************/
 /**
  * Any Numbers for only distinction.
  * not preferred Zero because in config.c if user not initialize
@@ -29,4 +33,6 @@ typedef struct
 
 #define LED_u8ON      10
 #define LED_u8OFF     11
+
+/***********************	MAcros Section End	***********************/
 #endif /* HAL_LED_LED_PRIVATE_H_ */
