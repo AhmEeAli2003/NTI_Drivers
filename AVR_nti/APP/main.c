@@ -14,14 +14,13 @@ int main(void)
 
 	while(1)
 	{
-
-		KPAD_enuGetPassedKey(&Local_u8KeyPressed);
-
 		/* Polling (Stop every thing in application until keypad pressed)*/
-		while(Local_u8KeyPressed == 0xff)
+		do
 		{
 			KPAD_enuGetPassedKey(&Local_u8KeyPressed);
-		}
+
+		}while(Local_u8KeyPressed == 0xff); //Key Not pressed
+
 
 		if(Local_u8KeyPressed == 'c')
 		{
