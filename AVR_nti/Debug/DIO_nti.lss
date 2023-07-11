@@ -3,31 +3,31 @@ DIO_nti.elf:     file format elf32-avr
 
 Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
-  0 .text         00005794  00000000  00000000  00000074  2**1
+  0 .text         00005c6e  00000000  00000000  00000074  2**1
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  1 .data         00000182  00800060  00005794  00005808  2**0
+  1 .data         00000182  00800060  00005c6e  00005ce2  2**0
                   CONTENTS, ALLOC, LOAD, DATA
-  2 .stab         00003eac  00000000  00000000  0000598c  2**2
+  2 .stab         00003fcc  00000000  00000000  00005e64  2**2
                   CONTENTS, READONLY, DEBUGGING
-  3 .stabstr      00001993  00000000  00000000  00009838  2**0
+  3 .stabstr      000019a7  00000000  00000000  00009e30  2**0
                   CONTENTS, READONLY, DEBUGGING
-  4 .debug_aranges 000001c0  00000000  00000000  0000b1cb  2**0
+  4 .debug_aranges 000001c0  00000000  00000000  0000b7d7  2**0
                   CONTENTS, READONLY, DEBUGGING
-  5 .debug_pubnames 00000214  00000000  00000000  0000b38b  2**0
+  5 .debug_pubnames 00000214  00000000  00000000  0000b997  2**0
                   CONTENTS, READONLY, DEBUGGING
-  6 .debug_info   00002612  00000000  00000000  0000b59f  2**0
+  6 .debug_info   00002612  00000000  00000000  0000bbab  2**0
                   CONTENTS, READONLY, DEBUGGING
-  7 .debug_abbrev 000014ce  00000000  00000000  0000dbb1  2**0
+  7 .debug_abbrev 000014ce  00000000  00000000  0000e1bd  2**0
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_line   0000130b  00000000  00000000  0000f07f  2**0
+  8 .debug_line   0000130b  00000000  00000000  0000f68b  2**0
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_frame  000001e0  00000000  00000000  0001038c  2**2
+  9 .debug_frame  000001e0  00000000  00000000  00010998  2**2
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_str    00000307  00000000  00000000  0001056c  2**0
+ 10 .debug_str    00000307  00000000  00000000  00010b78  2**0
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_loc    00000a1a  00000000  00000000  00010873  2**0
+ 11 .debug_loc    00000a1a  00000000  00000000  00010e7f  2**0
                   CONTENTS, READONLY, DEBUGGING
- 12 .debug_ranges 00000050  00000000  00000000  0001128d  2**0
+ 12 .debug_ranges 00000050  00000000  00000000  00011899  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -67,8 +67,8 @@ Disassembly of section .text:
       60:	11 e0       	ldi	r17, 0x01	; 1
       62:	a0 e6       	ldi	r26, 0x60	; 96
       64:	b0 e0       	ldi	r27, 0x00	; 0
-      66:	e4 e9       	ldi	r30, 0x94	; 148
-      68:	f7 e5       	ldi	r31, 0x57	; 87
+      66:	ee e6       	ldi	r30, 0x6E	; 110
+      68:	fc e5       	ldi	r31, 0x5C	; 92
       6a:	02 c0       	rjmp	.+4      	; 0x70 <.do_copy_data_start>
 
 0000006c <.do_copy_data_loop>:
@@ -79,8 +79,8 @@ Disassembly of section .text:
       70:	a2 3e       	cpi	r26, 0xE2	; 226
       72:	b1 07       	cpc	r27, r17
       74:	d9 f7       	brne	.-10     	; 0x6c <.do_copy_data_loop>
-      76:	0e 94 4f 2b 	call	0x569e	; 0x569e <main>
-      7a:	0c 94 c8 2b 	jmp	0x5790	; 0x5790 <_exit>
+      76:	0e 94 b6 2d 	call	0x5b6c	; 0x5b6c <main>
+      7a:	0c 94 35 2e 	jmp	0x5c6a	; 0x5c6a <_exit>
 
 0000007e <__bad_interrupt>:
       7e:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
@@ -132,7 +132,7 @@ Disassembly of section .text:
       dc:	b0 e0       	ldi	r27, 0x00	; 0
       de:	e3 e7       	ldi	r30, 0x73	; 115
       e0:	f0 e0       	ldi	r31, 0x00	; 0
-      e2:	0c 94 91 2b 	jmp	0x5722	; 0x5722 <__prologue_saves__>
+      e2:	0c 94 fe 2d 	jmp	0x5bfc	; 0x5bfc <__prologue_saves__>
       e6:	dc 01       	movw	r26, r24
       e8:	2b 01       	movw	r4, r22
       ea:	fa 01       	movw	r30, r20
@@ -457,14 +457,14 @@ Disassembly of section .text:
      368:	cd b7       	in	r28, 0x3d	; 61
      36a:	de b7       	in	r29, 0x3e	; 62
      36c:	e2 e1       	ldi	r30, 0x12	; 18
-     36e:	0c 94 ad 2b 	jmp	0x575a	; 0x575a <__epilogue_restores__>
+     36e:	0c 94 1a 2e 	jmp	0x5c34	; 0x5c34 <__epilogue_restores__>
 
 00000372 <__subsf3>:
      372:	a0 e2       	ldi	r26, 0x20	; 32
      374:	b0 e0       	ldi	r27, 0x00	; 0
      376:	ef eb       	ldi	r30, 0xBF	; 191
      378:	f1 e0       	ldi	r31, 0x01	; 1
-     37a:	0c 94 9d 2b 	jmp	0x573a	; 0x573a <__prologue_saves__+0x18>
+     37a:	0c 94 0a 2e 	jmp	0x5c14	; 0x5c14 <__prologue_saves__+0x18>
      37e:	69 83       	std	Y+1, r22	; 0x01
      380:	7a 83       	std	Y+2, r23	; 0x02
      382:	8b 83       	std	Y+3, r24	; 0x03
@@ -502,14 +502,14 @@ Disassembly of section .text:
      3c8:	0e 94 c7 05 	call	0xb8e	; 0xb8e <__pack_f>
      3cc:	a0 96       	adiw	r28, 0x20	; 32
      3ce:	e6 e0       	ldi	r30, 0x06	; 6
-     3d0:	0c 94 b9 2b 	jmp	0x5772	; 0x5772 <__epilogue_restores__+0x18>
+     3d0:	0c 94 26 2e 	jmp	0x5c4c	; 0x5c4c <__epilogue_restores__+0x18>
 
 000003d4 <__addsf3>:
      3d4:	a0 e2       	ldi	r26, 0x20	; 32
      3d6:	b0 e0       	ldi	r27, 0x00	; 0
      3d8:	e0 ef       	ldi	r30, 0xF0	; 240
      3da:	f1 e0       	ldi	r31, 0x01	; 1
-     3dc:	0c 94 9d 2b 	jmp	0x573a	; 0x573a <__prologue_saves__+0x18>
+     3dc:	0c 94 0a 2e 	jmp	0x5c14	; 0x5c14 <__prologue_saves__+0x18>
      3e0:	69 83       	std	Y+1, r22	; 0x01
      3e2:	7a 83       	std	Y+2, r23	; 0x02
      3e4:	8b 83       	std	Y+3, r24	; 0x03
@@ -543,14 +543,14 @@ Disassembly of section .text:
      422:	0e 94 c7 05 	call	0xb8e	; 0xb8e <__pack_f>
      426:	a0 96       	adiw	r28, 0x20	; 32
      428:	e6 e0       	ldi	r30, 0x06	; 6
-     42a:	0c 94 b9 2b 	jmp	0x5772	; 0x5772 <__epilogue_restores__+0x18>
+     42a:	0c 94 26 2e 	jmp	0x5c4c	; 0x5c4c <__epilogue_restores__+0x18>
 
 0000042e <__mulsf3>:
      42e:	a0 e2       	ldi	r26, 0x20	; 32
      430:	b0 e0       	ldi	r27, 0x00	; 0
      432:	ed e1       	ldi	r30, 0x1D	; 29
      434:	f2 e0       	ldi	r31, 0x02	; 2
-     436:	0c 94 91 2b 	jmp	0x5722	; 0x5722 <__prologue_saves__>
+     436:	0c 94 fe 2d 	jmp	0x5bfc	; 0x5bfc <__prologue_saves__>
      43a:	69 83       	std	Y+1, r22	; 0x01
      43c:	7a 83       	std	Y+2, r23	; 0x02
      43e:	8b 83       	std	Y+3, r24	; 0x03
@@ -790,14 +790,14 @@ Disassembly of section .text:
      616:	0e 94 c7 05 	call	0xb8e	; 0xb8e <__pack_f>
      61a:	a0 96       	adiw	r28, 0x20	; 32
      61c:	e2 e1       	ldi	r30, 0x12	; 18
-     61e:	0c 94 ad 2b 	jmp	0x575a	; 0x575a <__epilogue_restores__>
+     61e:	0c 94 1a 2e 	jmp	0x5c34	; 0x5c34 <__epilogue_restores__>
 
 00000622 <__divsf3>:
      622:	a8 e1       	ldi	r26, 0x18	; 24
      624:	b0 e0       	ldi	r27, 0x00	; 0
      626:	e7 e1       	ldi	r30, 0x17	; 23
      628:	f3 e0       	ldi	r31, 0x03	; 3
-     62a:	0c 94 99 2b 	jmp	0x5732	; 0x5732 <__prologue_saves__+0x10>
+     62a:	0c 94 06 2e 	jmp	0x5c0c	; 0x5c0c <__prologue_saves__+0x10>
      62e:	69 83       	std	Y+1, r22	; 0x01
      630:	7a 83       	std	Y+2, r23	; 0x02
      632:	8b 83       	std	Y+3, r24	; 0x03
@@ -959,14 +959,14 @@ Disassembly of section .text:
      76e:	0e 94 c7 05 	call	0xb8e	; 0xb8e <__pack_f>
      772:	68 96       	adiw	r28, 0x18	; 24
      774:	ea e0       	ldi	r30, 0x0A	; 10
-     776:	0c 94 b5 2b 	jmp	0x576a	; 0x576a <__epilogue_restores__+0x10>
+     776:	0c 94 22 2e 	jmp	0x5c44	; 0x5c44 <__epilogue_restores__+0x10>
 
 0000077a <__gtsf2>:
      77a:	a8 e1       	ldi	r26, 0x18	; 24
      77c:	b0 e0       	ldi	r27, 0x00	; 0
      77e:	e3 ec       	ldi	r30, 0xC3	; 195
      780:	f3 e0       	ldi	r31, 0x03	; 3
-     782:	0c 94 9d 2b 	jmp	0x573a	; 0x573a <__prologue_saves__+0x18>
+     782:	0c 94 0a 2e 	jmp	0x5c14	; 0x5c14 <__prologue_saves__+0x18>
      786:	69 83       	std	Y+1, r22	; 0x01
      788:	7a 83       	std	Y+2, r23	; 0x02
      78a:	8b 83       	std	Y+3, r24	; 0x03
@@ -1004,14 +1004,14 @@ Disassembly of section .text:
      7d0:	8f ef       	ldi	r24, 0xFF	; 255
      7d2:	68 96       	adiw	r28, 0x18	; 24
      7d4:	e6 e0       	ldi	r30, 0x06	; 6
-     7d6:	0c 94 b9 2b 	jmp	0x5772	; 0x5772 <__epilogue_restores__+0x18>
+     7d6:	0c 94 26 2e 	jmp	0x5c4c	; 0x5c4c <__epilogue_restores__+0x18>
 
 000007da <__gesf2>:
      7da:	a8 e1       	ldi	r26, 0x18	; 24
      7dc:	b0 e0       	ldi	r27, 0x00	; 0
      7de:	e3 ef       	ldi	r30, 0xF3	; 243
      7e0:	f3 e0       	ldi	r31, 0x03	; 3
-     7e2:	0c 94 9d 2b 	jmp	0x573a	; 0x573a <__prologue_saves__+0x18>
+     7e2:	0c 94 0a 2e 	jmp	0x5c14	; 0x5c14 <__prologue_saves__+0x18>
      7e6:	69 83       	std	Y+1, r22	; 0x01
      7e8:	7a 83       	std	Y+2, r23	; 0x02
      7ea:	8b 83       	std	Y+3, r24	; 0x03
@@ -1049,14 +1049,14 @@ Disassembly of section .text:
      830:	8f ef       	ldi	r24, 0xFF	; 255
      832:	68 96       	adiw	r28, 0x18	; 24
      834:	e6 e0       	ldi	r30, 0x06	; 6
-     836:	0c 94 b9 2b 	jmp	0x5772	; 0x5772 <__epilogue_restores__+0x18>
+     836:	0c 94 26 2e 	jmp	0x5c4c	; 0x5c4c <__epilogue_restores__+0x18>
 
 0000083a <__ltsf2>:
      83a:	a8 e1       	ldi	r26, 0x18	; 24
      83c:	b0 e0       	ldi	r27, 0x00	; 0
      83e:	e3 e2       	ldi	r30, 0x23	; 35
      840:	f4 e0       	ldi	r31, 0x04	; 4
-     842:	0c 94 9d 2b 	jmp	0x573a	; 0x573a <__prologue_saves__+0x18>
+     842:	0c 94 0a 2e 	jmp	0x5c14	; 0x5c14 <__prologue_saves__+0x18>
      846:	69 83       	std	Y+1, r22	; 0x01
      848:	7a 83       	std	Y+2, r23	; 0x02
      84a:	8b 83       	std	Y+3, r24	; 0x03
@@ -1094,14 +1094,14 @@ Disassembly of section .text:
      890:	81 e0       	ldi	r24, 0x01	; 1
      892:	68 96       	adiw	r28, 0x18	; 24
      894:	e6 e0       	ldi	r30, 0x06	; 6
-     896:	0c 94 b9 2b 	jmp	0x5772	; 0x5772 <__epilogue_restores__+0x18>
+     896:	0c 94 26 2e 	jmp	0x5c4c	; 0x5c4c <__epilogue_restores__+0x18>
 
 0000089a <__floatsisf>:
      89a:	a8 e0       	ldi	r26, 0x08	; 8
      89c:	b0 e0       	ldi	r27, 0x00	; 0
      89e:	e3 e5       	ldi	r30, 0x53	; 83
      8a0:	f4 e0       	ldi	r31, 0x04	; 4
-     8a2:	0c 94 9a 2b 	jmp	0x5734	; 0x5734 <__prologue_saves__+0x12>
+     8a2:	0c 94 07 2e 	jmp	0x5c0e	; 0x5c0e <__prologue_saves__+0x12>
      8a6:	9b 01       	movw	r18, r22
      8a8:	ac 01       	movw	r20, r24
      8aa:	83 e0       	ldi	r24, 0x03	; 3
@@ -1186,14 +1186,14 @@ Disassembly of section .text:
      94a:	0e 94 c7 05 	call	0xb8e	; 0xb8e <__pack_f>
      94e:	28 96       	adiw	r28, 0x08	; 8
      950:	e9 e0       	ldi	r30, 0x09	; 9
-     952:	0c 94 b6 2b 	jmp	0x576c	; 0x576c <__epilogue_restores__+0x12>
+     952:	0c 94 23 2e 	jmp	0x5c46	; 0x5c46 <__epilogue_restores__+0x12>
 
 00000956 <__fixsfsi>:
      956:	ac e0       	ldi	r26, 0x0C	; 12
      958:	b0 e0       	ldi	r27, 0x00	; 0
      95a:	e1 eb       	ldi	r30, 0xB1	; 177
      95c:	f4 e0       	ldi	r31, 0x04	; 4
-     95e:	0c 94 a1 2b 	jmp	0x5742	; 0x5742 <__prologue_saves__+0x20>
+     95e:	0c 94 0e 2e 	jmp	0x5c1c	; 0x5c1c <__prologue_saves__+0x20>
      962:	69 83       	std	Y+1, r22	; 0x01
      964:	7a 83       	std	Y+2, r23	; 0x02
      966:	8b 83       	std	Y+3, r24	; 0x03
@@ -1269,14 +1269,14 @@ Disassembly of section .text:
      9f4:	ca 01       	movw	r24, r20
      9f6:	2c 96       	adiw	r28, 0x0c	; 12
      9f8:	e2 e0       	ldi	r30, 0x02	; 2
-     9fa:	0c 94 bd 2b 	jmp	0x577a	; 0x577a <__epilogue_restores__+0x20>
+     9fa:	0c 94 2a 2e 	jmp	0x5c54	; 0x5c54 <__epilogue_restores__+0x20>
 
 000009fe <__floatunsisf>:
      9fe:	a8 e0       	ldi	r26, 0x08	; 8
      a00:	b0 e0       	ldi	r27, 0x00	; 0
      a02:	e5 e0       	ldi	r30, 0x05	; 5
      a04:	f5 e0       	ldi	r31, 0x05	; 5
-     a06:	0c 94 99 2b 	jmp	0x5732	; 0x5732 <__prologue_saves__+0x10>
+     a06:	0c 94 06 2e 	jmp	0x5c0c	; 0x5c0c <__prologue_saves__+0x10>
      a0a:	7b 01       	movw	r14, r22
      a0c:	8c 01       	movw	r16, r24
      a0e:	61 15       	cp	r22, r1
@@ -1388,7 +1388,7 @@ Disassembly of section .text:
      ae4:	0e 94 c7 05 	call	0xb8e	; 0xb8e <__pack_f>
      ae8:	28 96       	adiw	r28, 0x08	; 8
      aea:	ea e0       	ldi	r30, 0x0A	; 10
-     aec:	0c 94 b5 2b 	jmp	0x576a	; 0x576a <__epilogue_restores__+0x10>
+     aec:	0c 94 22 2e 	jmp	0x5c44	; 0x5c44 <__epilogue_restores__+0x10>
 
 00000af0 <__clzsi2>:
      af0:	ef 92       	push	r14
@@ -12385,530 +12385,1212 @@ ES_t KPAD_enuInit(void)
 {
     5476:	df 93       	push	r29
     5478:	cf 93       	push	r28
-    547a:	0f 92       	push	r0
-    547c:	cd b7       	in	r28, 0x3d	; 61
-    547e:	de b7       	in	r29, 0x3e	; 62
+    547a:	cd b7       	in	r28, 0x3d	; 61
+    547c:	de b7       	in	r29, 0x3e	; 62
+    547e:	27 97       	sbiw	r28, 0x07	; 7
+    5480:	0f b6       	in	r0, 0x3f	; 63
+    5482:	f8 94       	cli
+    5484:	de bf       	out	0x3e, r29	; 62
+    5486:	0f be       	out	0x3f, r0	; 63
+    5488:	cd bf       	out	0x3d, r28	; 61
 	ES_t Local_enuErrorState = ES_NOK;
-    5480:	19 82       	std	Y+1, r1	; 0x01
+    548a:	1e 82       	std	Y+6, r1	; 0x06
 
-	DIO_enuSetPinDirection(ROW1_PORT, ROW1_PIN, DIO_u8INPUT);
-    5482:	80 e0       	ldi	r24, 0x00	; 0
-    5484:	64 e0       	ldi	r22, 0x04	; 4
-    5486:	40 e0       	ldi	r20, 0x00	; 0
-    5488:	0e 94 e8 08 	call	0x11d0	; 0x11d0 <DIO_enuSetPinDirection>
-	DIO_enuSetPinDirection(ROW2_PORT, ROW2_PIN, DIO_u8INPUT);
-    548c:	80 e0       	ldi	r24, 0x00	; 0
-    548e:	65 e0       	ldi	r22, 0x05	; 5
-    5490:	40 e0       	ldi	r20, 0x00	; 0
-    5492:	0e 94 e8 08 	call	0x11d0	; 0x11d0 <DIO_enuSetPinDirection>
-	DIO_enuSetPinDirection(ROW3_PORT, ROW3_PIN, DIO_u8INPUT);
+	u8 Local_u8Iterator = KPAD_ZERO;
+    548c:	1d 82       	std	Y+5, r1	; 0x05
+	u32 Local_u32Check = KPAD_ZERO;
+    548e:	19 82       	std	Y+1, r1	; 0x01
+    5490:	1a 82       	std	Y+2, r1	; 0x02
+    5492:	1b 82       	std	Y+3, r1	; 0x03
+    5494:	1c 82       	std	Y+4, r1	; 0x04
+
+	Local_u32Check |= (DIO_enuSetPinDirection(ROW1_PORT, ROW1_PIN, DIO_u8INPUT) << KPAD_SHIFTBIT_ZERO);
     5496:	80 e0       	ldi	r24, 0x00	; 0
-    5498:	66 e0       	ldi	r22, 0x06	; 6
+    5498:	64 e0       	ldi	r22, 0x04	; 4
     549a:	40 e0       	ldi	r20, 0x00	; 0
     549c:	0e 94 e8 08 	call	0x11d0	; 0x11d0 <DIO_enuSetPinDirection>
-	DIO_enuSetPinDirection(ROW4_PORT, ROW4_PIN, DIO_u8INPUT);
-    54a0:	80 e0       	ldi	r24, 0x00	; 0
-    54a2:	67 e0       	ldi	r22, 0x07	; 7
+    54a0:	28 2f       	mov	r18, r24
+    54a2:	30 e0       	ldi	r19, 0x00	; 0
     54a4:	40 e0       	ldi	r20, 0x00	; 0
-    54a6:	0e 94 e8 08 	call	0x11d0	; 0x11d0 <DIO_enuSetPinDirection>
+    54a6:	50 e0       	ldi	r21, 0x00	; 0
+    54a8:	89 81       	ldd	r24, Y+1	; 0x01
+    54aa:	9a 81       	ldd	r25, Y+2	; 0x02
+    54ac:	ab 81       	ldd	r26, Y+3	; 0x03
+    54ae:	bc 81       	ldd	r27, Y+4	; 0x04
+    54b0:	82 2b       	or	r24, r18
+    54b2:	93 2b       	or	r25, r19
+    54b4:	a4 2b       	or	r26, r20
+    54b6:	b5 2b       	or	r27, r21
+    54b8:	89 83       	std	Y+1, r24	; 0x01
+    54ba:	9a 83       	std	Y+2, r25	; 0x02
+    54bc:	ab 83       	std	Y+3, r26	; 0x03
+    54be:	bc 83       	std	Y+4, r27	; 0x04
+	Local_u32Check |= (DIO_enuSetPinDirection(ROW2_PORT, ROW2_PIN, DIO_u8INPUT) << KPAD_SHIFTBIT_THREE);
+    54c0:	80 e0       	ldi	r24, 0x00	; 0
+    54c2:	65 e0       	ldi	r22, 0x05	; 5
+    54c4:	40 e0       	ldi	r20, 0x00	; 0
+    54c6:	0e 94 e8 08 	call	0x11d0	; 0x11d0 <DIO_enuSetPinDirection>
+    54ca:	88 2f       	mov	r24, r24
+    54cc:	90 e0       	ldi	r25, 0x00	; 0
+    54ce:	88 0f       	add	r24, r24
+    54d0:	99 1f       	adc	r25, r25
+    54d2:	88 0f       	add	r24, r24
+    54d4:	99 1f       	adc	r25, r25
+    54d6:	88 0f       	add	r24, r24
+    54d8:	99 1f       	adc	r25, r25
+    54da:	9c 01       	movw	r18, r24
+    54dc:	44 27       	eor	r20, r20
+    54de:	37 fd       	sbrc	r19, 7
+    54e0:	40 95       	com	r20
+    54e2:	54 2f       	mov	r21, r20
+    54e4:	89 81       	ldd	r24, Y+1	; 0x01
+    54e6:	9a 81       	ldd	r25, Y+2	; 0x02
+    54e8:	ab 81       	ldd	r26, Y+3	; 0x03
+    54ea:	bc 81       	ldd	r27, Y+4	; 0x04
+    54ec:	82 2b       	or	r24, r18
+    54ee:	93 2b       	or	r25, r19
+    54f0:	a4 2b       	or	r26, r20
+    54f2:	b5 2b       	or	r27, r21
+    54f4:	89 83       	std	Y+1, r24	; 0x01
+    54f6:	9a 83       	std	Y+2, r25	; 0x02
+    54f8:	ab 83       	std	Y+3, r26	; 0x03
+    54fa:	bc 83       	std	Y+4, r27	; 0x04
+	Local_u32Check |= (DIO_enuSetPinDirection(ROW3_PORT, ROW3_PIN, DIO_u8INPUT) << KPAD_SHIFTBIT_SIX);
+    54fc:	80 e0       	ldi	r24, 0x00	; 0
+    54fe:	66 e0       	ldi	r22, 0x06	; 6
+    5500:	40 e0       	ldi	r20, 0x00	; 0
+    5502:	0e 94 e8 08 	call	0x11d0	; 0x11d0 <DIO_enuSetPinDirection>
+    5506:	88 2f       	mov	r24, r24
+    5508:	90 e0       	ldi	r25, 0x00	; 0
+    550a:	00 24       	eor	r0, r0
+    550c:	96 95       	lsr	r25
+    550e:	87 95       	ror	r24
+    5510:	07 94       	ror	r0
+    5512:	96 95       	lsr	r25
+    5514:	87 95       	ror	r24
+    5516:	07 94       	ror	r0
+    5518:	98 2f       	mov	r25, r24
+    551a:	80 2d       	mov	r24, r0
+    551c:	9c 01       	movw	r18, r24
+    551e:	44 27       	eor	r20, r20
+    5520:	37 fd       	sbrc	r19, 7
+    5522:	40 95       	com	r20
+    5524:	54 2f       	mov	r21, r20
+    5526:	89 81       	ldd	r24, Y+1	; 0x01
+    5528:	9a 81       	ldd	r25, Y+2	; 0x02
+    552a:	ab 81       	ldd	r26, Y+3	; 0x03
+    552c:	bc 81       	ldd	r27, Y+4	; 0x04
+    552e:	82 2b       	or	r24, r18
+    5530:	93 2b       	or	r25, r19
+    5532:	a4 2b       	or	r26, r20
+    5534:	b5 2b       	or	r27, r21
+    5536:	89 83       	std	Y+1, r24	; 0x01
+    5538:	9a 83       	std	Y+2, r25	; 0x02
+    553a:	ab 83       	std	Y+3, r26	; 0x03
+    553c:	bc 83       	std	Y+4, r27	; 0x04
+	Local_u32Check |= (DIO_enuSetPinDirection(ROW4_PORT, ROW4_PIN, DIO_u8INPUT) << KPAD_SHIFTBIT_NINE);
+    553e:	80 e0       	ldi	r24, 0x00	; 0
+    5540:	67 e0       	ldi	r22, 0x07	; 7
+    5542:	40 e0       	ldi	r20, 0x00	; 0
+    5544:	0e 94 e8 08 	call	0x11d0	; 0x11d0 <DIO_enuSetPinDirection>
+    5548:	88 2f       	mov	r24, r24
+    554a:	90 e0       	ldi	r25, 0x00	; 0
+    554c:	98 2f       	mov	r25, r24
+    554e:	88 27       	eor	r24, r24
+    5550:	99 0f       	add	r25, r25
+    5552:	9c 01       	movw	r18, r24
+    5554:	44 27       	eor	r20, r20
+    5556:	37 fd       	sbrc	r19, 7
+    5558:	40 95       	com	r20
+    555a:	54 2f       	mov	r21, r20
+    555c:	89 81       	ldd	r24, Y+1	; 0x01
+    555e:	9a 81       	ldd	r25, Y+2	; 0x02
+    5560:	ab 81       	ldd	r26, Y+3	; 0x03
+    5562:	bc 81       	ldd	r27, Y+4	; 0x04
+    5564:	82 2b       	or	r24, r18
+    5566:	93 2b       	or	r25, r19
+    5568:	a4 2b       	or	r26, r20
+    556a:	b5 2b       	or	r27, r21
+    556c:	89 83       	std	Y+1, r24	; 0x01
+    556e:	9a 83       	std	Y+2, r25	; 0x02
+    5570:	ab 83       	std	Y+3, r26	; 0x03
+    5572:	bc 83       	std	Y+4, r27	; 0x04
 
-	DIO_enuSetPinValue(ROW1_PORT, ROW1_PIN, DIO_u8PULL_UP);
-    54aa:	80 e0       	ldi	r24, 0x00	; 0
-    54ac:	64 e0       	ldi	r22, 0x04	; 4
-    54ae:	41 e0       	ldi	r20, 0x01	; 1
-    54b0:	0e 94 d4 09 	call	0x13a8	; 0x13a8 <DIO_enuSetPinValue>
-	DIO_enuSetPinValue(ROW2_PORT, ROW2_PIN, DIO_u8PULL_UP);
-    54b4:	80 e0       	ldi	r24, 0x00	; 0
-    54b6:	65 e0       	ldi	r22, 0x05	; 5
-    54b8:	41 e0       	ldi	r20, 0x01	; 1
-    54ba:	0e 94 d4 09 	call	0x13a8	; 0x13a8 <DIO_enuSetPinValue>
-	DIO_enuSetPinValue(ROW3_PORT, ROW3_PIN, DIO_u8PULL_UP);
-    54be:	80 e0       	ldi	r24, 0x00	; 0
-    54c0:	66 e0       	ldi	r22, 0x06	; 6
-    54c2:	41 e0       	ldi	r20, 0x01	; 1
-    54c4:	0e 94 d4 09 	call	0x13a8	; 0x13a8 <DIO_enuSetPinValue>
-	DIO_enuSetPinValue(ROW4_PORT, ROW4_PIN, DIO_u8PULL_UP);
-    54c8:	80 e0       	ldi	r24, 0x00	; 0
-    54ca:	67 e0       	ldi	r22, 0x07	; 7
-    54cc:	41 e0       	ldi	r20, 0x01	; 1
-    54ce:	0e 94 d4 09 	call	0x13a8	; 0x13a8 <DIO_enuSetPinValue>
+	Local_u32Check |= (DIO_enuSetPinValue(ROW1_PORT, ROW1_PIN, DIO_u8PULL_UP) << KPAD_SHIFTBIT_TWELVE);
+    5574:	80 e0       	ldi	r24, 0x00	; 0
+    5576:	64 e0       	ldi	r22, 0x04	; 4
+    5578:	41 e0       	ldi	r20, 0x01	; 1
+    557a:	0e 94 d4 09 	call	0x13a8	; 0x13a8 <DIO_enuSetPinValue>
+    557e:	88 2f       	mov	r24, r24
+    5580:	90 e0       	ldi	r25, 0x00	; 0
+    5582:	98 2f       	mov	r25, r24
+    5584:	88 27       	eor	r24, r24
+    5586:	92 95       	swap	r25
+    5588:	90 7f       	andi	r25, 0xF0	; 240
+    558a:	9c 01       	movw	r18, r24
+    558c:	44 27       	eor	r20, r20
+    558e:	37 fd       	sbrc	r19, 7
+    5590:	40 95       	com	r20
+    5592:	54 2f       	mov	r21, r20
+    5594:	89 81       	ldd	r24, Y+1	; 0x01
+    5596:	9a 81       	ldd	r25, Y+2	; 0x02
+    5598:	ab 81       	ldd	r26, Y+3	; 0x03
+    559a:	bc 81       	ldd	r27, Y+4	; 0x04
+    559c:	82 2b       	or	r24, r18
+    559e:	93 2b       	or	r25, r19
+    55a0:	a4 2b       	or	r26, r20
+    55a2:	b5 2b       	or	r27, r21
+    55a4:	89 83       	std	Y+1, r24	; 0x01
+    55a6:	9a 83       	std	Y+2, r25	; 0x02
+    55a8:	ab 83       	std	Y+3, r26	; 0x03
+    55aa:	bc 83       	std	Y+4, r27	; 0x04
+	Local_u32Check |= (((u32)DIO_enuSetPinValue(ROW2_PORT, ROW2_PIN, DIO_u8PULL_UP)) << KPAD_SHIFTBIT_FIFTEEN);
+    55ac:	80 e0       	ldi	r24, 0x00	; 0
+    55ae:	65 e0       	ldi	r22, 0x05	; 5
+    55b0:	41 e0       	ldi	r20, 0x01	; 1
+    55b2:	0e 94 d4 09 	call	0x13a8	; 0x13a8 <DIO_enuSetPinValue>
+    55b6:	88 2f       	mov	r24, r24
+    55b8:	90 e0       	ldi	r25, 0x00	; 0
+    55ba:	a0 e0       	ldi	r26, 0x00	; 0
+    55bc:	b0 e0       	ldi	r27, 0x00	; 0
+    55be:	9c 01       	movw	r18, r24
+    55c0:	ad 01       	movw	r20, r26
+    55c2:	01 2e       	mov	r0, r17
+    55c4:	1f e0       	ldi	r17, 0x0F	; 15
+    55c6:	22 0f       	add	r18, r18
+    55c8:	33 1f       	adc	r19, r19
+    55ca:	44 1f       	adc	r20, r20
+    55cc:	55 1f       	adc	r21, r21
+    55ce:	1a 95       	dec	r17
+    55d0:	d1 f7       	brne	.-12     	; 0x55c6 <KPAD_enuInit+0x150>
+    55d2:	10 2d       	mov	r17, r0
+    55d4:	89 81       	ldd	r24, Y+1	; 0x01
+    55d6:	9a 81       	ldd	r25, Y+2	; 0x02
+    55d8:	ab 81       	ldd	r26, Y+3	; 0x03
+    55da:	bc 81       	ldd	r27, Y+4	; 0x04
+    55dc:	82 2b       	or	r24, r18
+    55de:	93 2b       	or	r25, r19
+    55e0:	a4 2b       	or	r26, r20
+    55e2:	b5 2b       	or	r27, r21
+    55e4:	89 83       	std	Y+1, r24	; 0x01
+    55e6:	9a 83       	std	Y+2, r25	; 0x02
+    55e8:	ab 83       	std	Y+3, r26	; 0x03
+    55ea:	bc 83       	std	Y+4, r27	; 0x04
+	Local_u32Check |= (((u32)DIO_enuSetPinValue(ROW3_PORT, ROW3_PIN, DIO_u8PULL_UP)) << KPAD_SHIFTBIT_EIGHTEEN);
+    55ec:	80 e0       	ldi	r24, 0x00	; 0
+    55ee:	66 e0       	ldi	r22, 0x06	; 6
+    55f0:	41 e0       	ldi	r20, 0x01	; 1
+    55f2:	0e 94 d4 09 	call	0x13a8	; 0x13a8 <DIO_enuSetPinValue>
+    55f6:	88 2f       	mov	r24, r24
+    55f8:	90 e0       	ldi	r25, 0x00	; 0
+    55fa:	a0 e0       	ldi	r26, 0x00	; 0
+    55fc:	b0 e0       	ldi	r27, 0x00	; 0
+    55fe:	9c 01       	movw	r18, r24
+    5600:	ad 01       	movw	r20, r26
+    5602:	01 2e       	mov	r0, r17
+    5604:	12 e1       	ldi	r17, 0x12	; 18
+    5606:	22 0f       	add	r18, r18
+    5608:	33 1f       	adc	r19, r19
+    560a:	44 1f       	adc	r20, r20
+    560c:	55 1f       	adc	r21, r21
+    560e:	1a 95       	dec	r17
+    5610:	d1 f7       	brne	.-12     	; 0x5606 <KPAD_enuInit+0x190>
+    5612:	10 2d       	mov	r17, r0
+    5614:	89 81       	ldd	r24, Y+1	; 0x01
+    5616:	9a 81       	ldd	r25, Y+2	; 0x02
+    5618:	ab 81       	ldd	r26, Y+3	; 0x03
+    561a:	bc 81       	ldd	r27, Y+4	; 0x04
+    561c:	82 2b       	or	r24, r18
+    561e:	93 2b       	or	r25, r19
+    5620:	a4 2b       	or	r26, r20
+    5622:	b5 2b       	or	r27, r21
+    5624:	89 83       	std	Y+1, r24	; 0x01
+    5626:	9a 83       	std	Y+2, r25	; 0x02
+    5628:	ab 83       	std	Y+3, r26	; 0x03
+    562a:	bc 83       	std	Y+4, r27	; 0x04
+	Local_u32Check |= (((u32)DIO_enuSetPinValue(ROW4_PORT, ROW4_PIN, DIO_u8PULL_UP)) << KPAD_SHIFTBIT_TWENTYONE);
+    562c:	80 e0       	ldi	r24, 0x00	; 0
+    562e:	67 e0       	ldi	r22, 0x07	; 7
+    5630:	41 e0       	ldi	r20, 0x01	; 1
+    5632:	0e 94 d4 09 	call	0x13a8	; 0x13a8 <DIO_enuSetPinValue>
+    5636:	88 2f       	mov	r24, r24
+    5638:	90 e0       	ldi	r25, 0x00	; 0
+    563a:	a0 e0       	ldi	r26, 0x00	; 0
+    563c:	b0 e0       	ldi	r27, 0x00	; 0
+    563e:	9c 01       	movw	r18, r24
+    5640:	ad 01       	movw	r20, r26
+    5642:	01 2e       	mov	r0, r17
+    5644:	15 e1       	ldi	r17, 0x15	; 21
+    5646:	22 0f       	add	r18, r18
+    5648:	33 1f       	adc	r19, r19
+    564a:	44 1f       	adc	r20, r20
+    564c:	55 1f       	adc	r21, r21
+    564e:	1a 95       	dec	r17
+    5650:	d1 f7       	brne	.-12     	; 0x5646 <KPAD_enuInit+0x1d0>
+    5652:	10 2d       	mov	r17, r0
+    5654:	89 81       	ldd	r24, Y+1	; 0x01
+    5656:	9a 81       	ldd	r25, Y+2	; 0x02
+    5658:	ab 81       	ldd	r26, Y+3	; 0x03
+    565a:	bc 81       	ldd	r27, Y+4	; 0x04
+    565c:	82 2b       	or	r24, r18
+    565e:	93 2b       	or	r25, r19
+    5660:	a4 2b       	or	r26, r20
+    5662:	b5 2b       	or	r27, r21
+    5664:	89 83       	std	Y+1, r24	; 0x01
+    5666:	9a 83       	std	Y+2, r25	; 0x02
+    5668:	ab 83       	std	Y+3, r26	; 0x03
+    566a:	bc 83       	std	Y+4, r27	; 0x04
 
-	DIO_enuSetPinDirection(COL1_PORT, COL1_PIN, DIO_u8OUTPUT);
-    54d2:	81 e0       	ldi	r24, 0x01	; 1
-    54d4:	60 e0       	ldi	r22, 0x00	; 0
-    54d6:	41 e0       	ldi	r20, 0x01	; 1
-    54d8:	0e 94 e8 08 	call	0x11d0	; 0x11d0 <DIO_enuSetPinDirection>
-	DIO_enuSetPinDirection(COL2_PORT, COL2_PIN, DIO_u8OUTPUT);
-    54dc:	81 e0       	ldi	r24, 0x01	; 1
-    54de:	61 e0       	ldi	r22, 0x01	; 1
-    54e0:	41 e0       	ldi	r20, 0x01	; 1
-    54e2:	0e 94 e8 08 	call	0x11d0	; 0x11d0 <DIO_enuSetPinDirection>
-	DIO_enuSetPinDirection(COL3_PORT, COL3_PIN, DIO_u8OUTPUT);
-    54e6:	81 e0       	ldi	r24, 0x01	; 1
-    54e8:	62 e0       	ldi	r22, 0x02	; 2
-    54ea:	41 e0       	ldi	r20, 0x01	; 1
-    54ec:	0e 94 e8 08 	call	0x11d0	; 0x11d0 <DIO_enuSetPinDirection>
-	DIO_enuSetPinDirection(COL4_PORT, COL4_PIN, DIO_u8OUTPUT);
-    54f0:	81 e0       	ldi	r24, 0x01	; 1
-    54f2:	63 e0       	ldi	r22, 0x03	; 3
-    54f4:	41 e0       	ldi	r20, 0x01	; 1
-    54f6:	0e 94 e8 08 	call	0x11d0	; 0x11d0 <DIO_enuSetPinDirection>
+	for(Local_u8Iterator = KPAD_ZERO; Local_u8Iterator < KPAD_TWENTYFOUR; Local_u8Iterator += KPAD_THREE)
+    566c:	1d 82       	std	Y+5, r1	; 0x05
+    566e:	1e c0       	rjmp	.+60     	; 0x56ac <KPAD_enuInit+0x236>
+	{
+		if( ( ( (Local_u32Check)>>Local_u8Iterator) & KPAD_SEVEN) != ES_OK)
+    5670:	8d 81       	ldd	r24, Y+5	; 0x05
+    5672:	28 2f       	mov	r18, r24
+    5674:	30 e0       	ldi	r19, 0x00	; 0
+    5676:	89 81       	ldd	r24, Y+1	; 0x01
+    5678:	9a 81       	ldd	r25, Y+2	; 0x02
+    567a:	ab 81       	ldd	r26, Y+3	; 0x03
+    567c:	bc 81       	ldd	r27, Y+4	; 0x04
+    567e:	02 2e       	mov	r0, r18
+    5680:	04 c0       	rjmp	.+8      	; 0x568a <KPAD_enuInit+0x214>
+    5682:	b6 95       	lsr	r27
+    5684:	a7 95       	ror	r26
+    5686:	97 95       	ror	r25
+    5688:	87 95       	ror	r24
+    568a:	0a 94       	dec	r0
+    568c:	d2 f7       	brpl	.-12     	; 0x5682 <KPAD_enuInit+0x20c>
+    568e:	87 70       	andi	r24, 0x07	; 7
+    5690:	90 70       	andi	r25, 0x00	; 0
+    5692:	a0 70       	andi	r26, 0x00	; 0
+    5694:	b0 70       	andi	r27, 0x00	; 0
+    5696:	81 30       	cpi	r24, 0x01	; 1
+    5698:	91 05       	cpc	r25, r1
+    569a:	a1 05       	cpc	r26, r1
+    569c:	b1 05       	cpc	r27, r1
+    569e:	19 f0       	breq	.+6      	; 0x56a6 <KPAD_enuInit+0x230>
+		{
+			return Local_enuErrorState;
+    56a0:	8e 81       	ldd	r24, Y+6	; 0x06
+    56a2:	8f 83       	std	Y+7, r24	; 0x07
+    56a4:	1c c1       	rjmp	.+568    	; 0x58de <KPAD_enuInit+0x468>
+	Local_u32Check |= (DIO_enuSetPinValue(ROW1_PORT, ROW1_PIN, DIO_u8PULL_UP) << KPAD_SHIFTBIT_TWELVE);
+	Local_u32Check |= (((u32)DIO_enuSetPinValue(ROW2_PORT, ROW2_PIN, DIO_u8PULL_UP)) << KPAD_SHIFTBIT_FIFTEEN);
+	Local_u32Check |= (((u32)DIO_enuSetPinValue(ROW3_PORT, ROW3_PIN, DIO_u8PULL_UP)) << KPAD_SHIFTBIT_EIGHTEEN);
+	Local_u32Check |= (((u32)DIO_enuSetPinValue(ROW4_PORT, ROW4_PIN, DIO_u8PULL_UP)) << KPAD_SHIFTBIT_TWENTYONE);
 
-	DIO_enuSetPinValue(COL1_PORT, COL1_PIN, DIO_u8HIGH);
-    54fa:	81 e0       	ldi	r24, 0x01	; 1
-    54fc:	60 e0       	ldi	r22, 0x00	; 0
-    54fe:	41 e0       	ldi	r20, 0x01	; 1
-    5500:	0e 94 d4 09 	call	0x13a8	; 0x13a8 <DIO_enuSetPinValue>
-	DIO_enuSetPinValue(COL2_PORT, COL2_PIN, DIO_u8HIGH);
-    5504:	81 e0       	ldi	r24, 0x01	; 1
-    5506:	61 e0       	ldi	r22, 0x01	; 1
-    5508:	41 e0       	ldi	r20, 0x01	; 1
-    550a:	0e 94 d4 09 	call	0x13a8	; 0x13a8 <DIO_enuSetPinValue>
-	DIO_enuSetPinValue(COL3_PORT, COL3_PIN, DIO_u8HIGH);
-    550e:	81 e0       	ldi	r24, 0x01	; 1
-    5510:	62 e0       	ldi	r22, 0x02	; 2
-    5512:	41 e0       	ldi	r20, 0x01	; 1
-    5514:	0e 94 d4 09 	call	0x13a8	; 0x13a8 <DIO_enuSetPinValue>
-	DIO_enuSetPinValue(COL4_PORT, COL4_PIN, DIO_u8HIGH);
-    5518:	81 e0       	ldi	r24, 0x01	; 1
-    551a:	63 e0       	ldi	r22, 0x03	; 3
-    551c:	41 e0       	ldi	r20, 0x01	; 1
-    551e:	0e 94 d4 09 	call	0x13a8	; 0x13a8 <DIO_enuSetPinValue>
+	for(Local_u8Iterator = KPAD_ZERO; Local_u8Iterator < KPAD_TWENTYFOUR; Local_u8Iterator += KPAD_THREE)
+    56a6:	8d 81       	ldd	r24, Y+5	; 0x05
+    56a8:	8d 5f       	subi	r24, 0xFD	; 253
+    56aa:	8d 83       	std	Y+5, r24	; 0x05
+    56ac:	8d 81       	ldd	r24, Y+5	; 0x05
+    56ae:	88 31       	cpi	r24, 0x18	; 24
+    56b0:	f8 f2       	brcs	.-66     	; 0x5670 <KPAD_enuInit+0x1fa>
+		if( ( ( (Local_u32Check)>>Local_u8Iterator) & KPAD_SEVEN) != ES_OK)
+		{
+			return Local_enuErrorState;
+		}
+	}
+	Local_u32Check = KPAD_ZERO;
+    56b2:	19 82       	std	Y+1, r1	; 0x01
+    56b4:	1a 82       	std	Y+2, r1	; 0x02
+    56b6:	1b 82       	std	Y+3, r1	; 0x03
+    56b8:	1c 82       	std	Y+4, r1	; 0x04
+
+	Local_u32Check |= (DIO_enuSetPinDirection(COL1_PORT, COL1_PIN, DIO_u8OUTPUT) << KPAD_SHIFTBIT_ZERO);
+    56ba:	81 e0       	ldi	r24, 0x01	; 1
+    56bc:	60 e0       	ldi	r22, 0x00	; 0
+    56be:	41 e0       	ldi	r20, 0x01	; 1
+    56c0:	0e 94 e8 08 	call	0x11d0	; 0x11d0 <DIO_enuSetPinDirection>
+    56c4:	28 2f       	mov	r18, r24
+    56c6:	30 e0       	ldi	r19, 0x00	; 0
+    56c8:	40 e0       	ldi	r20, 0x00	; 0
+    56ca:	50 e0       	ldi	r21, 0x00	; 0
+    56cc:	89 81       	ldd	r24, Y+1	; 0x01
+    56ce:	9a 81       	ldd	r25, Y+2	; 0x02
+    56d0:	ab 81       	ldd	r26, Y+3	; 0x03
+    56d2:	bc 81       	ldd	r27, Y+4	; 0x04
+    56d4:	82 2b       	or	r24, r18
+    56d6:	93 2b       	or	r25, r19
+    56d8:	a4 2b       	or	r26, r20
+    56da:	b5 2b       	or	r27, r21
+    56dc:	89 83       	std	Y+1, r24	; 0x01
+    56de:	9a 83       	std	Y+2, r25	; 0x02
+    56e0:	ab 83       	std	Y+3, r26	; 0x03
+    56e2:	bc 83       	std	Y+4, r27	; 0x04
+	Local_u32Check |= (DIO_enuSetPinDirection(COL2_PORT, COL2_PIN, DIO_u8OUTPUT) << KPAD_SHIFTBIT_THREE);
+    56e4:	81 e0       	ldi	r24, 0x01	; 1
+    56e6:	61 e0       	ldi	r22, 0x01	; 1
+    56e8:	41 e0       	ldi	r20, 0x01	; 1
+    56ea:	0e 94 e8 08 	call	0x11d0	; 0x11d0 <DIO_enuSetPinDirection>
+    56ee:	88 2f       	mov	r24, r24
+    56f0:	90 e0       	ldi	r25, 0x00	; 0
+    56f2:	88 0f       	add	r24, r24
+    56f4:	99 1f       	adc	r25, r25
+    56f6:	88 0f       	add	r24, r24
+    56f8:	99 1f       	adc	r25, r25
+    56fa:	88 0f       	add	r24, r24
+    56fc:	99 1f       	adc	r25, r25
+    56fe:	9c 01       	movw	r18, r24
+    5700:	44 27       	eor	r20, r20
+    5702:	37 fd       	sbrc	r19, 7
+    5704:	40 95       	com	r20
+    5706:	54 2f       	mov	r21, r20
+    5708:	89 81       	ldd	r24, Y+1	; 0x01
+    570a:	9a 81       	ldd	r25, Y+2	; 0x02
+    570c:	ab 81       	ldd	r26, Y+3	; 0x03
+    570e:	bc 81       	ldd	r27, Y+4	; 0x04
+    5710:	82 2b       	or	r24, r18
+    5712:	93 2b       	or	r25, r19
+    5714:	a4 2b       	or	r26, r20
+    5716:	b5 2b       	or	r27, r21
+    5718:	89 83       	std	Y+1, r24	; 0x01
+    571a:	9a 83       	std	Y+2, r25	; 0x02
+    571c:	ab 83       	std	Y+3, r26	; 0x03
+    571e:	bc 83       	std	Y+4, r27	; 0x04
+	Local_u32Check |= (DIO_enuSetPinDirection(COL3_PORT, COL3_PIN, DIO_u8OUTPUT) << KPAD_SHIFTBIT_SIX);
+    5720:	81 e0       	ldi	r24, 0x01	; 1
+    5722:	62 e0       	ldi	r22, 0x02	; 2
+    5724:	41 e0       	ldi	r20, 0x01	; 1
+    5726:	0e 94 e8 08 	call	0x11d0	; 0x11d0 <DIO_enuSetPinDirection>
+    572a:	88 2f       	mov	r24, r24
+    572c:	90 e0       	ldi	r25, 0x00	; 0
+    572e:	00 24       	eor	r0, r0
+    5730:	96 95       	lsr	r25
+    5732:	87 95       	ror	r24
+    5734:	07 94       	ror	r0
+    5736:	96 95       	lsr	r25
+    5738:	87 95       	ror	r24
+    573a:	07 94       	ror	r0
+    573c:	98 2f       	mov	r25, r24
+    573e:	80 2d       	mov	r24, r0
+    5740:	9c 01       	movw	r18, r24
+    5742:	44 27       	eor	r20, r20
+    5744:	37 fd       	sbrc	r19, 7
+    5746:	40 95       	com	r20
+    5748:	54 2f       	mov	r21, r20
+    574a:	89 81       	ldd	r24, Y+1	; 0x01
+    574c:	9a 81       	ldd	r25, Y+2	; 0x02
+    574e:	ab 81       	ldd	r26, Y+3	; 0x03
+    5750:	bc 81       	ldd	r27, Y+4	; 0x04
+    5752:	82 2b       	or	r24, r18
+    5754:	93 2b       	or	r25, r19
+    5756:	a4 2b       	or	r26, r20
+    5758:	b5 2b       	or	r27, r21
+    575a:	89 83       	std	Y+1, r24	; 0x01
+    575c:	9a 83       	std	Y+2, r25	; 0x02
+    575e:	ab 83       	std	Y+3, r26	; 0x03
+    5760:	bc 83       	std	Y+4, r27	; 0x04
+	Local_u32Check |= (DIO_enuSetPinDirection(COL4_PORT, COL4_PIN, DIO_u8OUTPUT) << KPAD_SHIFTBIT_NINE);
+    5762:	81 e0       	ldi	r24, 0x01	; 1
+    5764:	63 e0       	ldi	r22, 0x03	; 3
+    5766:	41 e0       	ldi	r20, 0x01	; 1
+    5768:	0e 94 e8 08 	call	0x11d0	; 0x11d0 <DIO_enuSetPinDirection>
+    576c:	88 2f       	mov	r24, r24
+    576e:	90 e0       	ldi	r25, 0x00	; 0
+    5770:	98 2f       	mov	r25, r24
+    5772:	88 27       	eor	r24, r24
+    5774:	99 0f       	add	r25, r25
+    5776:	9c 01       	movw	r18, r24
+    5778:	44 27       	eor	r20, r20
+    577a:	37 fd       	sbrc	r19, 7
+    577c:	40 95       	com	r20
+    577e:	54 2f       	mov	r21, r20
+    5780:	89 81       	ldd	r24, Y+1	; 0x01
+    5782:	9a 81       	ldd	r25, Y+2	; 0x02
+    5784:	ab 81       	ldd	r26, Y+3	; 0x03
+    5786:	bc 81       	ldd	r27, Y+4	; 0x04
+    5788:	82 2b       	or	r24, r18
+    578a:	93 2b       	or	r25, r19
+    578c:	a4 2b       	or	r26, r20
+    578e:	b5 2b       	or	r27, r21
+    5790:	89 83       	std	Y+1, r24	; 0x01
+    5792:	9a 83       	std	Y+2, r25	; 0x02
+    5794:	ab 83       	std	Y+3, r26	; 0x03
+    5796:	bc 83       	std	Y+4, r27	; 0x04
+
+	Local_u32Check |= (DIO_enuSetPinValue(COL1_PORT, COL1_PIN, DIO_u8HIGH) << KPAD_SHIFTBIT_TWELVE);
+    5798:	81 e0       	ldi	r24, 0x01	; 1
+    579a:	60 e0       	ldi	r22, 0x00	; 0
+    579c:	41 e0       	ldi	r20, 0x01	; 1
+    579e:	0e 94 d4 09 	call	0x13a8	; 0x13a8 <DIO_enuSetPinValue>
+    57a2:	88 2f       	mov	r24, r24
+    57a4:	90 e0       	ldi	r25, 0x00	; 0
+    57a6:	98 2f       	mov	r25, r24
+    57a8:	88 27       	eor	r24, r24
+    57aa:	92 95       	swap	r25
+    57ac:	90 7f       	andi	r25, 0xF0	; 240
+    57ae:	9c 01       	movw	r18, r24
+    57b0:	44 27       	eor	r20, r20
+    57b2:	37 fd       	sbrc	r19, 7
+    57b4:	40 95       	com	r20
+    57b6:	54 2f       	mov	r21, r20
+    57b8:	89 81       	ldd	r24, Y+1	; 0x01
+    57ba:	9a 81       	ldd	r25, Y+2	; 0x02
+    57bc:	ab 81       	ldd	r26, Y+3	; 0x03
+    57be:	bc 81       	ldd	r27, Y+4	; 0x04
+    57c0:	82 2b       	or	r24, r18
+    57c2:	93 2b       	or	r25, r19
+    57c4:	a4 2b       	or	r26, r20
+    57c6:	b5 2b       	or	r27, r21
+    57c8:	89 83       	std	Y+1, r24	; 0x01
+    57ca:	9a 83       	std	Y+2, r25	; 0x02
+    57cc:	ab 83       	std	Y+3, r26	; 0x03
+    57ce:	bc 83       	std	Y+4, r27	; 0x04
+	Local_u32Check |= (((u32)DIO_enuSetPinValue(COL2_PORT, COL2_PIN, DIO_u8HIGH)) << KPAD_SHIFTBIT_FIFTEEN);
+    57d0:	81 e0       	ldi	r24, 0x01	; 1
+    57d2:	61 e0       	ldi	r22, 0x01	; 1
+    57d4:	41 e0       	ldi	r20, 0x01	; 1
+    57d6:	0e 94 d4 09 	call	0x13a8	; 0x13a8 <DIO_enuSetPinValue>
+    57da:	88 2f       	mov	r24, r24
+    57dc:	90 e0       	ldi	r25, 0x00	; 0
+    57de:	a0 e0       	ldi	r26, 0x00	; 0
+    57e0:	b0 e0       	ldi	r27, 0x00	; 0
+    57e2:	9c 01       	movw	r18, r24
+    57e4:	ad 01       	movw	r20, r26
+    57e6:	01 2e       	mov	r0, r17
+    57e8:	1f e0       	ldi	r17, 0x0F	; 15
+    57ea:	22 0f       	add	r18, r18
+    57ec:	33 1f       	adc	r19, r19
+    57ee:	44 1f       	adc	r20, r20
+    57f0:	55 1f       	adc	r21, r21
+    57f2:	1a 95       	dec	r17
+    57f4:	d1 f7       	brne	.-12     	; 0x57ea <KPAD_enuInit+0x374>
+    57f6:	10 2d       	mov	r17, r0
+    57f8:	89 81       	ldd	r24, Y+1	; 0x01
+    57fa:	9a 81       	ldd	r25, Y+2	; 0x02
+    57fc:	ab 81       	ldd	r26, Y+3	; 0x03
+    57fe:	bc 81       	ldd	r27, Y+4	; 0x04
+    5800:	82 2b       	or	r24, r18
+    5802:	93 2b       	or	r25, r19
+    5804:	a4 2b       	or	r26, r20
+    5806:	b5 2b       	or	r27, r21
+    5808:	89 83       	std	Y+1, r24	; 0x01
+    580a:	9a 83       	std	Y+2, r25	; 0x02
+    580c:	ab 83       	std	Y+3, r26	; 0x03
+    580e:	bc 83       	std	Y+4, r27	; 0x04
+	Local_u32Check |= (((u32)DIO_enuSetPinValue(COL3_PORT, COL3_PIN, DIO_u8HIGH)) << KPAD_SHIFTBIT_EIGHTEEN);
+    5810:	81 e0       	ldi	r24, 0x01	; 1
+    5812:	62 e0       	ldi	r22, 0x02	; 2
+    5814:	41 e0       	ldi	r20, 0x01	; 1
+    5816:	0e 94 d4 09 	call	0x13a8	; 0x13a8 <DIO_enuSetPinValue>
+    581a:	88 2f       	mov	r24, r24
+    581c:	90 e0       	ldi	r25, 0x00	; 0
+    581e:	a0 e0       	ldi	r26, 0x00	; 0
+    5820:	b0 e0       	ldi	r27, 0x00	; 0
+    5822:	9c 01       	movw	r18, r24
+    5824:	ad 01       	movw	r20, r26
+    5826:	01 2e       	mov	r0, r17
+    5828:	12 e1       	ldi	r17, 0x12	; 18
+    582a:	22 0f       	add	r18, r18
+    582c:	33 1f       	adc	r19, r19
+    582e:	44 1f       	adc	r20, r20
+    5830:	55 1f       	adc	r21, r21
+    5832:	1a 95       	dec	r17
+    5834:	d1 f7       	brne	.-12     	; 0x582a <KPAD_enuInit+0x3b4>
+    5836:	10 2d       	mov	r17, r0
+    5838:	89 81       	ldd	r24, Y+1	; 0x01
+    583a:	9a 81       	ldd	r25, Y+2	; 0x02
+    583c:	ab 81       	ldd	r26, Y+3	; 0x03
+    583e:	bc 81       	ldd	r27, Y+4	; 0x04
+    5840:	82 2b       	or	r24, r18
+    5842:	93 2b       	or	r25, r19
+    5844:	a4 2b       	or	r26, r20
+    5846:	b5 2b       	or	r27, r21
+    5848:	89 83       	std	Y+1, r24	; 0x01
+    584a:	9a 83       	std	Y+2, r25	; 0x02
+    584c:	ab 83       	std	Y+3, r26	; 0x03
+    584e:	bc 83       	std	Y+4, r27	; 0x04
+	Local_u32Check |= (((u32)DIO_enuSetPinValue(COL4_PORT, COL4_PIN, DIO_u8HIGH)) << KPAD_SHIFTBIT_TWENTYONE);
+    5850:	81 e0       	ldi	r24, 0x01	; 1
+    5852:	63 e0       	ldi	r22, 0x03	; 3
+    5854:	41 e0       	ldi	r20, 0x01	; 1
+    5856:	0e 94 d4 09 	call	0x13a8	; 0x13a8 <DIO_enuSetPinValue>
+    585a:	88 2f       	mov	r24, r24
+    585c:	90 e0       	ldi	r25, 0x00	; 0
+    585e:	a0 e0       	ldi	r26, 0x00	; 0
+    5860:	b0 e0       	ldi	r27, 0x00	; 0
+    5862:	9c 01       	movw	r18, r24
+    5864:	ad 01       	movw	r20, r26
+    5866:	01 2e       	mov	r0, r17
+    5868:	15 e1       	ldi	r17, 0x15	; 21
+    586a:	22 0f       	add	r18, r18
+    586c:	33 1f       	adc	r19, r19
+    586e:	44 1f       	adc	r20, r20
+    5870:	55 1f       	adc	r21, r21
+    5872:	1a 95       	dec	r17
+    5874:	d1 f7       	brne	.-12     	; 0x586a <KPAD_enuInit+0x3f4>
+    5876:	10 2d       	mov	r17, r0
+    5878:	89 81       	ldd	r24, Y+1	; 0x01
+    587a:	9a 81       	ldd	r25, Y+2	; 0x02
+    587c:	ab 81       	ldd	r26, Y+3	; 0x03
+    587e:	bc 81       	ldd	r27, Y+4	; 0x04
+    5880:	82 2b       	or	r24, r18
+    5882:	93 2b       	or	r25, r19
+    5884:	a4 2b       	or	r26, r20
+    5886:	b5 2b       	or	r27, r21
+    5888:	89 83       	std	Y+1, r24	; 0x01
+    588a:	9a 83       	std	Y+2, r25	; 0x02
+    588c:	ab 83       	std	Y+3, r26	; 0x03
+    588e:	bc 83       	std	Y+4, r27	; 0x04
+
+	for(Local_u8Iterator = KPAD_ZERO; Local_u8Iterator < KPAD_TWENTYFOUR; Local_u8Iterator += KPAD_THREE)
+    5890:	1d 82       	std	Y+5, r1	; 0x05
+    5892:	1e c0       	rjmp	.+60     	; 0x58d0 <KPAD_enuInit+0x45a>
+	{
+		if( ( ( (Local_u32Check)>>Local_u8Iterator) & KPAD_SEVEN) != ES_OK)
+    5894:	8d 81       	ldd	r24, Y+5	; 0x05
+    5896:	28 2f       	mov	r18, r24
+    5898:	30 e0       	ldi	r19, 0x00	; 0
+    589a:	89 81       	ldd	r24, Y+1	; 0x01
+    589c:	9a 81       	ldd	r25, Y+2	; 0x02
+    589e:	ab 81       	ldd	r26, Y+3	; 0x03
+    58a0:	bc 81       	ldd	r27, Y+4	; 0x04
+    58a2:	02 2e       	mov	r0, r18
+    58a4:	04 c0       	rjmp	.+8      	; 0x58ae <KPAD_enuInit+0x438>
+    58a6:	b6 95       	lsr	r27
+    58a8:	a7 95       	ror	r26
+    58aa:	97 95       	ror	r25
+    58ac:	87 95       	ror	r24
+    58ae:	0a 94       	dec	r0
+    58b0:	d2 f7       	brpl	.-12     	; 0x58a6 <KPAD_enuInit+0x430>
+    58b2:	87 70       	andi	r24, 0x07	; 7
+    58b4:	90 70       	andi	r25, 0x00	; 0
+    58b6:	a0 70       	andi	r26, 0x00	; 0
+    58b8:	b0 70       	andi	r27, 0x00	; 0
+    58ba:	81 30       	cpi	r24, 0x01	; 1
+    58bc:	91 05       	cpc	r25, r1
+    58be:	a1 05       	cpc	r26, r1
+    58c0:	b1 05       	cpc	r27, r1
+    58c2:	19 f0       	breq	.+6      	; 0x58ca <KPAD_enuInit+0x454>
+		{
+			return Local_enuErrorState;
+    58c4:	8e 81       	ldd	r24, Y+6	; 0x06
+    58c6:	8f 83       	std	Y+7, r24	; 0x07
+    58c8:	0a c0       	rjmp	.+20     	; 0x58de <KPAD_enuInit+0x468>
+	Local_u32Check |= (DIO_enuSetPinValue(COL1_PORT, COL1_PIN, DIO_u8HIGH) << KPAD_SHIFTBIT_TWELVE);
+	Local_u32Check |= (((u32)DIO_enuSetPinValue(COL2_PORT, COL2_PIN, DIO_u8HIGH)) << KPAD_SHIFTBIT_FIFTEEN);
+	Local_u32Check |= (((u32)DIO_enuSetPinValue(COL3_PORT, COL3_PIN, DIO_u8HIGH)) << KPAD_SHIFTBIT_EIGHTEEN);
+	Local_u32Check |= (((u32)DIO_enuSetPinValue(COL4_PORT, COL4_PIN, DIO_u8HIGH)) << KPAD_SHIFTBIT_TWENTYONE);
+
+	for(Local_u8Iterator = KPAD_ZERO; Local_u8Iterator < KPAD_TWENTYFOUR; Local_u8Iterator += KPAD_THREE)
+    58ca:	8d 81       	ldd	r24, Y+5	; 0x05
+    58cc:	8d 5f       	subi	r24, 0xFD	; 253
+    58ce:	8d 83       	std	Y+5, r24	; 0x05
+    58d0:	8d 81       	ldd	r24, Y+5	; 0x05
+    58d2:	88 31       	cpi	r24, 0x18	; 24
+    58d4:	f8 f2       	brcs	.-66     	; 0x5894 <KPAD_enuInit+0x41e>
+		{
+			return Local_enuErrorState;
+		}
+	}
+
+	Local_enuErrorState = ES_OK;
+    58d6:	81 e0       	ldi	r24, 0x01	; 1
+    58d8:	8e 83       	std	Y+6, r24	; 0x06
 
 	return Local_enuErrorState;
-    5522:	89 81       	ldd	r24, Y+1	; 0x01
+    58da:	8e 81       	ldd	r24, Y+6	; 0x06
+    58dc:	8f 83       	std	Y+7, r24	; 0x07
+    58de:	8f 81       	ldd	r24, Y+7	; 0x07
 }
-    5524:	0f 90       	pop	r0
-    5526:	cf 91       	pop	r28
-    5528:	df 91       	pop	r29
-    552a:	08 95       	ret
+    58e0:	27 96       	adiw	r28, 0x07	; 7
+    58e2:	0f b6       	in	r0, 0x3f	; 63
+    58e4:	f8 94       	cli
+    58e6:	de bf       	out	0x3e, r29	; 62
+    58e8:	0f be       	out	0x3f, r0	; 63
+    58ea:	cd bf       	out	0x3d, r28	; 61
+    58ec:	cf 91       	pop	r28
+    58ee:	df 91       	pop	r29
+    58f0:	08 95       	ret
 
-0000552c <KPAD_enuGetPassedKey>:
+000058f2 <KPAD_enuGetPassedKey>:
 
 ES_t KPAD_enuGetPassedKey(u8 *Copy_pu8KeyNumber)
 {
-    552c:	df 93       	push	r29
-    552e:	cf 93       	push	r28
-    5530:	cd b7       	in	r28, 0x3d	; 61
-    5532:	de b7       	in	r29, 0x3e	; 62
-    5534:	27 97       	sbiw	r28, 0x07	; 7
-    5536:	0f b6       	in	r0, 0x3f	; 63
-    5538:	f8 94       	cli
-    553a:	de bf       	out	0x3e, r29	; 62
-    553c:	0f be       	out	0x3f, r0	; 63
-    553e:	cd bf       	out	0x3d, r28	; 61
-    5540:	9e 83       	std	Y+6, r25	; 0x06
-    5542:	8d 83       	std	Y+5, r24	; 0x05
+    58f2:	df 93       	push	r29
+    58f4:	cf 93       	push	r28
+    58f6:	cd b7       	in	r28, 0x3d	; 61
+    58f8:	de b7       	in	r29, 0x3e	; 62
+    58fa:	2c 97       	sbiw	r28, 0x0c	; 12
+    58fc:	0f b6       	in	r0, 0x3f	; 63
+    58fe:	f8 94       	cli
+    5900:	de bf       	out	0x3e, r29	; 62
+    5902:	0f be       	out	0x3f, r0	; 63
+    5904:	cd bf       	out	0x3d, r28	; 61
+    5906:	9b 87       	std	Y+11, r25	; 0x0b
+    5908:	8a 87       	std	Y+10, r24	; 0x0a
 	ES_t Local_enuErrorState = ES_NOK;
-    5544:	1b 82       	std	Y+3, r1	; 0x03
-	u8 Local_u8ColIndex = 0, Local_u8RowIndex = 0, Local_u8KeyState = 0;
-    5546:	1a 82       	std	Y+2, r1	; 0x02
-    5548:	19 82       	std	Y+1, r1	; 0x01
-    554a:	1c 82       	std	Y+4, r1	; 0x04
+    590a:	18 86       	std	Y+8, r1	; 0x08
+	u8 Local_u8ColIndex = KPAD_ZERO, Local_u8RowIndex = KPAD_ZERO, Local_u8KeyState = KPAD_ZERO;
+    590c:	1f 82       	std	Y+7, r1	; 0x07
+    590e:	1e 82       	std	Y+6, r1	; 0x06
+    5910:	19 86       	std	Y+9, r1	; 0x09
+	u8 Local_u8Iterator = KPAD_ZERO;
+    5912:	1d 82       	std	Y+5, r1	; 0x05
+	u32 Local_u32Check = KPAD_ZERO;
+    5914:	19 82       	std	Y+1, r1	; 0x01
+    5916:	1a 82       	std	Y+2, r1	; 0x02
+    5918:	1b 82       	std	Y+3, r1	; 0x03
+    591a:	1c 82       	std	Y+4, r1	; 0x04
 
 
-	static u8 Local_u8AKPADARR[4][4] = KPAD_ARR_VAL;
+	static u8 Local_u8AKPADARR[KPAD_ROWNUM][KPAD_COLNUM] = KPAD_ARR_VAL;
 
 	/* Initial value of key pressed */
 	if(Copy_pu8KeyNumber != NULL)
-    554c:	8d 81       	ldd	r24, Y+5	; 0x05
-    554e:	9e 81       	ldd	r25, Y+6	; 0x06
-    5550:	00 97       	sbiw	r24, 0x00	; 0
-    5552:	31 f0       	breq	.+12     	; 0x5560 <KPAD_enuGetPassedKey+0x34>
+    591c:	8a 85       	ldd	r24, Y+10	; 0x0a
+    591e:	9b 85       	ldd	r25, Y+11	; 0x0b
+    5920:	00 97       	sbiw	r24, 0x00	; 0
+    5922:	31 f0       	breq	.+12     	; 0x5930 <KPAD_enuGetPassedKey+0x3e>
 	{
 		*Copy_pu8KeyNumber = NO_PRESSED_KEY;
-    5554:	ed 81       	ldd	r30, Y+5	; 0x05
-    5556:	fe 81       	ldd	r31, Y+6	; 0x06
-    5558:	8f ef       	ldi	r24, 0xFF	; 255
-    555a:	80 83       	st	Z, r24
+    5924:	ea 85       	ldd	r30, Y+10	; 0x0a
+    5926:	fb 85       	ldd	r31, Y+11	; 0x0b
+    5928:	8f ef       	ldi	r24, 0xFF	; 255
+    592a:	80 83       	st	Z, r24
 	else
 	{
 		return ES_NULL_POINTER;
 	}
 
-	for(Local_u8ColIndex = 0; Local_u8ColIndex < 4; Local_u8ColIndex++)
-    555c:	1a 82       	std	Y+2, r1	; 0x02
-    555e:	8d c0       	rjmp	.+282    	; 0x567a <KPAD_enuGetPassedKey+0x14e>
+	for(Local_u8ColIndex = KPAD_ZERO; Local_u8ColIndex < KPAD_COLNUM; Local_u8ColIndex++)
+    592c:	1f 82       	std	Y+7, r1	; 0x07
+    592e:	e9 c0       	rjmp	.+466    	; 0x5b02 <KPAD_enuGetPassedKey+0x210>
 	{
 		*Copy_pu8KeyNumber = NO_PRESSED_KEY;
 	}
 	else
 	{
 		return ES_NULL_POINTER;
-    5560:	82 e0       	ldi	r24, 0x02	; 2
-    5562:	8f 83       	std	Y+7, r24	; 0x07
-    5564:	92 c0       	rjmp	.+292    	; 0x568a <KPAD_enuGetPassedKey+0x15e>
+    5930:	82 e0       	ldi	r24, 0x02	; 2
+    5932:	8c 87       	std	Y+12, r24	; 0x0c
+    5934:	11 c1       	rjmp	.+546    	; 0x5b58 <KPAD_enuGetPassedKey+0x266>
 	}
 
-	for(Local_u8ColIndex = 0; Local_u8ColIndex < 4; Local_u8ColIndex++)
+	for(Local_u8ColIndex = KPAD_ZERO; Local_u8ColIndex < KPAD_COLNUM; Local_u8ColIndex++)
 	{
 		/* Activate Column */
-		DIO_enuSetPinValue(Local_u8AKPADColButtons[Local_u8ColIndex][0],
-    5566:	8a 81       	ldd	r24, Y+2	; 0x02
-    5568:	88 2f       	mov	r24, r24
-    556a:	90 e0       	ldi	r25, 0x00	; 0
-    556c:	88 0f       	add	r24, r24
-    556e:	99 1f       	adc	r25, r25
-    5570:	fc 01       	movw	r30, r24
-    5572:	e7 52       	subi	r30, 0x27	; 39
-    5574:	fe 4f       	sbci	r31, 0xFE	; 254
-    5576:	20 81       	ld	r18, Z
-    5578:	8a 81       	ldd	r24, Y+2	; 0x02
-    557a:	88 2f       	mov	r24, r24
-    557c:	90 e0       	ldi	r25, 0x00	; 0
-    557e:	88 0f       	add	r24, r24
-    5580:	99 1f       	adc	r25, r25
-    5582:	fc 01       	movw	r30, r24
-    5584:	e6 52       	subi	r30, 0x26	; 38
-    5586:	fe 4f       	sbci	r31, 0xFE	; 254
-    5588:	90 81       	ld	r25, Z
-    558a:	82 2f       	mov	r24, r18
-    558c:	69 2f       	mov	r22, r25
-    558e:	40 e0       	ldi	r20, 0x00	; 0
-    5590:	0e 94 d4 09 	call	0x13a8	; 0x13a8 <DIO_enuSetPinValue>
-						   Local_u8AKPADColButtons[Local_u8ColIndex][1], DIO_u8LOW);
+		Local_u32Check |= (DIO_enuSetPinValue(Local_u8AKPADColButtons[Local_u8ColIndex][KPAD_ZERO],
+    5936:	8f 81       	ldd	r24, Y+7	; 0x07
+    5938:	88 2f       	mov	r24, r24
+    593a:	90 e0       	ldi	r25, 0x00	; 0
+    593c:	88 0f       	add	r24, r24
+    593e:	99 1f       	adc	r25, r25
+    5940:	fc 01       	movw	r30, r24
+    5942:	e7 52       	subi	r30, 0x27	; 39
+    5944:	fe 4f       	sbci	r31, 0xFE	; 254
+    5946:	20 81       	ld	r18, Z
+    5948:	8f 81       	ldd	r24, Y+7	; 0x07
+    594a:	88 2f       	mov	r24, r24
+    594c:	90 e0       	ldi	r25, 0x00	; 0
+    594e:	88 0f       	add	r24, r24
+    5950:	99 1f       	adc	r25, r25
+    5952:	fc 01       	movw	r30, r24
+    5954:	e6 52       	subi	r30, 0x26	; 38
+    5956:	fe 4f       	sbci	r31, 0xFE	; 254
+    5958:	90 81       	ld	r25, Z
+    595a:	82 2f       	mov	r24, r18
+    595c:	69 2f       	mov	r22, r25
+    595e:	40 e0       	ldi	r20, 0x00	; 0
+    5960:	0e 94 d4 09 	call	0x13a8	; 0x13a8 <DIO_enuSetPinValue>
+    5964:	28 2f       	mov	r18, r24
+    5966:	30 e0       	ldi	r19, 0x00	; 0
+    5968:	40 e0       	ldi	r20, 0x00	; 0
+    596a:	50 e0       	ldi	r21, 0x00	; 0
+    596c:	89 81       	ldd	r24, Y+1	; 0x01
+    596e:	9a 81       	ldd	r25, Y+2	; 0x02
+    5970:	ab 81       	ldd	r26, Y+3	; 0x03
+    5972:	bc 81       	ldd	r27, Y+4	; 0x04
+    5974:	82 2b       	or	r24, r18
+    5976:	93 2b       	or	r25, r19
+    5978:	a4 2b       	or	r26, r20
+    597a:	b5 2b       	or	r27, r21
+    597c:	89 83       	std	Y+1, r24	; 0x01
+    597e:	9a 83       	std	Y+2, r25	; 0x02
+    5980:	ab 83       	std	Y+3, r26	; 0x03
+    5982:	bc 83       	std	Y+4, r27	; 0x04
+						   Local_u8AKPADColButtons[Local_u8ColIndex][KPAD_ONE], DIO_u8LOW) << KPAD_SHIFTBIT_ZERO);
 
-		for(Local_u8RowIndex = 0; Local_u8RowIndex < 4; Local_u8RowIndex++)
-    5594:	19 82       	std	Y+1, r1	; 0x01
-    5596:	53 c0       	rjmp	.+166    	; 0x563e <KPAD_enuGetPassedKey+0x112>
+		for(Local_u8RowIndex = KPAD_ZERO; Local_u8RowIndex < KPAD_ROWNUM; Local_u8RowIndex++)
+    5984:	1e 82       	std	Y+6, r1	; 0x06
+    5986:	89 c0       	rjmp	.+274    	; 0x5a9a <KPAD_enuGetPassedKey+0x1a8>
 		{
 			/* Read the current row */
-			 DIO_enuGetPinValue(Local_u8AKPADRowButtons[Local_u8RowIndex][0],
-    5598:	89 81       	ldd	r24, Y+1	; 0x01
-    559a:	88 2f       	mov	r24, r24
-    559c:	90 e0       	ldi	r25, 0x00	; 0
-    559e:	88 0f       	add	r24, r24
-    55a0:	99 1f       	adc	r25, r25
-    55a2:	fc 01       	movw	r30, r24
-    55a4:	ef 52       	subi	r30, 0x2F	; 47
-    55a6:	fe 4f       	sbci	r31, 0xFE	; 254
-    55a8:	40 81       	ld	r20, Z
-    55aa:	89 81       	ldd	r24, Y+1	; 0x01
-    55ac:	88 2f       	mov	r24, r24
-    55ae:	90 e0       	ldi	r25, 0x00	; 0
-    55b0:	88 0f       	add	r24, r24
-    55b2:	99 1f       	adc	r25, r25
-    55b4:	fc 01       	movw	r30, r24
-    55b6:	ee 52       	subi	r30, 0x2E	; 46
-    55b8:	fe 4f       	sbci	r31, 0xFE	; 254
-    55ba:	90 81       	ld	r25, Z
-    55bc:	9e 01       	movw	r18, r28
-    55be:	2c 5f       	subi	r18, 0xFC	; 252
-    55c0:	3f 4f       	sbci	r19, 0xFF	; 255
-    55c2:	84 2f       	mov	r24, r20
-    55c4:	69 2f       	mov	r22, r25
-    55c6:	a9 01       	movw	r20, r18
-    55c8:	0e 94 4e 0b 	call	0x169c	; 0x169c <DIO_enuGetPinValue>
-													Local_u8AKPADRowButtons[Local_u8RowIndex][1], &Local_u8KeyState);
+			 Local_u32Check |= (DIO_enuGetPinValue(Local_u8AKPADRowButtons[Local_u8RowIndex][KPAD_ZERO],
+    5988:	8e 81       	ldd	r24, Y+6	; 0x06
+    598a:	88 2f       	mov	r24, r24
+    598c:	90 e0       	ldi	r25, 0x00	; 0
+    598e:	88 0f       	add	r24, r24
+    5990:	99 1f       	adc	r25, r25
+    5992:	fc 01       	movw	r30, r24
+    5994:	ef 52       	subi	r30, 0x2F	; 47
+    5996:	fe 4f       	sbci	r31, 0xFE	; 254
+    5998:	40 81       	ld	r20, Z
+    599a:	8e 81       	ldd	r24, Y+6	; 0x06
+    599c:	88 2f       	mov	r24, r24
+    599e:	90 e0       	ldi	r25, 0x00	; 0
+    59a0:	88 0f       	add	r24, r24
+    59a2:	99 1f       	adc	r25, r25
+    59a4:	fc 01       	movw	r30, r24
+    59a6:	ee 52       	subi	r30, 0x2E	; 46
+    59a8:	fe 4f       	sbci	r31, 0xFE	; 254
+    59aa:	90 81       	ld	r25, Z
+    59ac:	9e 01       	movw	r18, r28
+    59ae:	27 5f       	subi	r18, 0xF7	; 247
+    59b0:	3f 4f       	sbci	r19, 0xFF	; 255
+    59b2:	84 2f       	mov	r24, r20
+    59b4:	69 2f       	mov	r22, r25
+    59b6:	a9 01       	movw	r20, r18
+    59b8:	0e 94 4e 0b 	call	0x169c	; 0x169c <DIO_enuGetPinValue>
+    59bc:	88 2f       	mov	r24, r24
+    59be:	90 e0       	ldi	r25, 0x00	; 0
+    59c0:	88 0f       	add	r24, r24
+    59c2:	99 1f       	adc	r25, r25
+    59c4:	88 0f       	add	r24, r24
+    59c6:	99 1f       	adc	r25, r25
+    59c8:	88 0f       	add	r24, r24
+    59ca:	99 1f       	adc	r25, r25
+    59cc:	9c 01       	movw	r18, r24
+    59ce:	44 27       	eor	r20, r20
+    59d0:	37 fd       	sbrc	r19, 7
+    59d2:	40 95       	com	r20
+    59d4:	54 2f       	mov	r21, r20
+    59d6:	89 81       	ldd	r24, Y+1	; 0x01
+    59d8:	9a 81       	ldd	r25, Y+2	; 0x02
+    59da:	ab 81       	ldd	r26, Y+3	; 0x03
+    59dc:	bc 81       	ldd	r27, Y+4	; 0x04
+    59de:	82 2b       	or	r24, r18
+    59e0:	93 2b       	or	r25, r19
+    59e2:	a4 2b       	or	r26, r20
+    59e4:	b5 2b       	or	r27, r21
+    59e6:	89 83       	std	Y+1, r24	; 0x01
+    59e8:	9a 83       	std	Y+2, r25	; 0x02
+    59ea:	ab 83       	std	Y+3, r26	; 0x03
+    59ec:	bc 83       	std	Y+4, r27	; 0x04
+													Local_u8AKPADRowButtons[Local_u8RowIndex][KPAD_ONE], &Local_u8KeyState) << KPAD_SHIFTBIT_THREE);
 			 if(DIO_u8LOW == Local_u8KeyState)
-    55cc:	8c 81       	ldd	r24, Y+4	; 0x04
-    55ce:	88 23       	and	r24, r24
-    55d0:	99 f5       	brne	.+102    	; 0x5638 <KPAD_enuGetPassedKey+0x10c>
-    55d2:	1a c0       	rjmp	.+52     	; 0x5608 <KPAD_enuGetPassedKey+0xdc>
+    59ee:	89 85       	ldd	r24, Y+9	; 0x09
+    59f0:	88 23       	and	r24, r24
+    59f2:	09 f0       	breq	.+2      	; 0x59f6 <KPAD_enuGetPassedKey+0x104>
+    59f4:	4f c0       	rjmp	.+158    	; 0x5a94 <KPAD_enuGetPassedKey+0x1a2>
+    59f6:	36 c0       	rjmp	.+108    	; 0x5a64 <KPAD_enuGetPassedKey+0x172>
 			 {
 				 /* Polling (Busy waiting until the key is released) */
 				 while(DIO_u8LOW == Local_u8KeyState)
 				 {
-					 DIO_enuGetPinValue(Local_u8AKPADRowButtons[Local_u8RowIndex][0],
-    55d4:	89 81       	ldd	r24, Y+1	; 0x01
-    55d6:	88 2f       	mov	r24, r24
-    55d8:	90 e0       	ldi	r25, 0x00	; 0
-    55da:	88 0f       	add	r24, r24
-    55dc:	99 1f       	adc	r25, r25
-    55de:	fc 01       	movw	r30, r24
-    55e0:	ef 52       	subi	r30, 0x2F	; 47
-    55e2:	fe 4f       	sbci	r31, 0xFE	; 254
-    55e4:	40 81       	ld	r20, Z
-    55e6:	89 81       	ldd	r24, Y+1	; 0x01
-    55e8:	88 2f       	mov	r24, r24
-    55ea:	90 e0       	ldi	r25, 0x00	; 0
-    55ec:	88 0f       	add	r24, r24
-    55ee:	99 1f       	adc	r25, r25
-    55f0:	fc 01       	movw	r30, r24
-    55f2:	ee 52       	subi	r30, 0x2E	; 46
-    55f4:	fe 4f       	sbci	r31, 0xFE	; 254
-    55f6:	90 81       	ld	r25, Z
-    55f8:	9e 01       	movw	r18, r28
-    55fa:	2c 5f       	subi	r18, 0xFC	; 252
-    55fc:	3f 4f       	sbci	r19, 0xFF	; 255
-    55fe:	84 2f       	mov	r24, r20
-    5600:	69 2f       	mov	r22, r25
-    5602:	a9 01       	movw	r20, r18
-    5604:	0e 94 4e 0b 	call	0x169c	; 0x169c <DIO_enuGetPinValue>
-			 DIO_enuGetPinValue(Local_u8AKPADRowButtons[Local_u8RowIndex][0],
-													Local_u8AKPADRowButtons[Local_u8RowIndex][1], &Local_u8KeyState);
+					 Local_u32Check |= (DIO_enuGetPinValue(Local_u8AKPADRowButtons[Local_u8RowIndex][KPAD_ZERO],
+    59f8:	8e 81       	ldd	r24, Y+6	; 0x06
+    59fa:	88 2f       	mov	r24, r24
+    59fc:	90 e0       	ldi	r25, 0x00	; 0
+    59fe:	88 0f       	add	r24, r24
+    5a00:	99 1f       	adc	r25, r25
+    5a02:	fc 01       	movw	r30, r24
+    5a04:	ef 52       	subi	r30, 0x2F	; 47
+    5a06:	fe 4f       	sbci	r31, 0xFE	; 254
+    5a08:	40 81       	ld	r20, Z
+    5a0a:	8e 81       	ldd	r24, Y+6	; 0x06
+    5a0c:	88 2f       	mov	r24, r24
+    5a0e:	90 e0       	ldi	r25, 0x00	; 0
+    5a10:	88 0f       	add	r24, r24
+    5a12:	99 1f       	adc	r25, r25
+    5a14:	fc 01       	movw	r30, r24
+    5a16:	ee 52       	subi	r30, 0x2E	; 46
+    5a18:	fe 4f       	sbci	r31, 0xFE	; 254
+    5a1a:	90 81       	ld	r25, Z
+    5a1c:	9e 01       	movw	r18, r28
+    5a1e:	27 5f       	subi	r18, 0xF7	; 247
+    5a20:	3f 4f       	sbci	r19, 0xFF	; 255
+    5a22:	84 2f       	mov	r24, r20
+    5a24:	69 2f       	mov	r22, r25
+    5a26:	a9 01       	movw	r20, r18
+    5a28:	0e 94 4e 0b 	call	0x169c	; 0x169c <DIO_enuGetPinValue>
+    5a2c:	88 2f       	mov	r24, r24
+    5a2e:	90 e0       	ldi	r25, 0x00	; 0
+    5a30:	00 24       	eor	r0, r0
+    5a32:	96 95       	lsr	r25
+    5a34:	87 95       	ror	r24
+    5a36:	07 94       	ror	r0
+    5a38:	96 95       	lsr	r25
+    5a3a:	87 95       	ror	r24
+    5a3c:	07 94       	ror	r0
+    5a3e:	98 2f       	mov	r25, r24
+    5a40:	80 2d       	mov	r24, r0
+    5a42:	9c 01       	movw	r18, r24
+    5a44:	44 27       	eor	r20, r20
+    5a46:	37 fd       	sbrc	r19, 7
+    5a48:	40 95       	com	r20
+    5a4a:	54 2f       	mov	r21, r20
+    5a4c:	89 81       	ldd	r24, Y+1	; 0x01
+    5a4e:	9a 81       	ldd	r25, Y+2	; 0x02
+    5a50:	ab 81       	ldd	r26, Y+3	; 0x03
+    5a52:	bc 81       	ldd	r27, Y+4	; 0x04
+    5a54:	82 2b       	or	r24, r18
+    5a56:	93 2b       	or	r25, r19
+    5a58:	a4 2b       	or	r26, r20
+    5a5a:	b5 2b       	or	r27, r21
+    5a5c:	89 83       	std	Y+1, r24	; 0x01
+    5a5e:	9a 83       	std	Y+2, r25	; 0x02
+    5a60:	ab 83       	std	Y+3, r26	; 0x03
+    5a62:	bc 83       	std	Y+4, r27	; 0x04
+			 Local_u32Check |= (DIO_enuGetPinValue(Local_u8AKPADRowButtons[Local_u8RowIndex][KPAD_ZERO],
+													Local_u8AKPADRowButtons[Local_u8RowIndex][KPAD_ONE], &Local_u8KeyState) << KPAD_SHIFTBIT_THREE);
 			 if(DIO_u8LOW == Local_u8KeyState)
 			 {
 				 /* Polling (Busy waiting until the key is released) */
 				 while(DIO_u8LOW == Local_u8KeyState)
-    5608:	8c 81       	ldd	r24, Y+4	; 0x04
-    560a:	88 23       	and	r24, r24
-    560c:	19 f3       	breq	.-58     	; 0x55d4 <KPAD_enuGetPassedKey+0xa8>
+    5a64:	89 85       	ldd	r24, Y+9	; 0x09
+    5a66:	88 23       	and	r24, r24
+    5a68:	39 f2       	breq	.-114    	; 0x59f8 <KPAD_enuGetPassedKey+0x106>
 				 {
-					 DIO_enuGetPinValue(Local_u8AKPADRowButtons[Local_u8RowIndex][0],
-															Local_u8AKPADRowButtons[Local_u8RowIndex][1], &Local_u8KeyState);
+					 Local_u32Check |= (DIO_enuGetPinValue(Local_u8AKPADRowButtons[Local_u8RowIndex][KPAD_ZERO],
+															Local_u8AKPADRowButtons[Local_u8RowIndex][KPAD_ONE], &Local_u8KeyState) << KPAD_SHIFTBIT_SIX);
 				 }
 
 				 *Copy_pu8KeyNumber = Local_u8AKPADARR[Local_u8RowIndex][Local_u8ColIndex];
-    560e:	89 81       	ldd	r24, Y+1	; 0x01
-    5610:	48 2f       	mov	r20, r24
-    5612:	50 e0       	ldi	r21, 0x00	; 0
-    5614:	8a 81       	ldd	r24, Y+2	; 0x02
-    5616:	28 2f       	mov	r18, r24
-    5618:	30 e0       	ldi	r19, 0x00	; 0
-    561a:	ca 01       	movw	r24, r20
-    561c:	88 0f       	add	r24, r24
-    561e:	99 1f       	adc	r25, r25
-    5620:	88 0f       	add	r24, r24
-    5622:	99 1f       	adc	r25, r25
-    5624:	82 0f       	add	r24, r18
-    5626:	93 1f       	adc	r25, r19
-    5628:	fc 01       	movw	r30, r24
-    562a:	ef 53       	subi	r30, 0x3F	; 63
-    562c:	fe 4f       	sbci	r31, 0xFE	; 254
-    562e:	80 81       	ld	r24, Z
-    5630:	ed 81       	ldd	r30, Y+5	; 0x05
-    5632:	fe 81       	ldd	r31, Y+6	; 0x06
-    5634:	80 83       	st	Z, r24
-    5636:	07 c0       	rjmp	.+14     	; 0x5646 <KPAD_enuGetPassedKey+0x11a>
+    5a6a:	8e 81       	ldd	r24, Y+6	; 0x06
+    5a6c:	48 2f       	mov	r20, r24
+    5a6e:	50 e0       	ldi	r21, 0x00	; 0
+    5a70:	8f 81       	ldd	r24, Y+7	; 0x07
+    5a72:	28 2f       	mov	r18, r24
+    5a74:	30 e0       	ldi	r19, 0x00	; 0
+    5a76:	ca 01       	movw	r24, r20
+    5a78:	88 0f       	add	r24, r24
+    5a7a:	99 1f       	adc	r25, r25
+    5a7c:	88 0f       	add	r24, r24
+    5a7e:	99 1f       	adc	r25, r25
+    5a80:	82 0f       	add	r24, r18
+    5a82:	93 1f       	adc	r25, r19
+    5a84:	fc 01       	movw	r30, r24
+    5a86:	ef 53       	subi	r30, 0x3F	; 63
+    5a88:	fe 4f       	sbci	r31, 0xFE	; 254
+    5a8a:	80 81       	ld	r24, Z
+    5a8c:	ea 85       	ldd	r30, Y+10	; 0x0a
+    5a8e:	fb 85       	ldd	r31, Y+11	; 0x0b
+    5a90:	80 83       	st	Z, r24
+    5a92:	07 c0       	rjmp	.+14     	; 0x5aa2 <KPAD_enuGetPassedKey+0x1b0>
 	{
 		/* Activate Column */
-		DIO_enuSetPinValue(Local_u8AKPADColButtons[Local_u8ColIndex][0],
-						   Local_u8AKPADColButtons[Local_u8ColIndex][1], DIO_u8LOW);
+		Local_u32Check |= (DIO_enuSetPinValue(Local_u8AKPADColButtons[Local_u8ColIndex][KPAD_ZERO],
+						   Local_u8AKPADColButtons[Local_u8ColIndex][KPAD_ONE], DIO_u8LOW) << KPAD_SHIFTBIT_ZERO);
 
-		for(Local_u8RowIndex = 0; Local_u8RowIndex < 4; Local_u8RowIndex++)
-    5638:	89 81       	ldd	r24, Y+1	; 0x01
-    563a:	8f 5f       	subi	r24, 0xFF	; 255
-    563c:	89 83       	std	Y+1, r24	; 0x01
-    563e:	89 81       	ldd	r24, Y+1	; 0x01
-    5640:	84 30       	cpi	r24, 0x04	; 4
-    5642:	08 f4       	brcc	.+2      	; 0x5646 <KPAD_enuGetPassedKey+0x11a>
-    5644:	a9 cf       	rjmp	.-174    	; 0x5598 <KPAD_enuGetPassedKey+0x6c>
+		for(Local_u8RowIndex = KPAD_ZERO; Local_u8RowIndex < KPAD_ROWNUM; Local_u8RowIndex++)
+    5a94:	8e 81       	ldd	r24, Y+6	; 0x06
+    5a96:	8f 5f       	subi	r24, 0xFF	; 255
+    5a98:	8e 83       	std	Y+6, r24	; 0x06
+    5a9a:	8e 81       	ldd	r24, Y+6	; 0x06
+    5a9c:	84 30       	cpi	r24, 0x04	; 4
+    5a9e:	08 f4       	brcc	.+2      	; 0x5aa2 <KPAD_enuGetPassedKey+0x1b0>
+    5aa0:	73 cf       	rjmp	.-282    	; 0x5988 <KPAD_enuGetPassedKey+0x96>
 				 break;
 			 }
 		}
 
 		/* Deactivate Column */
-		DIO_enuSetPinValue(Local_u8AKPADColButtons[Local_u8ColIndex][0],
-    5646:	8a 81       	ldd	r24, Y+2	; 0x02
-    5648:	88 2f       	mov	r24, r24
-    564a:	90 e0       	ldi	r25, 0x00	; 0
-    564c:	88 0f       	add	r24, r24
-    564e:	99 1f       	adc	r25, r25
-    5650:	fc 01       	movw	r30, r24
-    5652:	e7 52       	subi	r30, 0x27	; 39
-    5654:	fe 4f       	sbci	r31, 0xFE	; 254
-    5656:	20 81       	ld	r18, Z
-    5658:	8a 81       	ldd	r24, Y+2	; 0x02
-    565a:	88 2f       	mov	r24, r24
-    565c:	90 e0       	ldi	r25, 0x00	; 0
-    565e:	88 0f       	add	r24, r24
-    5660:	99 1f       	adc	r25, r25
-    5662:	fc 01       	movw	r30, r24
-    5664:	e6 52       	subi	r30, 0x26	; 38
-    5666:	fe 4f       	sbci	r31, 0xFE	; 254
-    5668:	90 81       	ld	r25, Z
-    566a:	82 2f       	mov	r24, r18
-    566c:	69 2f       	mov	r22, r25
-    566e:	41 e0       	ldi	r20, 0x01	; 1
-    5670:	0e 94 d4 09 	call	0x13a8	; 0x13a8 <DIO_enuSetPinValue>
+		Local_u32Check |= (DIO_enuSetPinValue(Local_u8AKPADColButtons[Local_u8ColIndex][KPAD_ZERO],
+    5aa2:	8f 81       	ldd	r24, Y+7	; 0x07
+    5aa4:	88 2f       	mov	r24, r24
+    5aa6:	90 e0       	ldi	r25, 0x00	; 0
+    5aa8:	88 0f       	add	r24, r24
+    5aaa:	99 1f       	adc	r25, r25
+    5aac:	fc 01       	movw	r30, r24
+    5aae:	e7 52       	subi	r30, 0x27	; 39
+    5ab0:	fe 4f       	sbci	r31, 0xFE	; 254
+    5ab2:	20 81       	ld	r18, Z
+    5ab4:	8f 81       	ldd	r24, Y+7	; 0x07
+    5ab6:	88 2f       	mov	r24, r24
+    5ab8:	90 e0       	ldi	r25, 0x00	; 0
+    5aba:	88 0f       	add	r24, r24
+    5abc:	99 1f       	adc	r25, r25
+    5abe:	fc 01       	movw	r30, r24
+    5ac0:	e6 52       	subi	r30, 0x26	; 38
+    5ac2:	fe 4f       	sbci	r31, 0xFE	; 254
+    5ac4:	90 81       	ld	r25, Z
+    5ac6:	82 2f       	mov	r24, r18
+    5ac8:	69 2f       	mov	r22, r25
+    5aca:	41 e0       	ldi	r20, 0x01	; 1
+    5acc:	0e 94 d4 09 	call	0x13a8	; 0x13a8 <DIO_enuSetPinValue>
+    5ad0:	88 2f       	mov	r24, r24
+    5ad2:	90 e0       	ldi	r25, 0x00	; 0
+    5ad4:	98 2f       	mov	r25, r24
+    5ad6:	88 27       	eor	r24, r24
+    5ad8:	99 0f       	add	r25, r25
+    5ada:	9c 01       	movw	r18, r24
+    5adc:	44 27       	eor	r20, r20
+    5ade:	37 fd       	sbrc	r19, 7
+    5ae0:	40 95       	com	r20
+    5ae2:	54 2f       	mov	r21, r20
+    5ae4:	89 81       	ldd	r24, Y+1	; 0x01
+    5ae6:	9a 81       	ldd	r25, Y+2	; 0x02
+    5ae8:	ab 81       	ldd	r26, Y+3	; 0x03
+    5aea:	bc 81       	ldd	r27, Y+4	; 0x04
+    5aec:	82 2b       	or	r24, r18
+    5aee:	93 2b       	or	r25, r19
+    5af0:	a4 2b       	or	r26, r20
+    5af2:	b5 2b       	or	r27, r21
+    5af4:	89 83       	std	Y+1, r24	; 0x01
+    5af6:	9a 83       	std	Y+2, r25	; 0x02
+    5af8:	ab 83       	std	Y+3, r26	; 0x03
+    5afa:	bc 83       	std	Y+4, r27	; 0x04
 	else
 	{
 		return ES_NULL_POINTER;
 	}
 
-	for(Local_u8ColIndex = 0; Local_u8ColIndex < 4; Local_u8ColIndex++)
-    5674:	8a 81       	ldd	r24, Y+2	; 0x02
-    5676:	8f 5f       	subi	r24, 0xFF	; 255
-    5678:	8a 83       	std	Y+2, r24	; 0x02
-    567a:	8a 81       	ldd	r24, Y+2	; 0x02
-    567c:	84 30       	cpi	r24, 0x04	; 4
-    567e:	08 f4       	brcc	.+2      	; 0x5682 <KPAD_enuGetPassedKey+0x156>
-    5680:	72 cf       	rjmp	.-284    	; 0x5566 <KPAD_enuGetPassedKey+0x3a>
+	for(Local_u8ColIndex = KPAD_ZERO; Local_u8ColIndex < KPAD_COLNUM; Local_u8ColIndex++)
+    5afc:	8f 81       	ldd	r24, Y+7	; 0x07
+    5afe:	8f 5f       	subi	r24, 0xFF	; 255
+    5b00:	8f 83       	std	Y+7, r24	; 0x07
+    5b02:	8f 81       	ldd	r24, Y+7	; 0x07
+    5b04:	84 30       	cpi	r24, 0x04	; 4
+    5b06:	08 f4       	brcc	.+2      	; 0x5b0a <KPAD_enuGetPassedKey+0x218>
+    5b08:	16 cf       	rjmp	.-468    	; 0x5936 <KPAD_enuGetPassedKey+0x44>
 		/* Deactivate Column */
-		DIO_enuSetPinValue(Local_u8AKPADColButtons[Local_u8ColIndex][0],
-						   Local_u8AKPADColButtons[Local_u8ColIndex][1], DIO_u8HIGH);
+		Local_u32Check |= (DIO_enuSetPinValue(Local_u8AKPADColButtons[Local_u8ColIndex][KPAD_ZERO],
+						   	   	   	   	   	   Local_u8AKPADColButtons[Local_u8ColIndex][KPAD_ONE], DIO_u8HIGH) << KPAD_SHIFTBIT_NINE);
 	}
 
+	for(Local_u8Iterator = KPAD_ZERO; Local_u8Iterator < KPAD_TWELVE; Local_u8Iterator += KPAD_THREE)
+    5b0a:	1d 82       	std	Y+5, r1	; 0x05
+    5b0c:	1e c0       	rjmp	.+60     	; 0x5b4a <KPAD_enuGetPassedKey+0x258>
+	{
+		if( ( ( (Local_u32Check)>>Local_u8Iterator) & KPAD_SEVEN) != ES_OK)
+    5b0e:	8d 81       	ldd	r24, Y+5	; 0x05
+    5b10:	28 2f       	mov	r18, r24
+    5b12:	30 e0       	ldi	r19, 0x00	; 0
+    5b14:	89 81       	ldd	r24, Y+1	; 0x01
+    5b16:	9a 81       	ldd	r25, Y+2	; 0x02
+    5b18:	ab 81       	ldd	r26, Y+3	; 0x03
+    5b1a:	bc 81       	ldd	r27, Y+4	; 0x04
+    5b1c:	02 2e       	mov	r0, r18
+    5b1e:	04 c0       	rjmp	.+8      	; 0x5b28 <KPAD_enuGetPassedKey+0x236>
+    5b20:	b6 95       	lsr	r27
+    5b22:	a7 95       	ror	r26
+    5b24:	97 95       	ror	r25
+    5b26:	87 95       	ror	r24
+    5b28:	0a 94       	dec	r0
+    5b2a:	d2 f7       	brpl	.-12     	; 0x5b20 <KPAD_enuGetPassedKey+0x22e>
+    5b2c:	87 70       	andi	r24, 0x07	; 7
+    5b2e:	90 70       	andi	r25, 0x00	; 0
+    5b30:	a0 70       	andi	r26, 0x00	; 0
+    5b32:	b0 70       	andi	r27, 0x00	; 0
+    5b34:	81 30       	cpi	r24, 0x01	; 1
+    5b36:	91 05       	cpc	r25, r1
+    5b38:	a1 05       	cpc	r26, r1
+    5b3a:	b1 05       	cpc	r27, r1
+    5b3c:	19 f0       	breq	.+6      	; 0x5b44 <KPAD_enuGetPassedKey+0x252>
+		{
+			return Local_enuErrorState;
+    5b3e:	88 85       	ldd	r24, Y+8	; 0x08
+    5b40:	8c 87       	std	Y+12, r24	; 0x0c
+    5b42:	0a c0       	rjmp	.+20     	; 0x5b58 <KPAD_enuGetPassedKey+0x266>
+		/* Deactivate Column */
+		Local_u32Check |= (DIO_enuSetPinValue(Local_u8AKPADColButtons[Local_u8ColIndex][KPAD_ZERO],
+						   	   	   	   	   	   Local_u8AKPADColButtons[Local_u8ColIndex][KPAD_ONE], DIO_u8HIGH) << KPAD_SHIFTBIT_NINE);
+	}
+
+	for(Local_u8Iterator = KPAD_ZERO; Local_u8Iterator < KPAD_TWELVE; Local_u8Iterator += KPAD_THREE)
+    5b44:	8d 81       	ldd	r24, Y+5	; 0x05
+    5b46:	8d 5f       	subi	r24, 0xFD	; 253
+    5b48:	8d 83       	std	Y+5, r24	; 0x05
+    5b4a:	8d 81       	ldd	r24, Y+5	; 0x05
+    5b4c:	8c 30       	cpi	r24, 0x0C	; 12
+    5b4e:	f8 f2       	brcs	.-66     	; 0x5b0e <KPAD_enuGetPassedKey+0x21c>
+		if( ( ( (Local_u32Check)>>Local_u8Iterator) & KPAD_SEVEN) != ES_OK)
+		{
+			return Local_enuErrorState;
+		}
+	}
 	Local_enuErrorState = ES_OK;
-    5682:	81 e0       	ldi	r24, 0x01	; 1
-    5684:	8b 83       	std	Y+3, r24	; 0x03
+    5b50:	81 e0       	ldi	r24, 0x01	; 1
+    5b52:	88 87       	std	Y+8, r24	; 0x08
 
 	return Local_enuErrorState;
-    5686:	8b 81       	ldd	r24, Y+3	; 0x03
-    5688:	8f 83       	std	Y+7, r24	; 0x07
-    568a:	8f 81       	ldd	r24, Y+7	; 0x07
+    5b54:	88 85       	ldd	r24, Y+8	; 0x08
+    5b56:	8c 87       	std	Y+12, r24	; 0x0c
+    5b58:	8c 85       	ldd	r24, Y+12	; 0x0c
 }
-    568c:	27 96       	adiw	r28, 0x07	; 7
-    568e:	0f b6       	in	r0, 0x3f	; 63
-    5690:	f8 94       	cli
-    5692:	de bf       	out	0x3e, r29	; 62
-    5694:	0f be       	out	0x3f, r0	; 63
-    5696:	cd bf       	out	0x3d, r28	; 61
-    5698:	cf 91       	pop	r28
-    569a:	df 91       	pop	r29
-    569c:	08 95       	ret
+    5b5a:	2c 96       	adiw	r28, 0x0c	; 12
+    5b5c:	0f b6       	in	r0, 0x3f	; 63
+    5b5e:	f8 94       	cli
+    5b60:	de bf       	out	0x3e, r29	; 62
+    5b62:	0f be       	out	0x3f, r0	; 63
+    5b64:	cd bf       	out	0x3d, r28	; 61
+    5b66:	cf 91       	pop	r28
+    5b68:	df 91       	pop	r29
+    5b6a:	08 95       	ret
 
-0000569e <main>:
-#include "../MCAL/DIO/DIO_int.h"
+00005b6c <main>:
 #include "../HAL/Keypad/Keypad_int.h"
 #include "../HAL/LCD/LCD_int.h"
 
+
 int main(void)
 {
-    569e:	df 93       	push	r29
-    56a0:	cf 93       	push	r28
-    56a2:	00 d0       	rcall	.+0      	; 0x56a4 <main+0x6>
-    56a4:	cd b7       	in	r28, 0x3d	; 61
-    56a6:	de b7       	in	r29, 0x3e	; 62
-	u8 Local_u8KeyPressed = 0, Local_u8Counter = 0;
-    56a8:	1a 82       	std	Y+2, r1	; 0x02
-    56aa:	19 82       	std	Y+1, r1	; 0x01
+    5b6c:	df 93       	push	r29
+    5b6e:	cf 93       	push	r28
+    5b70:	00 d0       	rcall	.+0      	; 0x5b72 <main+0x6>
+    5b72:	0f 92       	push	r0
+    5b74:	cd b7       	in	r28, 0x3d	; 61
+    5b76:	de b7       	in	r29, 0x3e	; 62
+	u8 Local_u8KeyPressed = 0, Local_u8Counter = 0, Local_u8Check = 0;
+    5b78:	1b 82       	std	Y+3, r1	; 0x03
+    5b7a:	1a 82       	std	Y+2, r1	; 0x02
+    5b7c:	19 82       	std	Y+1, r1	; 0x01
 	LCD_enuInit();
-    56ac:	0e 94 c2 23 	call	0x4784	; 0x4784 <LCD_enuInit>
-	KPAD_enuInit();
-    56b0:	0e 94 3b 2a 	call	0x5476	; 0x5476 <KPAD_enuInit>
+    5b7e:	0e 94 c2 23 	call	0x4784	; 0x4784 <LCD_enuInit>
+	Local_u8Check = KPAD_enuInit();
+    5b82:	0e 94 3b 2a 	call	0x5476	; 0x5476 <KPAD_enuInit>
+    5b86:	89 83       	std	Y+1, r24	; 0x01
+
 	while(1)
 	{
+		if(Local_u8Check)
+    5b88:	89 81       	ldd	r24, Y+1	; 0x01
+    5b8a:	88 23       	and	r24, r24
+    5b8c:	e9 f3       	breq	.-6      	; 0x5b88 <main+0x1c>
+		{
 		/* Polling (Stop every thing in application until keypad pressed)*/
 		do
 		{
 			KPAD_enuGetPassedKey(&Local_u8KeyPressed);
-    56b4:	ce 01       	movw	r24, r28
-    56b6:	02 96       	adiw	r24, 0x02	; 2
-    56b8:	0e 94 96 2a 	call	0x552c	; 0x552c <KPAD_enuGetPassedKey>
+    5b8e:	ce 01       	movw	r24, r28
+    5b90:	03 96       	adiw	r24, 0x03	; 3
+    5b92:	0e 94 79 2c 	call	0x58f2	; 0x58f2 <KPAD_enuGetPassedKey>
+
 
 		}while(Local_u8KeyPressed == 0xff); //Key Not pressed
-    56bc:	8a 81       	ldd	r24, Y+2	; 0x02
-    56be:	8f 3f       	cpi	r24, 0xFF	; 255
-    56c0:	c9 f3       	breq	.-14     	; 0x56b4 <main+0x16>
+    5b96:	8b 81       	ldd	r24, Y+3	; 0x03
+    5b98:	8f 3f       	cpi	r24, 0xFF	; 255
+    5b9a:	c9 f3       	breq	.-14     	; 0x5b8e <main+0x22>
 
 
 		if(Local_u8KeyPressed == 'c')
-    56c2:	8a 81       	ldd	r24, Y+2	; 0x02
-    56c4:	83 36       	cpi	r24, 0x63	; 99
-    56c6:	39 f4       	brne	.+14     	; 0x56d6 <main+0x38>
+    5b9c:	8b 81       	ldd	r24, Y+3	; 0x03
+    5b9e:	83 36       	cpi	r24, 0x63	; 99
+    5ba0:	39 f4       	brne	.+14     	; 0x5bb0 <main+0x44>
 		{
 			LCD_enuSendCommand(0x01); //Clear Display
-    56c8:	81 e0       	ldi	r24, 0x01	; 1
-    56ca:	0e 94 e2 25 	call	0x4bc4	; 0x4bc4 <LCD_enuSendCommand>
+    5ba2:	81 e0       	ldi	r24, 0x01	; 1
+    5ba4:	0e 94 e2 25 	call	0x4bc4	; 0x4bc4 <LCD_enuSendCommand>
 			Local_u8Counter++;
-    56ce:	89 81       	ldd	r24, Y+1	; 0x01
-    56d0:	8f 5f       	subi	r24, 0xFF	; 255
-    56d2:	89 83       	std	Y+1, r24	; 0x01
-    56d4:	1f c0       	rjmp	.+62     	; 0x5714 <main+0x76>
+    5ba8:	8a 81       	ldd	r24, Y+2	; 0x02
+    5baa:	8f 5f       	subi	r24, 0xFF	; 255
+    5bac:	8a 83       	std	Y+2, r24	; 0x02
+    5bae:	1f c0       	rjmp	.+62     	; 0x5bee <main+0x82>
 		}
 		else if(Local_u8KeyPressed >= 0 && Local_u8KeyPressed <= 9)
-    56d6:	8a 81       	ldd	r24, Y+2	; 0x02
-    56d8:	8a 30       	cpi	r24, 0x0A	; 10
-    56da:	68 f4       	brcc	.+26     	; 0x56f6 <main+0x58>
+    5bb0:	8b 81       	ldd	r24, Y+3	; 0x03
+    5bb2:	8a 30       	cpi	r24, 0x0A	; 10
+    5bb4:	68 f4       	brcc	.+26     	; 0x5bd0 <main+0x64>
 		{
 			LCD_enuDisplayNumber(Local_u8KeyPressed);
-    56dc:	8a 81       	ldd	r24, Y+2	; 0x02
-    56de:	88 2f       	mov	r24, r24
-    56e0:	90 e0       	ldi	r25, 0x00	; 0
-    56e2:	a0 e0       	ldi	r26, 0x00	; 0
-    56e4:	b0 e0       	ldi	r27, 0x00	; 0
-    56e6:	bc 01       	movw	r22, r24
-    56e8:	cd 01       	movw	r24, r26
-    56ea:	0e 94 0c 26 	call	0x4c18	; 0x4c18 <LCD_enuDisplayNumber>
+    5bb6:	8b 81       	ldd	r24, Y+3	; 0x03
+    5bb8:	88 2f       	mov	r24, r24
+    5bba:	90 e0       	ldi	r25, 0x00	; 0
+    5bbc:	a0 e0       	ldi	r26, 0x00	; 0
+    5bbe:	b0 e0       	ldi	r27, 0x00	; 0
+    5bc0:	bc 01       	movw	r22, r24
+    5bc2:	cd 01       	movw	r24, r26
+    5bc4:	0e 94 0c 26 	call	0x4c18	; 0x4c18 <LCD_enuDisplayNumber>
 			Local_u8Counter++;
-    56ee:	89 81       	ldd	r24, Y+1	; 0x01
-    56f0:	8f 5f       	subi	r24, 0xFF	; 255
-    56f2:	89 83       	std	Y+1, r24	; 0x01
-    56f4:	0f c0       	rjmp	.+30     	; 0x5714 <main+0x76>
+    5bc8:	8a 81       	ldd	r24, Y+2	; 0x02
+    5bca:	8f 5f       	subi	r24, 0xFF	; 255
+    5bcc:	8a 83       	std	Y+2, r24	; 0x02
+    5bce:	0f c0       	rjmp	.+30     	; 0x5bee <main+0x82>
 		}
 		else if((Local_u8KeyPressed >= '*' && Local_u8KeyPressed <= '/') || Local_u8KeyPressed == '=')
-    56f6:	8a 81       	ldd	r24, Y+2	; 0x02
-    56f8:	8a 32       	cpi	r24, 0x2A	; 42
-    56fa:	18 f0       	brcs	.+6      	; 0x5702 <main+0x64>
-    56fc:	8a 81       	ldd	r24, Y+2	; 0x02
-    56fe:	80 33       	cpi	r24, 0x30	; 48
-    5700:	18 f0       	brcs	.+6      	; 0x5708 <main+0x6a>
-    5702:	8a 81       	ldd	r24, Y+2	; 0x02
-    5704:	8d 33       	cpi	r24, 0x3D	; 61
-    5706:	31 f4       	brne	.+12     	; 0x5714 <main+0x76>
+    5bd0:	8b 81       	ldd	r24, Y+3	; 0x03
+    5bd2:	8a 32       	cpi	r24, 0x2A	; 42
+    5bd4:	18 f0       	brcs	.+6      	; 0x5bdc <main+0x70>
+    5bd6:	8b 81       	ldd	r24, Y+3	; 0x03
+    5bd8:	80 33       	cpi	r24, 0x30	; 48
+    5bda:	18 f0       	brcs	.+6      	; 0x5be2 <main+0x76>
+    5bdc:	8b 81       	ldd	r24, Y+3	; 0x03
+    5bde:	8d 33       	cpi	r24, 0x3D	; 61
+    5be0:	31 f4       	brne	.+12     	; 0x5bee <main+0x82>
 		{
 			LCD_enuDisplayChar(Local_u8KeyPressed);
-    5708:	8a 81       	ldd	r24, Y+2	; 0x02
-    570a:	0e 94 f7 25 	call	0x4bee	; 0x4bee <LCD_enuDisplayChar>
+    5be2:	8b 81       	ldd	r24, Y+3	; 0x03
+    5be4:	0e 94 f7 25 	call	0x4bee	; 0x4bee <LCD_enuDisplayChar>
 			Local_u8Counter++;
-    570e:	89 81       	ldd	r24, Y+1	; 0x01
-    5710:	8f 5f       	subi	r24, 0xFF	; 255
-    5712:	89 83       	std	Y+1, r24	; 0x01
+    5be8:	8a 81       	ldd	r24, Y+2	; 0x02
+    5bea:	8f 5f       	subi	r24, 0xFF	; 255
+    5bec:	8a 83       	std	Y+2, r24	; 0x02
 		}
 
 		if(Local_u8Counter == 16)
-    5714:	89 81       	ldd	r24, Y+1	; 0x01
-    5716:	80 31       	cpi	r24, 0x10	; 16
-    5718:	69 f6       	brne	.-102    	; 0x56b4 <main+0x16>
+    5bee:	8a 81       	ldd	r24, Y+2	; 0x02
+    5bf0:	80 31       	cpi	r24, 0x10	; 16
+    5bf2:	51 f6       	brne	.-108    	; 0x5b88 <main+0x1c>
 		{
 			LCD_enuSendCommand(0xC0); //Go to second line
-    571a:	80 ec       	ldi	r24, 0xC0	; 192
-    571c:	0e 94 e2 25 	call	0x4bc4	; 0x4bc4 <LCD_enuSendCommand>
-    5720:	c9 cf       	rjmp	.-110    	; 0x56b4 <main+0x16>
+    5bf4:	80 ec       	ldi	r24, 0xC0	; 192
+    5bf6:	0e 94 e2 25 	call	0x4bc4	; 0x4bc4 <LCD_enuSendCommand>
+    5bfa:	c6 cf       	rjmp	.-116    	; 0x5b88 <main+0x1c>
 
-00005722 <__prologue_saves__>:
-    5722:	2f 92       	push	r2
-    5724:	3f 92       	push	r3
-    5726:	4f 92       	push	r4
-    5728:	5f 92       	push	r5
-    572a:	6f 92       	push	r6
-    572c:	7f 92       	push	r7
-    572e:	8f 92       	push	r8
-    5730:	9f 92       	push	r9
-    5732:	af 92       	push	r10
-    5734:	bf 92       	push	r11
-    5736:	cf 92       	push	r12
-    5738:	df 92       	push	r13
-    573a:	ef 92       	push	r14
-    573c:	ff 92       	push	r15
-    573e:	0f 93       	push	r16
-    5740:	1f 93       	push	r17
-    5742:	cf 93       	push	r28
-    5744:	df 93       	push	r29
-    5746:	cd b7       	in	r28, 0x3d	; 61
-    5748:	de b7       	in	r29, 0x3e	; 62
-    574a:	ca 1b       	sub	r28, r26
-    574c:	db 0b       	sbc	r29, r27
-    574e:	0f b6       	in	r0, 0x3f	; 63
-    5750:	f8 94       	cli
-    5752:	de bf       	out	0x3e, r29	; 62
-    5754:	0f be       	out	0x3f, r0	; 63
-    5756:	cd bf       	out	0x3d, r28	; 61
-    5758:	09 94       	ijmp
+00005bfc <__prologue_saves__>:
+    5bfc:	2f 92       	push	r2
+    5bfe:	3f 92       	push	r3
+    5c00:	4f 92       	push	r4
+    5c02:	5f 92       	push	r5
+    5c04:	6f 92       	push	r6
+    5c06:	7f 92       	push	r7
+    5c08:	8f 92       	push	r8
+    5c0a:	9f 92       	push	r9
+    5c0c:	af 92       	push	r10
+    5c0e:	bf 92       	push	r11
+    5c10:	cf 92       	push	r12
+    5c12:	df 92       	push	r13
+    5c14:	ef 92       	push	r14
+    5c16:	ff 92       	push	r15
+    5c18:	0f 93       	push	r16
+    5c1a:	1f 93       	push	r17
+    5c1c:	cf 93       	push	r28
+    5c1e:	df 93       	push	r29
+    5c20:	cd b7       	in	r28, 0x3d	; 61
+    5c22:	de b7       	in	r29, 0x3e	; 62
+    5c24:	ca 1b       	sub	r28, r26
+    5c26:	db 0b       	sbc	r29, r27
+    5c28:	0f b6       	in	r0, 0x3f	; 63
+    5c2a:	f8 94       	cli
+    5c2c:	de bf       	out	0x3e, r29	; 62
+    5c2e:	0f be       	out	0x3f, r0	; 63
+    5c30:	cd bf       	out	0x3d, r28	; 61
+    5c32:	09 94       	ijmp
 
-0000575a <__epilogue_restores__>:
-    575a:	2a 88       	ldd	r2, Y+18	; 0x12
-    575c:	39 88       	ldd	r3, Y+17	; 0x11
-    575e:	48 88       	ldd	r4, Y+16	; 0x10
-    5760:	5f 84       	ldd	r5, Y+15	; 0x0f
-    5762:	6e 84       	ldd	r6, Y+14	; 0x0e
-    5764:	7d 84       	ldd	r7, Y+13	; 0x0d
-    5766:	8c 84       	ldd	r8, Y+12	; 0x0c
-    5768:	9b 84       	ldd	r9, Y+11	; 0x0b
-    576a:	aa 84       	ldd	r10, Y+10	; 0x0a
-    576c:	b9 84       	ldd	r11, Y+9	; 0x09
-    576e:	c8 84       	ldd	r12, Y+8	; 0x08
-    5770:	df 80       	ldd	r13, Y+7	; 0x07
-    5772:	ee 80       	ldd	r14, Y+6	; 0x06
-    5774:	fd 80       	ldd	r15, Y+5	; 0x05
-    5776:	0c 81       	ldd	r16, Y+4	; 0x04
-    5778:	1b 81       	ldd	r17, Y+3	; 0x03
-    577a:	aa 81       	ldd	r26, Y+2	; 0x02
-    577c:	b9 81       	ldd	r27, Y+1	; 0x01
-    577e:	ce 0f       	add	r28, r30
-    5780:	d1 1d       	adc	r29, r1
-    5782:	0f b6       	in	r0, 0x3f	; 63
-    5784:	f8 94       	cli
-    5786:	de bf       	out	0x3e, r29	; 62
-    5788:	0f be       	out	0x3f, r0	; 63
-    578a:	cd bf       	out	0x3d, r28	; 61
-    578c:	ed 01       	movw	r28, r26
-    578e:	08 95       	ret
+00005c34 <__epilogue_restores__>:
+    5c34:	2a 88       	ldd	r2, Y+18	; 0x12
+    5c36:	39 88       	ldd	r3, Y+17	; 0x11
+    5c38:	48 88       	ldd	r4, Y+16	; 0x10
+    5c3a:	5f 84       	ldd	r5, Y+15	; 0x0f
+    5c3c:	6e 84       	ldd	r6, Y+14	; 0x0e
+    5c3e:	7d 84       	ldd	r7, Y+13	; 0x0d
+    5c40:	8c 84       	ldd	r8, Y+12	; 0x0c
+    5c42:	9b 84       	ldd	r9, Y+11	; 0x0b
+    5c44:	aa 84       	ldd	r10, Y+10	; 0x0a
+    5c46:	b9 84       	ldd	r11, Y+9	; 0x09
+    5c48:	c8 84       	ldd	r12, Y+8	; 0x08
+    5c4a:	df 80       	ldd	r13, Y+7	; 0x07
+    5c4c:	ee 80       	ldd	r14, Y+6	; 0x06
+    5c4e:	fd 80       	ldd	r15, Y+5	; 0x05
+    5c50:	0c 81       	ldd	r16, Y+4	; 0x04
+    5c52:	1b 81       	ldd	r17, Y+3	; 0x03
+    5c54:	aa 81       	ldd	r26, Y+2	; 0x02
+    5c56:	b9 81       	ldd	r27, Y+1	; 0x01
+    5c58:	ce 0f       	add	r28, r30
+    5c5a:	d1 1d       	adc	r29, r1
+    5c5c:	0f b6       	in	r0, 0x3f	; 63
+    5c5e:	f8 94       	cli
+    5c60:	de bf       	out	0x3e, r29	; 62
+    5c62:	0f be       	out	0x3f, r0	; 63
+    5c64:	cd bf       	out	0x3d, r28	; 61
+    5c66:	ed 01       	movw	r28, r26
+    5c68:	08 95       	ret
 
-00005790 <_exit>:
-    5790:	f8 94       	cli
+00005c6a <_exit>:
+    5c6a:	f8 94       	cli
 
-00005792 <__stop_program>:
-    5792:	ff cf       	rjmp	.-2      	; 0x5792 <__stop_program>
+00005c6c <__stop_program>:
+    5c6c:	ff cf       	rjmp	.-2      	; 0x5c6c <__stop_program>
