@@ -222,12 +222,12 @@ ES_t DIO_enuSetPinValue(u8 Copy_u8PortID, u8 Copy_u8PinID, u8 Copy_u8Value)
 	ES_t Local_enuErrorState = ES_NOK;
 
 	/* Check range */
-	if((Copy_u8PortID <= DIO_PORTD) && (Copy_u8PinID <= DIO_PIN7) && (Copy_u8Value <= OUTPUT))
+	if((Copy_u8PortID <= DIO_PORTD) && (Copy_u8PinID <= DIO_PIN7) && (Copy_u8Value <= HIGH))
 	{
 		switch(Copy_u8PortID)
 		{
 		case DIO_PORTA:
-			PORTA &= ~(DIO_MASK_BIT << Copy_u8PinID);             //Mask bit == Clear Bit
+			//PORTA &= ~(DIO_MASK_BIT << Copy_u8PinID);             //Mask bit == Clear Bit
 			PORTA |=  (Copy_u8Value << Copy_u8PinID); //Write new value
 			break;
 		case DIO_PORTB:

@@ -310,6 +310,7 @@ int main(void)
 */
 
 /** Main of Keypad **/
+/*
 #include "../LIB/STD_TYPES.h"
 #include "../LIB/ERROR_STATE.h"
 #include "../MCAL/DIO/DIO_int.h"
@@ -327,7 +328,7 @@ int main(void)
 	{
 		if(Local_u8Check)
 		{
-		/* Polling (Stop every thing in application until keypad pressed)*/
+		// Polling (Stop every thing in application until keypad pressed)
 		do
 		{
 			KPAD_enuGetPassedKey(&Local_u8KeyPressed);
@@ -360,3 +361,42 @@ int main(void)
 	}
 	return 0;
 }
+*/
+
+/** Main of Interrupt**/
+/*
+#include "../LIB/STD_TYPES.h"
+#include "../LIB/ERROR_STATE.h"
+#include "../MCAL/DIO/DIO_int.h"
+#include "../MCAL/EXTI/EXTI_config.h"
+#include "../MCAL/EXTI/EXTI_int.h"
+
+void tog(void *Copy_pvoidParam);
+extern EXTI_t EXTI_AstrEXTIConfig[3];
+#define SREG  (*(volatile u8*) 0x5F)
+
+int main(void)
+{
+	DIO_enuSetPinDirection(DIO_u8PORTA, DIO_u8PIN2, DIO_u8OUTPUT);
+	DIO_enuSetPinDirection(DIO_u8PORTD, DIO_u8PIN2, DIO_u8INPUT);
+	DIO_enuSetPinValue(DIO_u8PORTD, DIO_u8PIN2, DIO_u8PULL_UP);
+
+	u8 Local_u8Pin = DIO_u8PIN3;
+	EXTI_enuCallBack(tog, &Local_u8Pin, 0);
+	EXTI_enuInit(EXTI_AstrEXTIConfig);
+
+	SREG |= (1<<7);
+
+	while(1);
+
+	return 0;
+}
+
+void tog(void *Copy_pvoidParam)
+{
+	DIO_enuSetPinDirection(DIO_u8PORTA, *((u8*)Copy_pvoidParam), DIO_u8OUTPUT);
+	DIO_enuTogPinValue(DIO_u8PORTA, *((u8*)Copy_pvoidParam));
+}
+*/
+
+
