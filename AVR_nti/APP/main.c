@@ -213,7 +213,7 @@ int main(void)
 */
 
 /** 	Main of LCD 	**/
-/*
+
 #include "../LIB/STD_TYPES.h"
 #include "../LIB/ERROR_STATE.h"
 #include "../MCAL/DIO/DIO_int.h"
@@ -307,7 +307,7 @@ int main(void)
 	}
 	return 0;
 }
-*/
+
 
 /** Main of Keypad **/
 /*
@@ -361,8 +361,8 @@ int main(void)
 	}
 	return 0;
 }
-*/
 
+*/
 /** Main of Interrupt**/
 /*
 #include "../LIB/STD_TYPES.h"
@@ -398,5 +398,4 @@ void tog(void *Copy_pvoidParam)
 	DIO_enuTogPinValue(DIO_u8PORTA, *((u8*)Copy_pvoidParam));
 }
 */
-
 

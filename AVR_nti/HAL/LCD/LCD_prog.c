@@ -207,10 +207,11 @@ static ES_t LCD_enuLocalGoToXY(u8 Copy_u8Row, u8 Copy_u8Column)
 }
 static void LCD_voidLatch(u8 Copy_u8Data)
 {
-	/* Set RW as write operation, EN is Low */
+
+	// Set RW as write operation, EN is Low
 	DIO_enuSetPinValue(RW_PORT, RW_PIN, DIO_u8LOW);
-	DIO_enuSetPinValue(EN_PORT, EN_PIN, DIO_u8LOW);
-	/* Write Command or Data */
+	//DIO_enuSetPinValue(EN_PORT, EN_PIN, DIO_u8LOW);
+	// Write Command or Data
 	DIO_enuSetPinValue(D7_PORT, D7_PIN, ((Copy_u8Data >> 7) & 1));
 	DIO_enuSetPinValue(D6_PORT, D6_PIN, ((Copy_u8Data >> 6) & 1));
 	DIO_enuSetPinValue(D5_PORT, D5_PIN, ((Copy_u8Data >> 5) & 1));
@@ -221,9 +222,9 @@ static void LCD_voidLatch(u8 Copy_u8Data)
 		DIO_enuSetPinValue(D1_PORT, D1_PIN, ((Copy_u8Data >> 1) & 1));
 		DIO_enuSetPinValue(D0_PORT, D0_PIN, ((Copy_u8Data >> 0) & 1));
 	#elif LCD_MODE == FOUR_BIT
-		/* Enable Latch "EN is High" because latch happen in rising edge*/
+		// Enable Latch "EN is High" because latch happen in rising edge
 		DIO_enuSetPinValue(EN_PORT, EN_PIN, DIO_u8HIGH);
-		_delay_ms(10); /* Garbage Number */
+		_delay_ms(10); // Garbage Number
 		DIO_enuSetPinValue(EN_PORT, EN_PIN, DIO_u8LOW);
 
 		_delay_ms(50);
@@ -233,12 +234,13 @@ static void LCD_voidLatch(u8 Copy_u8Data)
 		DIO_enuSetPinValue(D5_PORT, D5_PIN, ((Copy_u8Data >> 1) & 1));
 		DIO_enuSetPinValue(D4_PORT, D4_PIN, ((Copy_u8Data >> 0) & 1));
 	#endif
-	/* Enable Latch "EN is High" because latch happen in rising edge*/
+	//Enable Latch "EN is High" because latch happen in rising edge
 	DIO_enuSetPinValue(EN_PORT, EN_PIN, DIO_u8HIGH);
-	_delay_ms(10); /* Garbage Number */
+	_delay_ms(10); // Garbage Number
 	DIO_enuSetPinValue(EN_PORT, EN_PIN, DIO_u8LOW);
 
 	_delay_ms(10); //For speed difference between MC and LCD.
+
 }
 static inline void LCD_invoidSendCommand(u8 Copy_u8Command)
 {
@@ -254,9 +256,9 @@ static inline void LCD_invoidSendCommand(u8 Copy_u8Command)
 		DIO_enuSetPinValue(D5_PORT , D5_PIN , ((Copy_u8Command >> 5) & 1));
 		DIO_enuSetPinValue(D4_PORT , D4_PIN , ((Copy_u8Command >> 4) & 1));
 
-		/* Enable Latch "EN is High" because latch happen in rising edge*/
+		// Enable Latch "EN is High" because latch happen in rising edge
 		DIO_enuSetPinValue(EN_PORT, EN_PIN, DIO_u8HIGH);
-		_delay_ms(10); /* Garbage Number */
+		_delay_ms(10); // Garbage Number
 		DIO_enuSetPinValue(EN_PORT, EN_PIN, DIO_u8LOW);
 
 		_delay_ms(50);

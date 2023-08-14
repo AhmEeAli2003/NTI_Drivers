@@ -227,7 +227,7 @@ ES_t DIO_enuSetPinValue(u8 Copy_u8PortID, u8 Copy_u8PinID, u8 Copy_u8Value)
 		switch(Copy_u8PortID)
 		{
 		case DIO_PORTA:
-			//PORTA &= ~(DIO_MASK_BIT << Copy_u8PinID);             //Mask bit == Clear Bit
+			PORTA &= ~(DIO_MASK_BIT << Copy_u8PinID);             //Mask bit == Clear Bit
 			PORTA |=  (Copy_u8Value << Copy_u8PinID); //Write new value
 			break;
 		case DIO_PORTB:

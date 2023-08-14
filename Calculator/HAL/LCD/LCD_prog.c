@@ -106,7 +106,7 @@ ES_t LCD_enuDisplayNumber(u32 Copy_u8Number)
 	else
 	{
 		/* Count digits of number log10 */
-		while(Local_f64NumberOfDigits < Copy_u8Number)
+		while(Local_f64NumberOfDigits <= Copy_u8Number)
 		{
 			Local_f64NumberOfDigits *= 10;
 		}
