@@ -84,4 +84,33 @@ ES_t LCD_enuSetPosition(u8 Copy_u8Row, u8 Copy_u8Column);
 
 /***********************	Prototypes Section	End		***********************/
 
+
+/***********************	Macros Section	Start	***********************/
+#define LCD_u8HIDE_CURSOR_AND_BLINKING   0x0C
+#define LCD_u8GO_TO_SECOND_LINE          0xC0
+#define LCD_u8CLEAR_LCD					 0x01
+
+#define LCD_u8FIRST_ROW					 1
+#define LCD_u8SECOND_ROW				 2
+
+#define LCD_u8COL_1						 1
+#define LCD_u8COL_2                      2
+#define LCD_u8COL_3                      3
+#define LCD_u8COL_4                      4
+#define LCD_u8COL_5                      5
+#define LCD_u8COL_6                      6
+#define LCD_u8COL_7                      7
+#define LCD_u8COL_8                      8
+#define LCD_u8COL_9                      9
+#define LCD_u8COL_10                     10
+#define LCD_u8COL_11                     11
+#define LCD_u8COL_12                     12
+#define LCD_u8COL_13                     13
+#define LCD_u8COL_14                     14
+#define LCD_u8COL_15                     15
+#define LCD_u8COL_16                     16
+
+
+/***********************	Macros Section	End	***********************/
+
 #endif /* HAL_LCD_LCD_INT_H_ */

@@ -10,64 +10,46 @@
 #include "../MCAL/DIO/DIO_int.h"
 #include "../HAL/LCD/LCD_int.h"
 #include "../HAL/Keypad/Keypad_int.h"
+#include "calculator.h"
 #include <util/delay.h>
 /*********************      Includes Section End    *********************/
 
-/*********************      Globals Section Start    *********************/
-typedef struct
-{
-	u8 Flag_1BitIsFirstDigit:1;
-	u8 Flag_1BitIsFirstPressed:1;
-	u8 Flag_1BitIsLineTwoUsed:1;
-	u8 Flag_1BitIsUpperTwo:1;
-}FLAGS_t;
-
-u8  Calc_u8OperandsNum, Calc_u8OperatorsNum, Calc_Au8Op_Arr[8];
-u32 Calc_Au32NumArr[9], Calc_u32InputNum;
-/*********************      Globals Section End    *********************/
-
-/*********************      Prototypes Section Start    *********************/
-void getOperandsNum(void);
-void calculation(void);
-void shift_num(unsigned int pos);
-void shift_op(unsigned int pos);
-/*********************      Prototypes Section Start    *********************/
 
 int main(void)
 {
-	u8 Local_u8KeyPressed = 0, Local_u8OperandIndex = 0, Local_u8OeratorIndex = 0, Local_u8CharCounter = 0;
+	u8 Local_u8KeyPressed = CALC_ZERO, Local_u8OperandIndex = CALC_ZERO, Local_u8OeratorIndex = CALC_ZERO, Local_u8CharCounter = CALC_ZERO;
 
-	FLAGS_t my_flags = {.Flag_1BitIsFirstDigit = 1, .Flag_1BitIsFirstPressed = 1, .Flag_1BitIsLineTwoUsed = 0};
+	FLAGS_t my_flags = {.Flag_1BitIsFirstDigit = CALC_ONE, .Flag_1BitIsFirstPressed = CALC_ONE, .Flag_1BitIsLineTwoUsed = CALC_ZERO};
 	LCD_enuInit();
 	KPAD_enuInit();
 
-	LCD_enuSendCommand(0x0C); //Hide Cursor
+	LCD_enuSendCommand(LCD_u8HIDE_CURSOR_AND_BLINKING);
 	LCD_enuSendString((u8 *) "Multi operands");
-	LCD_enuSetPosition(2, 6);
+	LCD_enuSetPosition(LCD_u8SECOND_ROW, LCD_u8COL_6);
 	LCD_enuSendString((u8 *) "Mode");
-	_delay_ms(1000);
-	LCD_enuSendCommand(0x01); //Clear LCD
+	DELAY_ONE_SECOND;
+	LCD_enuSendCommand(LCD_u8CLEAR_LCD);
 
 
 
-	while(1)
+	while(CALC_ONE)
 	{
-		getOperandsNum();
-		while(1)
+		calc_voidGetOperandsNum();
+		while(CALC_ONE)
 		{
 			/* Polling (Stop every thing in application until keypad pressed)*/
 			do
 			{
 				KPAD_enuGetPassedKey(&Local_u8KeyPressed);
 
-			}while(Local_u8KeyPressed == 0xFF); //there isn't any Key pressed
+			}while(Local_u8KeyPressed == KPAD_u8NO_KEY_PRESSED); //there isn't any Key pressed
 
 
 			if(Local_u8KeyPressed == 'c')
 			{
-				LCD_enuSendCommand(0x01); //Clear Display
+				LCD_enuSendCommand(LCD_u8CLEAR_LCD);
 			}
-			else if(Local_u8KeyPressed >= 0 && Local_u8KeyPressed <= 9)
+			else if(Local_u8KeyPressed >= CALC_ZERO && Local_u8KeyPressed <= CALC_NINE)
 			{
 				LCD_enuDisplayNumber(Local_u8KeyPressed);
 				Local_u8CharCounter++;
@@ -76,11 +58,11 @@ int main(void)
 				if(my_flags.Flag_1BitIsFirstDigit)
 				{
 					Calc_u32InputNum = Local_u8KeyPressed;
-					my_flags.Flag_1BitIsFirstDigit = 0;
+					my_flags.Flag_1BitIsFirstDigit = CALC_ZERO;
 				}
 				else
 				{
-					Calc_u32InputNum = (Calc_u32InputNum * 10) + Local_u8KeyPressed;
+					Calc_u32InputNum = (Calc_u32InputNum * CALC_TEN) + Local_u8KeyPressed;
 				}
 
 			}
@@ -94,43 +76,45 @@ int main(void)
 
 				Local_u8OeratorIndex++;
 				Local_u8OperandIndex++;
-				my_flags.Flag_1BitIsFirstDigit = 1;
+				my_flags.Flag_1BitIsFirstDigit = CALC_ONE;
 			}
 
 
-			if(Local_u8CharCounter == 16)
+			if(Local_u8CharCounter == CALC_SIXTEEN)
 			{
-				LCD_enuSendCommand(0xC0); //Go to second line
-				my_flags.Flag_1BitIsLineTwoUsed = 1;
+				LCD_enuSendCommand(LCD_u8GO_TO_SECOND_LINE);
+				my_flags.Flag_1BitIsLineTwoUsed = CALC_ONE;
 			}
 
 			if(Local_u8OperandIndex == Calc_u8OperandsNum) break;
 		}
 
-		calculation();
+		calc_voidCalculation();
 		if(!my_flags.Flag_1BitIsLineTwoUsed)
 		{
-			LCD_enuSetPosition(2, 1);
+			LCD_enuSetPosition(LCD_u8SECOND_ROW, LCD_u8COL_1);
 			LCD_enuDisplayChar('=');
 		}
 
-		LCD_enuDisplayNumber(Calc_Au32NumArr[0]);
+		LCD_enuDisplayNumber(Calc_Au32NumArr[CALC_ZERO]);
 
-		while(1)
+
+
+		while(CALC_ONE)
 		{
 		/* Polling (Stop every thing in application until keypad pressed)*/
 		do
 		{
 				KPAD_enuGetPassedKey(&Local_u8KeyPressed);
 
-		}while(Local_u8KeyPressed == 0xFF); //there isn't any Key pressed
+		}while(Local_u8KeyPressed == KPAD_u8NO_KEY_PRESSED); //there isn't any Key pressed
 
 		if(Local_u8KeyPressed == 'c')
 		{
-			LCD_enuSendCommand(0x01); //Clear Display
-			Local_u8CharCounter = 0;
-			Local_u8OeratorIndex = 0;
-			Local_u8OperandIndex = 0;
+			LCD_enuSendCommand(LCD_u8CLEAR_LCD);
+			Local_u8CharCounter = CALC_ZERO;
+			Local_u8OeratorIndex = CALC_ZERO;
+			Local_u8OperandIndex = CALC_ZERO;
 
 			break;
 		}
@@ -138,88 +122,88 @@ int main(void)
 		{
 			if(my_flags.Flag_1BitIsFirstPressed)
 			{
-				LCD_enuSetPosition(1, 1);
+				LCD_enuSetPosition(LCD_u8FIRST_ROW, LCD_u8COL_1);
 				LCD_enuSendString((u8 *)"Press ON/C to clear display!");
-				my_flags.Flag_1BitIsFirstPressed = 0;
+				my_flags.Flag_1BitIsFirstPressed = CALC_ZERO;
 			}
 		}
 		}
 
 	}
 
-	return 0;
+	return CALC_ZERO;
 }
 
-void getOperandsNum(void)
+void calc_voidGetOperandsNum(void)
 {
-	u8 Local_u8KeyPressed = 0;
+	u8 Local_u8KeyPressed = CALC_ZERO;
 
-	LCD_enuSendCommand(0x01);
+	LCD_enuSendCommand(LCD_u8CLEAR_LCD);
 	LCD_enuSendString((u8 *) "Enter No.Operands");
-	LCD_enuSetPosition(2, 1);
+	LCD_enuSetPosition(LCD_u8SECOND_ROW, LCD_u8COL_1);
 	LCD_enuSendString((u8 *) "up to 9: ");
 	/* Polling (Stop every thing in application until keypad pressed)*/
 	do
 	{
 		KPAD_enuGetPassedKey(&Local_u8KeyPressed);
 
-	}while(Local_u8KeyPressed == 0xFF); //there isn't any Key pressed
+	}while(Local_u8KeyPressed == KPAD_u8NO_KEY_PRESSED); //there isn't any Key pressed
 
-	if(Local_u8KeyPressed >= 2 && Local_u8KeyPressed <= 9)
+	if(Local_u8KeyPressed >= CALC_TWO && Local_u8KeyPressed <= CALC_NINE)
 	{
 		LCD_enuDisplayNumber(Local_u8KeyPressed);
-		_delay_ms(250);
+		DELAY_QUARTER_OF_SECOND;
 		Calc_u8OperandsNum = Local_u8KeyPressed;
-		Calc_u8OperatorsNum = Calc_u8OperandsNum - 1;
+		Calc_u8OperatorsNum = Calc_u8OperandsNum - CALC_ONE;
 	}
 	else
 	{
-		LCD_enuSendCommand(0x01);
+		LCD_enuSendCommand(LCD_u8CLEAR_LCD);
 		LCD_enuSendString((u8 *) "Invalid Input!");
-		_delay_ms(1000);
-		getOperandsNum();
+		DELAY_ONE_SECOND;
+		calc_voidGetOperandsNum();
 	}
-	LCD_enuSendCommand(0x01);
+	LCD_enuSendCommand(LCD_u8CLEAR_LCD);
 }
 
-void calculation(void)
+void calc_voidCalculation(void)
 {
-	u8 Local_u8iter = 0;
-	while(Calc_u8OperandsNum > 1)
+	u8 Local_u8iter = CALC_ZERO;
+	while(Calc_u8OperandsNum > CALC_ONE)
 	{
 	/* Multiply Operations */
-	for(Local_u8iter = 0; Local_u8iter < Calc_u8OperatorsNum;)
+	for(Local_u8iter = CALC_ZERO; Local_u8iter < Calc_u8OperatorsNum;)
 	{
 		if(Calc_Au8Op_Arr[Local_u8iter] == '*')
 		{
-			Calc_Au32NumArr[Local_u8iter] = Calc_Au32NumArr[Local_u8iter] * Calc_Au32NumArr[Local_u8iter+1];
-			if(Calc_u8OperandsNum > 1)
+			Calc_Au32NumArr[Local_u8iter] = Calc_Au32NumArr[Local_u8iter] * Calc_Au32NumArr[Local_u8iter+CALC_ONE];
+			if(Calc_u8OperandsNum > CALC_ONE)
 			{
-				shift_num(Local_u8iter+1);
-				shift_op(Local_u8iter);
-				Local_u8iter = 0;
+				calc_voidShift_num(Local_u8iter+CALC_ONE);
+				calc_voidShift_op(Local_u8iter);
+				Local_u8iter = CALC_ZERO;
 			}
 		}
 
 		if(Calc_Au8Op_Arr[Local_u8iter] == '/')
 		{
-			if(Calc_Au32NumArr[Local_u8iter+1] != 0)
+			if(Calc_Au32NumArr[Local_u8iter+CALC_ONE] != CALC_ZERO)
 			{
-				Calc_Au32NumArr[Local_u8iter] = Calc_Au32NumArr[Local_u8iter] / Calc_Au32NumArr[Local_u8iter+1];
+				Calc_Au32NumArr[Local_u8iter] = Calc_Au32NumArr[Local_u8iter] / Calc_Au32NumArr[Local_u8iter+CALC_ONE];
 			}
 			else
 			{
-				LCD_enuSetPosition(2, 1);
+				LCD_enuSetPosition(LCD_u8SECOND_ROW, LCD_u8COL_1);
 				LCD_enuSendString((u8 *)"Math Error!");
-				_delay_ms(500);
+				DELAY_HALF_OF_SECOND;
 				main();
 			}
 
-			if(Calc_u8OperandsNum > 1)
+			if(Calc_u8OperandsNum > CALC_ONE)
 			{
-				shift_num(Local_u8iter+1);
-				shift_op(Local_u8iter);
-				Local_u8iter = 0;
+				calc_voidShift_num(Local_u8iter+CALC_ONE);
+				calc_voidShift_op(Local_u8iter);
+				Local_u8iter = CALC_ZERO;
 			}
 		}
 
@@ -227,27 +211,27 @@ void calculation(void)
 			Local_u8iter++;
 	}
 
-	for(Local_u8iter = 0; Local_u8iter < Calc_u8OperatorsNum;)
+	for(Local_u8iter = CALC_ZERO; Local_u8iter < Calc_u8OperatorsNum;)
 	{
 		if(Calc_Au8Op_Arr[Local_u8iter] == '+')
 		{
-			Calc_Au32NumArr[Local_u8iter] = Calc_Au32NumArr[Local_u8iter] + Calc_Au32NumArr[Local_u8iter+1];
-			if(Calc_u8OperandsNum > 1)
+			Calc_Au32NumArr[Local_u8iter] = Calc_Au32NumArr[Local_u8iter] + Calc_Au32NumArr[Local_u8iter+CALC_ONE];
+			if(Calc_u8OperandsNum > CALC_ONE)
 			{
-				shift_num(Local_u8iter+1);
-				shift_op(Local_u8iter);
-				Local_u8iter = 0;
+				calc_voidShift_num(Local_u8iter+CALC_ONE);
+				calc_voidShift_op(Local_u8iter);
+				Local_u8iter = CALC_ZERO;
 			}
 		}
 
 		if(Calc_Au8Op_Arr[Local_u8iter] == '-')
 		{
-			Calc_Au32NumArr[Local_u8iter] = Calc_Au32NumArr[Local_u8iter] - Calc_Au32NumArr[Local_u8iter+1];
-			if(Calc_u8OperandsNum > 1)
+			Calc_Au32NumArr[Local_u8iter] = Calc_Au32NumArr[Local_u8iter] - Calc_Au32NumArr[Local_u8iter+CALC_ONE];
+			if(Calc_u8OperandsNum > CALC_ONE)
 			{
-				shift_num(Local_u8iter+1);
-				shift_op(Local_u8iter);
-				Local_u8iter = 0;
+				calc_voidShift_num(Local_u8iter+CALC_ONE);
+				calc_voidShift_op(Local_u8iter);
+				Local_u8iter = CALC_ZERO;
 			}
 		}
 
@@ -259,22 +243,22 @@ void calculation(void)
 }
 
 
-void shift_num(unsigned int pos)
+void calc_voidShift_num(u8 Copy_u8Position)
 {
-	int i;
-	for(i = pos; i < Calc_u8OperandsNum - 1; i++)
+	int iter;
+	for(iter = Copy_u8Position; iter < Calc_u8OperandsNum - CALC_ONE; iter++)
 	{
-		Calc_Au32NumArr[i] = Calc_Au32NumArr[i+1];
+		Calc_Au32NumArr[iter] = Calc_Au32NumArr[iter+CALC_ONE];
 	}
 	Calc_u8OperandsNum--;
 }
 
-void shift_op(unsigned int pos)
+void calc_voidShift_op(u8 Copy_u8Position)
 {
-	int i;
-	for(i = pos; i < Calc_u8OperatorsNum - 1; i++)
+	int iter;
+	for(iter = Copy_u8Position; iter < Calc_u8OperatorsNum - CALC_ONE; iter++)
 	{
-		Calc_Au8Op_Arr[i] = Calc_Au8Op_Arr[i+1];
+		Calc_Au8Op_Arr[iter] = Calc_Au8Op_Arr[iter+CALC_ONE];
 	}
 	Calc_u8OperatorsNum--;
 }
