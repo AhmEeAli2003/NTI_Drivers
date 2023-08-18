@@ -37,11 +37,11 @@ int main(void)
 }
 */
 /** main of switch **/
-/*
+
 #include "../HAL/Switch/Switch_int.h"
 #include "../HAL/Switch/Switch_config.h"
 #include "../MCAL/DIO/DIO_int.h"
-
+#include <util/delay.h>
 
 extern SW_t Switch_AstrSwitchState[SW_NUM];
 
@@ -57,16 +57,21 @@ int main(void)
 
 		if(Local_u8pinState == 0)
 		{
-			DIO_enuSetPinValue(DIO_u8PORTA, DIO_u8PIN0, DIO_u8HIGH);
-		}
-		else
-		{
-			DIO_enuSetPinValue(DIO_u8PORTA, DIO_u8PIN0, DIO_u8LOW);
+			_delay_ms(5);
+			Switch_enuGetState(&Switch_AstrSwitchState[1], &Local_u8pinState);
+			if(Local_u8pinState == 0)
+			{
+				DIO_enuSetPinValue(DIO_u8PORTA, DIO_u8PIN0, DIO_u8HIGH);
+			}
+			else
+			{
+				DIO_enuSetPinValue(DIO_u8PORTA, DIO_u8PIN0, DIO_u8LOW);
+			}
 		}
 	}
 	return 0;
 }
-*/
+
 /** Main of LED **/
 /*
 #include "../LIB/STD_TYPES.h"
@@ -77,8 +82,8 @@ int main(void)
 #include "../HAL/Switch/Switch_config.h"
 #include "../HAL/Switch/Switch_int.h"
 #include <util/delay.h>
-
-extern LED_t LED_AstrLedConfiguration[LED_NUM];
+//extern u8 LED_num;
+extern LED_t LED_AstrLedConfiguration[];
 extern SW_t Switch_AstrSwitchState[SW_NUM];
 
 int main(void)
@@ -213,7 +218,7 @@ int main(void)
 */
 
 /** 	Main of LCD 	**/
-
+/*
 #include "../LIB/STD_TYPES.h"
 #include "../LIB/ERROR_STATE.h"
 #include "../MCAL/DIO/DIO_int.h"
@@ -307,7 +312,7 @@ int main(void)
 	}
 	return 0;
 }
-
+*/
 
 /** Main of Keypad **/
 /*

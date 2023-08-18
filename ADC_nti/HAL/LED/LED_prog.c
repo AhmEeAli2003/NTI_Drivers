@@ -12,8 +12,7 @@
 #include "../../LIB/ERROR_STATE.h"
 #include "../../MCAL/DIO/DIO_int.h"
 #include "LED_private.h"
-
-extern u8 LED_num;
+#include "LED_config.h"
 /***********************	Includes Section End	***********************/
 
 ES_t LED_enuInit(LED_t * Copy_pstrLedConfiguration)
@@ -24,7 +23,7 @@ ES_t LED_enuInit(LED_t * Copy_pstrLedConfiguration)
 	{
 		u8 Local_u8Iterator = 0;
 
-		for(Local_u8Iterator = 0; Local_u8Iterator < LED_num; Local_u8Iterator++)
+		for(Local_u8Iterator = 0; Local_u8Iterator < LED_NUM; Local_u8Iterator++)
 		{
 			Local_enuErrorState = DIO_enuSetPinDirection(Copy_pstrLedConfiguration[Local_u8Iterator].LED_u8PortID,
 														 Copy_pstrLedConfiguration[Local_u8Iterator].LED_u8PinID,
