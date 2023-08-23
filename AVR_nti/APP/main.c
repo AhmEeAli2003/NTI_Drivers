@@ -37,7 +37,7 @@ int main(void)
 }
 */
 /** main of switch **/
-
+/*
 #include "../HAL/Switch/Switch_int.h"
 #include "../HAL/Switch/Switch_config.h"
 #include "../MCAL/DIO/DIO_int.h"
@@ -71,7 +71,7 @@ int main(void)
 	}
 	return 0;
 }
-
+*/
 /** Main of LED **/
 /*
 #include "../LIB/STD_TYPES.h"
@@ -369,14 +369,14 @@ int main(void)
 
 */
 /** Main of Interrupt**/
-/*
+
 #include "../LIB/STD_TYPES.h"
 #include "../LIB/ERROR_STATE.h"
 #include "../MCAL/DIO/DIO_int.h"
 #include "../MCAL/EXTI/EXTI_config.h"
 #include "../MCAL/EXTI/EXTI_int.h"
 
-void tog(void *Copy_pvoidParam);
+volatile void tog(volatile void *Copy_pvoidParam);
 extern EXTI_t EXTI_AstrEXTIConfig[3];
 #define SREG  (*(volatile u8*) 0x5F)
 
@@ -397,10 +397,10 @@ int main(void)
 	return 0;
 }
 
-void tog(void *Copy_pvoidParam)
+volatile void tog(volatile void *Copy_pvoidParam)
 {
 	DIO_enuSetPinDirection(DIO_u8PORTA, *((u8*)Copy_pvoidParam), DIO_u8OUTPUT);
 	DIO_enuTogPinValue(DIO_u8PORTA, *((u8*)Copy_pvoidParam));
 }
-*/
+
 

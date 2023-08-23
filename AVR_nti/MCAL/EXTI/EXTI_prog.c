@@ -15,7 +15,7 @@
 #include "../interrupt.h"
 
 static volatile void (*EXTI_ApfunINTFun[3])(void *) = {NULL, NULL, NULL}; //Volatile because it is call from ISR
-void * EXTI_ApvoidGenericparameter[3] = {NULL, NULL, NULL};
+static volatile void * EXTI_ApvoidGenericparameter[3] = {NULL, NULL, NULL};
 
 ES_t EXTI_enuInit(EXTI_t * Copy_pstrEXTIConfig)
 {
@@ -270,7 +270,7 @@ ES_t EXTI_enuDisableINT(u8 Copy_u8EXTI_ID)
 	return Local_enuErrorState;
 }
 
-ES_t EXTI_enuCallBack(void (*Copy_pfunAppFun)(void), void * Copy_pvoidParameter, u8 Copy_u8EXTI_ID)
+ES_t EXTI_enuCallBack(volatile void (*Copy_pfunAppFun)(void *), volatile void * Copy_pvoidParameter, u8 Copy_u8EXTI_ID)
 {
 	ES_t Local_enuErrorState = ES_NOK;
 
@@ -302,6 +302,7 @@ ISR(VECT_INT0)
 		/* Two approaches working well*/
 		(*EXTI_ApfunINTFun[0])(EXTI_ApvoidGenericparameter[0]);
 		//(*EXTI_ApfunINTFun[0])(EXTI_ApvoidGenericparameter[0]);
+		// wanna test: EXTI_ApfunINTFun[0](EXTI_ApvoidGenericparameter[0]);
 	}
 }
 

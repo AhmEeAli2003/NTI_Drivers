@@ -29,4 +29,5 @@ HAL/SSD_LT \
 HAL/Switch \
 MCAL/DIO \
 MCAL/EXTI \
+MCAL/GIE \
 

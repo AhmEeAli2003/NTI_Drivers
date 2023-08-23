@@ -16,5 +16,5 @@ ES_t EXTI_enuEnableINT(u8 Copy_u8EXTI_ID);
 
 ES_t EXTI_enuDisableINT(u8 Copy_u8EXTI_ID);
 
-ES_t EXTI_enuCallBack(void (*Copy_pfunAppFun)(void *), void * Copy_pvoidParameter, u8 Copy_u8EXTI_ID);
+ES_t EXTI_enuCallBack(volatile void (*Copy_pfunAppFun)(volatile void *), void * Copy_pvoidParameter, u8 Copy_u8EXTI_ID);
 #endif /* MCAL_EXTI_EXTI_INT_H_ */
