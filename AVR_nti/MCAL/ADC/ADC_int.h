@@ -7,9 +7,7 @@
 
 #ifndef MCAL_ADC_ADC_INT_H_
 #define MCAL_ADC_ADC_INT_H_
-/*
- * You need to add differential mode code.
- */
+
 #define ADC_u8ADC0		   0
 #define ADC_u8ADC1		   1
 #define ADC_u8ADC2		   2

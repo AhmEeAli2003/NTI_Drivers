@@ -34,12 +34,12 @@ ES_t LCD_enuDisplayChar(u8 Copy_u8Char);
 /**
  ****************************************************************************************
  *	@name			: LCD_enuDisplayNumber
- *  @brief          : Display Number on LCD. from 0 to 4294967295
- *  @param          : u32 Copy_u8Number
+ *  @brief          : Display Number on LCD. from -2147483647 to 2147483647
+ *  @param          : s32 Copy_s32Number
  *  @return         : ES_t
  ****************************************************************************************
 */
-ES_t LCD_enuDisplayNumber(u32 Copy_u8Number);
+ES_t LCD_enuDisplayNumber(s32 Copy_s32Number);
 
 /**
  ****************************************************************************************

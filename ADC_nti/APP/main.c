@@ -16,11 +16,14 @@
 #include "../HAL/LCD/LCD_int.h"
 #include "../HAL/LED/LED_config.h"
 #include "../HAL/LED/LED_int.h"
+#include "../HAL/THERM/THERM_config.h"
+#include "../HAL/THERM/THERM_int.h"
 #include <util/delay.h>
 
-extern LED_t LED_AstrLedConfiguration[LED_NUM];
 /** LM35 Sensor Code before edit Driver **/
 /*
+extern LED_t LED_AstrLedConfiguration[LED_NUM];
+
 int main(void)
 {
 	u16 Local_ADC_DATA = 0;
@@ -96,19 +99,25 @@ int main(void)
 	return 0;
 }
 */
+/** Test ADC driver after updates **/
+/*
 extern EXTI_t EXTI_AstrEXTIConfig[3];
+
+u8 flag;
+
 void Read(void *p)
 {
 	ADC_enuADCRead((u16 *) p);
+	flag = 1;
 }
 int main(void)
 {
 	u8 Local_ADCRead = 0;
 	u16 Local_ADC16 = 0;
 
-	DIO_enuSetPortDirection(DIO_u8PORTC, 0xff);
-	DIO_enuSetPinDirection(DIO_u8PORTA, DIO_u8PIN2, DIO_u8INPUT);
-
+	//DIO_enuSetPortDirection(DIO_u8PORTC, 0xff);
+	//DIO_enuSetPinDirection(DIO_u8PORTA, DIO_u8PIN2, DIO_u8INPUT);
+	LCD_enuInit();
 	DIO_enuSetPinDirection(DIO_u8PORTD, DIO_u8PIN2, DIO_u8INPUT);
 
 	EXTI_enuInit(EXTI_AstrEXTIConfig);
@@ -127,7 +136,36 @@ int main(void)
 
 	while(1)
 	{
-		DIO_enuSetPortValue(DIO_u8PORTC, Local_ADC16);
+		if(flag == 1)
+		{
+			LCD_enuSendCommand(LCD_u8CLEAR_LCD);
+			LCD_enuDisplayNumber((Local_ADC16 * 4.88) / 10);
+			flag = 0;
+		}
+	}
+	return 0;
+}
+*/
+
+/** Test THERM Driver */
+extern THERM_t THERM_AstrThermistorsConfig[THERM_NUM];
+
+int main(void)
+{
+	f32 Local_f32Read = 0, Local_f32Read_1 = 0;
+
+	THERM_enuInit(THERM_AstrThermistorsConfig);
+	LCD_enuInit();
+	LCD_enuSendCommand(LCD_u8HIDE_CURSOR_AND_BLINKING);
+
+	while(1)
+	{
+		THERM_enuGetTemp(&THERM_AstrThermistorsConfig[0], &Local_f32Read);
+		THERM_enuGetTemp(&THERM_AstrThermistorsConfig[1], &Local_f32Read_1);
+
+		LCD_enuSendCommand(LCD_u8CLEAR_LCD);
+
+		LCD_enuDisplayNumber(Local_f32Read - Local_f32Read_1);
 	}
 	return 0;
 }

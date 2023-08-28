@@ -87,7 +87,7 @@ ES_t LCD_enuDisplayChar(u8 Copy_u8Char)
 	return Local_enuErrorState;
 }
 
-ES_t LCD_enuDisplayNumber(u32 Copy_u8Number)
+ES_t LCD_enuDisplayNumber(s32 Copy_s32Number)
 {
 	ES_t Local_enuErrorState = ES_NOK;
 
@@ -97,16 +97,22 @@ ES_t LCD_enuDisplayNumber(u32 Copy_u8Number)
 	/* Set RS as DATA */
 	DIO_enuSetPinValue(RS_PORT, RS_PIN, DIO_u8HIGH);
 
-	if(Copy_u8Number < 10)
+	if(Copy_s32Number < 0)
 	{
-		Copy_u8Number += 48;
-		LCD_voidLatch(Copy_u8Number);
+		Copy_s32Number *= -1;
+		LCD_voidLatch('-');
+	}
+
+	if(Copy_s32Number < 10)
+	{
+		Copy_s32Number += 48;
+		LCD_voidLatch(Copy_s32Number);
 		Local_enuErrorState = ES_OK;
 	}
 	else
 	{
 		/* Count digits of number log10 */
-		while(Local_f64NumberOfDigits <= Copy_u8Number)
+		while(Local_f64NumberOfDigits <= Copy_s32Number)
 		{
 			Local_f64NumberOfDigits *= 10;
 		}
@@ -114,8 +120,8 @@ ES_t LCD_enuDisplayNumber(u32 Copy_u8Number)
 
 		while(Local_f64NumberOfDigits >= 1)
 		{
-			Local_u8Digit = (u8)(Copy_u8Number / Local_f64NumberOfDigits);
-			Copy_u8Number -= ((u32)(Local_u8Digit * Local_f64NumberOfDigits));
+			Local_u8Digit = (u8)(Copy_s32Number / Local_f64NumberOfDigits);
+			Copy_s32Number -= ((u32)(Local_u8Digit * Local_f64NumberOfDigits));
 			Local_u8Digit += 48;
 			Local_f64NumberOfDigits /= 10;
 
