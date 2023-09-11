@@ -30,10 +30,16 @@ ES_t TIM_enuInut(void)
 #if TIM_MODE == OVF
 	TCCR0 &= ~(1<<3);
 	TCCR0 &= ~(1<<6);
+#elif TIM_MODE == CTC
+	TCCR0 |=  (1<<3);
+	TCCR0 &= ~(1<<6);
 #endif
 
 #if OC_MODE == DISCONNECTED
 	TCCR0 &= ~(1<<4);
+	TCCR0 &= ~(1<<5);
+#elif OC_MODE == TOG_OC
+	TCCR0 |=  (1<<4);
 	TCCR0 &= ~(1<<5);
 #endif
 
@@ -49,7 +55,7 @@ ES_t TIM_enuSetPreload(u8 Copy_u8Preload)
 	return Local_enuErrorState;
 }
 
-ES_t TIM_enuSetAsynchDelay(u32 Copy_u32Time, void (*Copy_pfunApp)(void *), void *CopypvoidPara)
+ES_t TIM_enuSetASynchDelay(u32 Copy_u32Time, void (*Copy_pfunApp)(void *), void *CopypvoidPara)
 {
 	ES_t Local_enuErrorState = ES_NOK;
 
@@ -82,7 +88,7 @@ ES_t TIM_enuSetAsynchDelay(u32 Copy_u32Time, void (*Copy_pfunApp)(void *), void 
 	return Local_enuErrorState;
 }
 
-ES_t TIM_enuSetSynchDelay(u32 Copy_u32Time)
+ES_t TIM_enuSetSynchDelayms(u32 Copy_u32Time)
 {
 	ES_t Local_enuErrorState = ES_NOK;
 
@@ -116,6 +122,23 @@ ES_t TIM_enuSetSynchDelay(u32 Copy_u32Time)
 			Local_u32NumOVF_int--;
 		}
 	}
+
+	return Local_enuErrorState;
+}
+
+ES_t TIM_enuSetSynchDelayus(u32 Copy_u32Time)
+{
+	ES_t Local_enuErrorState = ES_NOK;
+
+	TIMSK &= ~(1<<0); //Disable INT
+
+	f32 Local_f32ovfTime = 256 * ((f32) TIM_PRES / TIM_F_CPU);
+
+	f32 Local_f32Ratio = ((Copy_u32Time / 1000) / Local_f32ovfTime);
+
+	u8 Local_u8OCRCounts = Local_f32Ratio * 256;
+
+	OCR0 = Local_u8OCRCounts;
 
 	return Local_enuErrorState;
 }

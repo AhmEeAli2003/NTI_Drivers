@@ -10,9 +10,9 @@
 
 #define TIM_PRES     1024
 
-#define TIM_MODE     OVF
+#define TIM_MODE     CTC
 
-#define OC_MODE      DISCONNECTED
+#define OC_MODE      TOG_OC
 
 #define TIM_F_CPU    (1000UL) //In KHz
 

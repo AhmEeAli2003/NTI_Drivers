@@ -11,6 +11,8 @@ RM := rm -rf
 -include MCAL/GIE/subdir.mk
 -include MCAL/EXTI/subdir.mk
 -include MCAL/DIO/subdir.mk
+-include MCAL/ADC/subdir.mk
+-include HAL/THERM/subdir.mk
 -include HAL/Switch/subdir.mk
 -include HAL/SSD_LT/subdir.mk
 -include HAL/SSD/subdir.mk
