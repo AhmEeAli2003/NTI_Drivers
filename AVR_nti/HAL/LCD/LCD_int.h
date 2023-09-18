@@ -33,6 +33,16 @@ ES_t LCD_enuDisplayChar(u8 Copy_u8Char);
 
 /**
  ****************************************************************************************
+ *	@name			: LCD_enuDisplayFloat
+ *  @brief          : Display floating point number on LCD.
+ *  @param          : f32 Copy_f32Number
+ *  @return         : ES_t
+ ****************************************************************************************
+*/
+ES_t LCD_enuDisplayFloat(f32 Copy_f32Number);
+
+/**
+ ****************************************************************************************
  *	@name			: LCD_enuDisplayNumber
  *  @brief          : Display Number on LCD. from -2147483647 to 2147483647
  *  @param          : s32 Copy_s32Number

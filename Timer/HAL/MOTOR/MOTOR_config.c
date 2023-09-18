@@ -12,5 +12,5 @@ u8 Motors_num = MOTORS_NUM;
 
 MOTOR_t MOTOR_AstrMotorConfig[MOTORS_NUM] =
 {
-		{MOTOR_OC0, 10}
+		{MOTOR_OC0, 100}
 };

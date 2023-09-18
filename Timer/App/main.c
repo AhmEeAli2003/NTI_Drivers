@@ -15,49 +15,87 @@
 #include "../MCAL/EXTI/EXTI_config.h"
 #include "../MCAL/EXTI/EXTI_int.h"
 
+#include "../HAL/MOTOR/MOTOR_int.h"
+#include "../HAL/LCD/LCD_int.h"
 
 #define TCCR0     *((u8*) 0x53)
-#define OCR0     *((u8*) 0x5C)
+#define OCR0      *((u8*) 0x5C)
 #define TIMSK     *((u8*) 0x59)
+#define TCCR1A    *((u8 *) 0x4F)
+#define TCCR1B    *((u8 *) 0x4E)
+#define ICR1L     *((u8 *) 0x46)
+#define ICR1H     *((u8 *) 0x47)
+#define TCNT1L	  *((u8 *) 0x4C)
+#define TCNT1H	  *((u8 *) 0x4D)
+#define DDRB      *((u8 *) 0x37)
+
 
 /*
-void Inc_OCR(void *);
-extern EXTI_t EXTI_AstrEXTIConfig[];
-*/
+enum
+{
+	start,
+	on,
+	off,
+	end,
+	disable
+}state = start;
+
+u16 timeon = 0, total = 0;
 
 int main(void)
 {
-	/*
-	u8 Local_u8OCRVal = 25;
-
-	DIO_enuSetPinDirection(DIO_u8PORTB, DIO_u8PIN3, DIO_u8OUTPUT); //OC0 Pin
-	EXTI_enuInit(EXTI_AstrEXTIConfig);
-	EXTI_enuCallBack(Inc_OCR, &Local_u8OCRVal, 0);
-
-	TCCR0 = 0x63;
-
-	EXTI_enuEnableINT(0);
+	LCD_enuInit();
+	DIO_enuSetPinDirection(DIO_u8PORTD, DIO_u8PIN6, DIO_u8INPUT);
+	TCCR1A = 0x00;
+	TCCR1B = 0x45;
+	ICR1H = 0;
+	ICR1L = 0;
+	TCNT1H = 0;
+	TCNT1L = 0;
+	TIMSK |= (1<<5);
 	GIE_enuEnable();
-	*/
-	TIM_enuInut();
-	DIO_enuSetPinDirection(DIO_u8PORTB, DIO_u8PIN3, DIO_u8OUTPUT);
+
 	while(1)
 	{
-
-		TIM_enuSetSynchDelayus(100000);
+		if(state == end)
+		{
+			f32 duty = (f32)timeon / total;
+			f32 time = (f32)total * 1024.0 / 1000000UL;
+			f32 freq = 1.0 / time;
+			LCD_enuDisplayFloat(duty);
+			LCD_enuSendCommand(LCD_u8GO_TO_SECOND_LINE);
+			LCD_enuDisplayFloat(freq);
+			state = disable;
+		}
 	}
 	return 0;
 }
-/*
-void Inc_OCR(void *param)
+
+ISR(VECT_TIMER1_CAPT)
 {
-	if(*((u8*)param) < 250)
+	if(state == start)
 	{
-		*((u8*)param) += 25;
+		ICR1H = 0;
+		ICR1L = 0;
+		TCNT1H = 0;
+		TCNT1L = 0;
+		TCCR1B = 0x05;
+		state = on;
 	}
-	else
+	else if(state == on)
 	{
-		*((u8*)param) = 25;
+		timeon = ICR1L;
+		timeon |= ((u16)ICR1H << 8);
+		TCCR1B = 0x45;
+		state = off;
+	}
+	else if(state == off)
+	{
+		total = ICR1L;
+		total |= ((u16)ICR1H << 8);
+		TCCR1B = 0x00;
+		state = end;
 	}
 }
+
 */

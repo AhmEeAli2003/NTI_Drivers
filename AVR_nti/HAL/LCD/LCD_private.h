@@ -29,6 +29,27 @@ static void LCD_voidLatch(u8 Copy_u8Data);
 
 /**
  ****************************************************************************************
+ *	@name			: LCD_voidGetLog10
+ *  @brief          : Local function using to get log10 of number.
+ *  				  Usage: get log10 of number.
+ *  @param          : s32 Copy_s32Number, s32 *Copy_ps32Result
+ *  @return         : void
+ ****************************************************************************************
+*/
+static void LCD_voidGetLog10(s32 Copy_s32Number, s32 *Copy_ps32Result);
+
+/**
+ ****************************************************************************************
+ *	@name			: LCD_voidPower
+ *  @brief          : Local function using to calculate power.
+ *  				  Usage: Calculate Power.
+ *  @param          : s32 Copy_s32Base, s32 Copy_s32Exponent, s32 *Copy_ps32Result
+ *  @return         : void
+ ****************************************************************************************
+*/
+static void LCD_voidPower(s32 Copy_s32Base, s32 Copy_s32Exponent, s32 *Copy_ps32Result);
+/**
+ ****************************************************************************************
  *	@name			: LCD_invoidSendCommand
  *  @brief          : Local function using to help another function (APIs).
  *  				  Usage: Send Command to LCD in low level. [for developer only]

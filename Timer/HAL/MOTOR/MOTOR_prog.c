@@ -55,6 +55,10 @@ ES_t MOTOR_enuSetSpeedRatio(MOTOR_t *Copy_pstrMotorID, u8 Copy_u8SpeedRatio)
 {
 	ES_t Local_enuErrorState = ES_NOK;
 
+	if(Copy_pstrMotorID != NULL)
+	{
+		TIM_enuGeneratePhaseCorrectPWM(Copy_u8SpeedRatio);
+	}
 	return Local_enuErrorState;
 }
 

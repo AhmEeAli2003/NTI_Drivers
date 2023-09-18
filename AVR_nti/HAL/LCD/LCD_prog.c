@@ -92,7 +92,7 @@ ES_t LCD_enuDisplayNumber(s32 Copy_s32Number)
 	ES_t Local_enuErrorState = ES_NOK;
 
 	u8 Local_u8Digit = 0;
-	f64 Local_f64NumberOfDigits = 1;
+	s32 Local_s32NumbersOfDigits = 0, Local_s32Power = 0;
 
 	/* Set RS as DATA */
 	DIO_enuSetPinValue(RS_PORT, RS_PIN, DIO_u8HIGH);
@@ -106,24 +106,20 @@ ES_t LCD_enuDisplayNumber(s32 Copy_s32Number)
 	if(Copy_s32Number < 10)
 	{
 		Copy_s32Number += 48;
-		LCD_voidLatch(Copy_s32Number);
+		LCD_voidLatch((u8)Copy_s32Number);
 		Local_enuErrorState = ES_OK;
 	}
 	else
 	{
-		/* Count digits of number log10 */
-		while(Local_f64NumberOfDigits <= Copy_s32Number)
+		LCD_voidGetLog10(Copy_s32Number, &Local_s32NumbersOfDigits);
+		LCD_voidPower(10, Local_s32NumbersOfDigits, &Local_s32Power);
+		while(Local_s32NumbersOfDigits > 0)
 		{
-			Local_f64NumberOfDigits *= 10;
-		}
-		Local_f64NumberOfDigits /= 10;
-
-		while(Local_f64NumberOfDigits >= 1)
-		{
-			Local_u8Digit = (u8)(Copy_s32Number / Local_f64NumberOfDigits);
-			Copy_s32Number -= ((u32)(Local_u8Digit * Local_f64NumberOfDigits));
+			Local_u8Digit = (u8)(Copy_s32Number / Local_s32Power);
+			Copy_s32Number -= ((u32)(Local_u8Digit * Local_s32Power));
 			Local_u8Digit += 48;
-			Local_f64NumberOfDigits /= 10;
+			Local_s32NumbersOfDigits--;
+			Local_s32Power /= 10;
 
 			LCD_voidLatch(Local_u8Digit);
 		}
@@ -134,6 +130,74 @@ ES_t LCD_enuDisplayNumber(s32 Copy_s32Number)
 	return Local_enuErrorState;
 }
 
+ES_t LCD_enuDisplayFloat(f32 Copy_f32Number)
+{
+	ES_t Local_enuErrorState = ES_NOK;
+
+
+	s32 Local_s32IntPart = 0;
+	s32 Local_s32FractionPart = 0;
+	s32 Local_s32NumbersOfDigits = 0, Local_s32Power = 0;
+	u8 Local_u8Digit = 0;
+	/* Set RS as DATA */
+	DIO_enuSetPinValue(RS_PORT, RS_PIN, DIO_u8HIGH);
+
+	if(Copy_f32Number <  0.0)
+	{
+		Copy_f32Number *= -1.0;
+		LCD_voidLatch('-');
+	}
+
+	Local_s32IntPart = (s32) Copy_f32Number;
+	Local_s32FractionPart = (s32)((Copy_f32Number - Local_s32IntPart) * 1000);
+
+	if(Local_s32IntPart < 10)
+	{
+		Local_s32IntPart += 48;
+		LCD_voidLatch((u8)Local_s32IntPart);
+		Local_enuErrorState = ES_OK;
+	}
+	else
+	{
+		LCD_voidGetLog10(Local_s32IntPart, &Local_s32NumbersOfDigits);
+		LCD_voidPower(10, Local_s32NumbersOfDigits, &Local_s32Power);
+		while(Local_s32NumbersOfDigits > 0)
+		{
+			Local_u8Digit = (u8)(Local_s32IntPart / Local_s32Power);
+			Local_s32IntPart -= ((u32)(Local_u8Digit * Local_s32Power));
+			Local_u8Digit += 48;
+			Local_s32NumbersOfDigits--;
+			Local_s32Power /= 10;
+
+			LCD_voidLatch(Local_u8Digit);
+		}
+	}
+
+	LCD_voidLatch('.');
+	if(Local_s32FractionPart < 10)
+	{
+		Local_s32FractionPart += 48;
+		LCD_voidLatch((u8)Local_s32FractionPart);
+		Local_enuErrorState = ES_OK;
+	}
+	else
+	{
+		LCD_voidGetLog10(Local_s32FractionPart, &Local_s32NumbersOfDigits);
+		LCD_voidPower(10, Local_s32NumbersOfDigits, &Local_s32Power);
+		while(Local_s32NumbersOfDigits > 0)
+		{
+			Local_u8Digit = (u8)(Local_s32FractionPart / Local_s32Power);
+			Local_s32FractionPart -= ((u32)(Local_u8Digit * Local_s32Power));
+			Local_u8Digit += 48;
+			Local_s32NumbersOfDigits--;
+			Local_s32Power /= 10;
+
+			LCD_voidLatch(Local_u8Digit);
+		}
+	}
+
+	return Local_enuErrorState;
+}
 ES_t LCD_enuDisplaySpecialChar(u8 Copy_u8RowPosition , u8 Copy_u8ColPosition, u8 *Copy_pu8ExtraChar)
 {
 	ES_t Local_enuErrorState = ES_NOK;
@@ -272,4 +336,34 @@ static inline void LCD_invoidSendCommand(u8 Copy_u8Command)
 
 	LCD_voidLatch(Copy_u8Command);
 
+}
+
+static void LCD_voidGetLog10(s32 Copy_s32Number, s32 *Copy_ps32Result)
+{
+	s32 Local_s32NumberOfDigits = 0;
+	f64 Local_f64NumberOfDigitsFactor = 1;
+	while(Local_f64NumberOfDigitsFactor <= Copy_s32Number)
+	{
+		Local_f64NumberOfDigitsFactor *= 10;
+	}
+	Local_f64NumberOfDigitsFactor /= 10;
+
+	while(Local_f64NumberOfDigitsFactor >= 1)
+	{
+		Local_s32NumberOfDigits++;
+		Local_f64NumberOfDigitsFactor /= 10;
+	}
+
+	*Copy_ps32Result = Local_s32NumberOfDigits;
+}
+
+static void LCD_voidPower(s32 Copy_s32Base, s32 Copy_s32Exponent, s32 *Copy_ps32Result)
+{
+	*Copy_ps32Result = 1;
+
+	while(Copy_s32Exponent > 1)
+	{
+		*Copy_ps32Result *= Copy_s32Base;
+		Copy_s32Exponent--;
+	}
 }

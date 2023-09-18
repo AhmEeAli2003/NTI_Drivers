@@ -25,6 +25,10 @@ ES_t TIM_enuInut(void)
 	TCCR0 &= 0xF8; //Mask
 
 	TCCR0 |= 0x05;
+#elif TIM_PRES == 64
+	TCCR0 &= 0xF8; //Mask
+
+	TCCR0 |= 0x03;
 #endif
 
 #if TIM_MODE == OVF
@@ -33,14 +37,26 @@ ES_t TIM_enuInut(void)
 #elif TIM_MODE == CTC
 	TCCR0 |=  (1<<3);
 	TCCR0 &= ~(1<<6);
+#elif TIM_MODE == FAST_PWM
+	TCCR0 |= (1<<3);
+	TCCR0 |= (1<<6);
+#elif TIM_MODE == PHASE_CORRECT_PWM
+	TCCR0 &= ~(1<<3);
+	TCCR0 |= (1<<6);
 #endif
 
 #if OC_MODE == DISCONNECTED
 	TCCR0 &= ~(1<<4);
 	TCCR0 &= ~(1<<5);
-#elif OC_MODE == TOG_OC
+#elif OC_MODE == TOG_OC && TIM_MODE == CTC
 	TCCR0 |=  (1<<4);
 	TCCR0 &= ~(1<<5);
+#elif OC_MODE == CLR_OC && (TIM_MODE == FAST_PWM || TIM_MODE == PHASE_CORRECT_PWM)
+	TCCR0 &=  ~(1<<4);
+	TCCR0 |= (1<<5);
+#elif OC_MODE == SET_OC && (TIM_MODE == FAST_PWM || TIM_MODE == PHASE_CORRECT_PWM)
+	TCCR0 |= (1<<4);
+	TCCR0 |= (1<<5);
 #endif
 
 	return Local_enuErrorState;
@@ -55,7 +71,7 @@ ES_t TIM_enuSetPreload(u8 Copy_u8Preload)
 	return Local_enuErrorState;
 }
 
-ES_t TIM_enuSetASynchDelay(u32 Copy_u32Time, void (*Copy_pfunApp)(void *), void *CopypvoidPara)
+ES_t TIM_enuSetAsynchDelayms(u32 Copy_u32Time, void (*Copy_pfunApp)(void *), void *CopypvoidPara)
 {
 	ES_t Local_enuErrorState = ES_NOK;
 
@@ -130,7 +146,7 @@ ES_t TIM_enuSetSynchDelayus(u32 Copy_u32Time)
 {
 	ES_t Local_enuErrorState = ES_NOK;
 
-	TIMSK &= ~(1<<0); //Disable INT
+	TIMSK &= ~(1<<1); //Disable INT
 
 	f32 Local_f32ovfTime = 256 * ((f32) TIM_PRES / TIM_F_CPU);
 
@@ -143,6 +159,53 @@ ES_t TIM_enuSetSynchDelayus(u32 Copy_u32Time)
 	return Local_enuErrorState;
 }
 
+ES_t TIM_enuSetAsynchDelayus(u32 Copy_u32Time, void (*Copy_pfunApp)(void *), void *CopypvoidPara)
+{
+	ES_t Local_enuErrorState = ES_NOK;
+
+	f32 Local_f32ovfTime = 256 * ((f32) TIM_PRES / TIM_F_CPU);
+
+	f32 Local_f32Ratio = ((Copy_u32Time / 1000) / Local_f32ovfTime);
+
+	u8 Local_u8OCRCounts = Local_f32Ratio * 256;
+
+	OCR0 = Local_u8OCRCounts;
+
+	if(Copy_pfunApp != NULL)
+	{
+		gptr = Copy_pfunApp;
+		gpara = CopypvoidPara;
+	}
+
+	TIMSK |= (1<<1); //Enable INT
+
+	return Local_enuErrorState;
+}
+
+ES_t TIM_enuGenerateFastPWM(u8 Copy_u8DutyRatio)
+{
+	ES_t Local_enuErrorState = ES_NOK;
+
+#if OC_MODE == CLR_OC
+	OCR0 = (Copy_u8DutyRatio / 100.0) * 256;
+#elif OC_MODE == SET_OC
+	OCR0 = 255 - ((Copy_u8DutyRatio / 100.0) * 256);
+#endif
+	return Local_enuErrorState;
+}
+
+ES_t TIM_enuGeneratePhaseCorrectPWM(u8 Copy_u8DutyRatio)
+{
+	ES_t Local_enuErrorState = ES_NOK;
+
+#if OC_MODE == CLR_OC
+	OCR0 = (Copy_u8DutyRatio / 100.0) * 255;
+#elif OC_MODE == SET_OC
+	OCR0 = ((100 - Copy_u8DutyRatio) / 100.0) * 255;
+#endif
+
+	return Local_enuErrorState;
+}
 ISR(VECT_TIMER0_OVF)
 {
 	if(gptr != NULL)
@@ -155,5 +218,13 @@ ISR(VECT_TIMER0_OVF)
 			gptr(gpara);
 			counts = 0;
 		}
+	}
+}
+
+ISR(VECT_TIMER0_COMP)
+{
+	if(gptr != NULL)
+	{
+		gptr(gpara);
 	}
 }
